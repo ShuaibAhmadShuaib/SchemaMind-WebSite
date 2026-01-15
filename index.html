@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchemaMind | Generative Data Intelligence (GDI)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        
+        :root { 
+            --brand-blue: #0052FF; 
+            --dark-blue: #0A192F;
+            --light-blue: #F0F5FF;
+            --accent-blue: #E6EEFF;
+            --alert-red: #EF4444;
+        }
+
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #ffffff; 
+            color: var(--dark-blue); 
+            scroll-behavior: smooth; 
+        }
+
+        .hero-gradient { 
+            background: radial-gradient(circle at top right, var(--light-blue), #ffffff); 
+        }
+
+        .blue-gradient-text { 
+            background: linear-gradient(90deg, #0052FF, #00A3FF); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+
+        .feature-card { 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            border: 1px solid var(--accent-blue);
+            background: #ffffff;
+        }
+        .feature-card:hover { 
+            border-color: var(--brand-blue); 
+            transform: translateY(-8px); 
+            box-shadow: 0 20px 40px rgba(0, 82, 255, 0.08); 
+        }
+
+        .problem-card { 
+            border: 1px solid #fee2e2;
+            background: #fffafa; 
+            transition: all 0.3s ease;
+        }
+        .problem-card:hover {
+            border-color: var(--alert-red);
+            background: #fef2f2;
+        }
+
+        .patent-pill { 
+            background: var(--accent-blue); 
+            border: 1px solid rgba(0, 82, 255, 0.2); 
+            color: var(--brand-blue); 
+        }
+
+        .integration-chip {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 10px 16px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+        .integration-chip:hover {
+            border-color: var(--brand-blue);
+            background: var(--light-blue);
+        }
+
+        .table-container {
+            border: 1px solid #e2e8f0;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .base-table { width: 100%; border-collapse: collapse; }
+        .base-table th {
+            background-color: #f8fafc;
+            color: #64748b;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.75rem;
+            padding: 1.25rem 1.5rem;
+        }
+        .base-table td {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: middle;
+        }
+
+        .check-yes { color: #10B981; font-size: 1.1rem; }
+        .check-no { color: #CBD5E1; font-size: 1.1rem; }
+        .check-partial { color: #F59E0B; font-size: 1.1rem; }
+        .feature-label { font-weight: 700; color: #1e293b; text-align: left !important; }
+
+        .btn-primary {
+            background-color: var(--brand-blue);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: var(--dark-blue);
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 px-8 py-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="text-2xl font-extrabold tracking-tighter italic text-slate-900">
+            Schema<span class="text-blue-600">Mind</span>
+        </div>
+        <div class="hidden md:flex space-x-8 font-bold text-[10px] text-slate-500 uppercase tracking-[0.2em]">
+            <a href="#hurdles" class="hover:text-blue-600 transition">Hurdles</a>
+            <a href="#tech-core" class="hover:text-blue-600 transition">Technical Core</a>
+            <a href="#integrations" class="hover:text-blue-600 transition">Integrations</a>
+            <a href="#impact" class="hover:text-blue-600 transition">Impact</a>
+            <a href="#demo" class="hover:text-blue-600 transition">Demo</a>
+        </div>
+        <button class="btn-primary text-white px-7 py-2.5 rounded-full font-bold shadow-lg text-sm">
+            REQUEST ACCESS
+        </button>
+    </div>
+</nav>
+
+<header class="hero-gradient pt-24 pb-28 px-6 text-center border-b border-slate-50">
+    <div class="max-w-5xl mx-auto">
+        <div class="inline-block patent-pill px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-[0.25em] mb-10">
+            <i class="fas fa-shield-halved mr-2"></i> Patented GDI Technology: IN/PA-5059
+        </div>
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-8 text-slate-900 leading-[1.2]">
+            Where all your data <br><span class="blue-gradient-text">finally meets together.</span>
+        </h1>
+        <p class="text-blue-600 font-extrabold uppercase tracking-[0.3em] text-xs mb-8">
+            The Generative Data Intelligence Platform
+        </p>
+        <p class="text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed mb-14">
+            SchemaMind is the world’s first <strong>Generative Data Intelligence (GDI)</strong> platform —
+            the mind that understands intent, resolves ambiguity, and generates trusted datasets
+            across databases, spreadsheets, and documents using plain English.
+        </p>
+
+        <div class="bg-white border border-blue-50 p-10 rounded-[3rem] shadow-2xl max-w-3xl mx-auto relative">
+            <i class="fas fa-quote-left absolute top-6 left-8 text-blue-50 text-6xl"></i>
+            <p class="text-xl text-slate-800 font-semibold leading-relaxed italic relative z-10">
+                “SchemaMind doesn’t translate questions into SQL.
+                <span class="text-blue-600">It reasons across all your data</span>
+                and returns one correct, trusted table — automatically.”
+            </p>
+        </div>
+    </div>
+</header>
+
+    <section id="hurdles" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-extrabold text-slate-900 mb-4 italic underline decoration-blue-500 underline-offset-8">
+                The Ready Data Hurdle
+            </h2>
+            <p class="text-slate-500 text-lg max-w-2xl mx-auto mt-6">
+                Data is abundant. Understanding it is not.
+                Most systems fail before execution — at intent, ambiguity, and source selection.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 lg:grid-cols-6 gap-6">
+            <div class="problem-card p-6 rounded-3xl text-center">
+                <h3 class="text-[10px] font-bold uppercase tracking-widest mb-2">Ambiguous Queries</h3>
+                <p class="text-slate-500 text-[10px] leading-relaxed">
+                    Business terms have multiple meanings across schemas and teams.
+                </p>
+            </div>
+
+            <div class="problem-card p-6 rounded-3xl text-center">
+                <h3 class="text-[10px] font-bold uppercase tracking-widest mb-2">Intent Loss</h3>
+                <p class="text-slate-500 text-[10px] leading-relaxed">
+                    Analytical intent is lost when natural language is directly translated into SQL.
+                </p>
+            </div>
+
+            <div class="problem-card p-6 rounded-3xl text-center">
+                <h3 class="text-[10px] font-bold uppercase tracking-widest mb-2">Source Overload</h3>
+                <p class="text-slate-500 text-[10px] leading-relaxed">
+                    Systems cannot determine which tables, files, or documents are relevant.
+                </p>
+            </div>
+
+            <div class="problem-card p-6 rounded-3xl text-center">
+                <h3 class="text-[10px] font-bold uppercase tracking-widest mb-2">Schema Drift</h3>
+                <p class="text-slate-500 text-[10px] leading-relaxed">
+                    Schema changes silently break pipelines and analytical queries.
+                </p>
+            </div>
+
+            <div class="problem-card p-6 rounded-3xl text-center">
+                <h3 class="text-[10px] font-bold uppercase tracking-widest mb-2">Execution Guesswork</h3>
+                <p class="text-slate-500 text-[10px] leading-relaxed">
+                    Query engines lack understanding of optimal execution paths.
+                </p>
+            </div>
+
+            <div class="problem-card p-6 rounded-3xl text-center">
+                <h3 class="text-[10px] font-bold uppercase tracking-widest mb-2">Low Trust Outputs</h3>
+                <p class="text-slate-500 text-[10px] leading-relaxed">
+                    No confidence or lineage makes results hard to trust.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+   <section id="tech-core" class="py-24 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-8">
+        <div class="text-center mb-20">
+            <h2 class="text-4xl font-extrabold text-slate-900 mb-4">Technical Core</h2>
+            <p class="text-blue-600 font-bold tracking-widest text-[10px] uppercase">
+                Generative Data Intelligence Engine
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="feature-card p-8 rounded-2xl">
+                <h3 class="font-bold text-slate-900 mb-2">Query Disambiguation</h3>
+                <p class="text-slate-500 text-xs leading-relaxed">
+                    Resolves ambiguous terms using schema context, metadata, and usage patterns.
+                </p>
+            </div>
+
+            <div class="feature-card p-8 rounded-2xl">
+                <h3 class="font-bold text-slate-900 mb-2">Intent Decomposition</h3>
+                <p class="text-slate-500 text-xs leading-relaxed">
+                    Breaks natural language into filters, joins, aggregations, and time semantics.
+                </p>
+            </div>
+
+            <div class="feature-card p-8 rounded-2xl">
+                <h3 class="font-bold text-slate-900 mb-2">Semantic Source Selection</h3>
+                <p class="text-slate-500 text-xs leading-relaxed">
+                    Identifies and ranks the most relevant data sources before execution.
+                </p>
+            </div>
+
+            <div class="feature-card p-8 rounded-2xl">
+                <h3 class="font-bold text-slate-900 mb-2">Operator Graph Planning</h3>
+                <p class="text-slate-500 text-xs leading-relaxed">
+                    Constructs an execution graph defining join order and transformation flow.
+                </p>
+            </div>
+
+            <div class="feature-card p-8 rounded-2xl">
+                <h3 class="font-bold text-slate-900 mb-2">Adaptive Command Generation</h3>
+                <p class="text-slate-500 text-xs leading-relaxed">
+                    Generates engine-aware commands that adapt automatically as schemas evolve.
+                </p>
+            </div>
+
+            <div class="feature-card p-8 rounded-2xl">
+                <h3 class="font-bold text-slate-900 mb-2">Self-Healing & Confidence</h3>
+                <p class="text-slate-500 text-xs leading-relaxed">
+                    Repairs failures, validates outputs, and assigns confidence and lineage.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section id="impact" class="py-24 bg-slate-50">
+        <div class="max-w-5xl mx-auto px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Market Impact Matrix</h2>
+                <p class="text-slate-500 text-sm">Quantifiable value of moving to a Generative Data Intelligence layer.</p>
+            </div>
+            <div class="table-container">
+                <table class="base-table text-left">
+                    <thead>
+                        <tr>
+                            <th>Industry Hurdle</th>
+                            <th>SchemaMind Innovation</th>
+                            <th class="text-center">Strategic ROI</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-slate-700">
+                        <tr>
+                            <td><span class="font-bold">ETL Manual Effort</span><br><span class="text-[10px] text-slate-400">High Engineering Cost</span></td>
+                            <td class="italic">Minimal Config Discovery</td>
+                            <td class="text-blue-600 font-extrabold text-center">98% Faster Setup</td>
+                        </tr>
+                        <tr>
+                            <td><span class="font-bold">Dark Data Silos</span><br><span class="text-[10px] text-slate-400">Inaccessible PDF Tables</span></td>
+                            <td class="italic">Cross-Source Semantic Fusion</td>
+                            <td class="text-blue-600 font-extrabold text-center">100% Data Coverage</td>
+                        </tr>
+                        <tr>
+                            <td><span class="font-bold">Operational Downtime</span><br><span class="text-[10px] text-slate-400">Broken Data Pipelines</span></td>
+                            <td class="italic">Dynamic Schema Evolution</td>
+                            <td class="text-blue-600 font-extrabold text-center">Zero Maintenance</td>
+                        </tr>
+                        <tr>
+                            <td><span class="font-bold">Command Inaccuracy</span><br><span class="text-[10px] text-slate-400">Query Fragility</span></td>
+                            <td class="italic">Self-Healing & Confidence Scoring</td>
+                            <td class="text-blue-600 font-extrabold text-center">Trusted Results</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="comparison" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-extrabold text-slate-900 mb-4">Market Comparison</h2>
+                <p class="text-slate-500 text-lg">Only SchemaMind provides **True Data Fusion**.</p>
+            </div>
+            <div class="table-container overflow-x-auto">
+                <table class="base-table text-center min-w-[900px]">
+                    <thead>
+                        <tr>
+                            <th class="feature-label">Feature Capability</th>
+                            <th>Informatica</th>
+                            <th>Snowflake</th>
+                            <th>MS Fabric</th>
+                            <th>AWS Glue</th>
+                            <th>dbt Cloud</th>
+                            <th class="bg-blue-50 text-blue-600">SchemaMind (GDI)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="feature-label">Live PDF Extraction</td>
+                            <td><i class="fas fa-circle-xmark check-no"></i></td>
+                            <td><i class="fas fa-circle-check check-yes"></i></td>
+                            <td><i class="fas fa-circle-xmark check-no"></i></td>
+                            <td><i class="fas fa-circle-xmark check-no"></i></td>
+                            <td><i class="fas fa-circle-xmark check-no"></i></td>
+                            <td class="bg-blue-50/50"><i class="fas fa-circle-check check-yes"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-label">Autonomous Data Fusion</td>
+                            <td><i class="fas fa-circle-half-stroke check-partial"></i></td>
+                            <td><i class="fas fa-circle-xmark check-no"></i></td>
+                            <td><i class="fas fa-circle-half-stroke check-partial"></i></td>
+                            <td><i class="fas fa-circle-xmark check-no"></i></td>
+                            <td><i class="fas fa-circle-xmark check-no"></i></td>
+                            <td class="bg-blue-50/50"><i class="fas fa-circle-check check-yes"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-label">Self-Healing Schema</td>
+                            <td><i class="fas fa-circle-xmark check-no"></i></td>
+                            <td><i class="fas fa-circle-xmark check-no"></i></td>
+                            <td><i class="fas fa-circle-xmark check-no"></i></td>
+                            <td><i class="fas fa-circle-xmark check-no"></i></td>
+                            <td><i class="fas fa-circle-xmark check-no"></i></td>
+                            <td class="bg-blue-50/50"><i class="fas fa-circle-check check-yes"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-label">Automated Self-Healing</td>
+                            <td><i class="fas fa-circle-xmark check-no"></i></td>
+                            <td><i class="fas fa-circle-xmark check-no"></i></td>
+                            <td><i class="fas fa-circle-xmark check-no"></i></td>
+                            <td><i class="fas fa-circle-xmark check-no"></i></td>
+                            <td><i class="fas fa-circle-xmark check-no"></i></td>
+                            <td class="bg-blue-50/50"><i class="fas fa-circle-check check-yes"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="demo" class="py-24 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-8 text-center">
+            <h2 class="text-4xl font-extrabold mb-12 italic text-blue-400">See the Mind in Action</h2>
+            <div class="max-w-4xl mx-auto relative group">
+                <div class="absolute -inset-1 bg-blue-500 rounded-3xl blur opacity-20"></div>
+                <div class="relative aspect-video bg-black rounded-3xl overflow-hidden border border-slate-700">
+                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 text-center border-t border-slate-100">
+        <div class="text-3xl font-extrabold mb-4 italic">Schema<span class="text-blue-600">Mind</span></div>
+        <p class="text-slate-400 text-xs">© 2026 SchemaMind Platform. Patented GDI Technology (IN/PA-5059)</p>
+    </footer>
+
+</body>
+</html>
