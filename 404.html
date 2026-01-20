@@ -1,0 +1,6 @@
+<script>
+  // GitHub Pages SPA redirect logic
+  var redirect = sessionStorage.redirect || location.pathname;
+  sessionStorage.redirect = "";
+  window.location.href = "/";
+</script>
