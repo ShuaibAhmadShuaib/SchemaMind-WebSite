@@ -132,45 +132,56 @@ body {
     </div>
   </div>
 </nav>
-
 <header class="hero-gradient pt-8 md:pt-12 pb-24 px-6">
-  <div class="max-w-7xl mx-auto grid md:grid-cols-5 gap-8 items-center">
-    <!-- Image column: ~40% (2/5) -->
-    <div class="md:col-span-2">
-      <img
-        src="schema-mind-main-page-logo.png"
-        alt="SchemaMind – Generative Data Intelligence"
-        decoding="async"
-        fetchpriority="high"
-        class="w-full h-auto max-h-[60vh] object-contain rounded-2xl shadow-2xl bg-[#070b15]"
-     lved mr-2"></i> PATENTED GDI • IN/PA-5059
+  <div class="max-w-7xl mx-auto">
+    <!-- GRID: mobile = 1 col, md = 5 cols (40/60), lg = 12 cols (image/headline/desc) -->
+    <div class="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-12 gap-8 items-center">
+
+      <!-- LEFT: Banner image -->
+      <div class="md:col-span-2 lg:col-span-4 order-1">
+        <img
+          src="schema-mind-main-page-logo.png"
+          alt="SchemaMind – Generative Data Intelligence"
+n't fight headline -->
+        <div class="mt-4 inline-block patent-pill px-5 py-2 rounded-full text-[10px] font-bold tracking-[0.3em] md:hidden">
+          <i class="fas fa-shield-halved mr-2"></i> PATENTED GDI • IN/PA-5059
+        </div>
       </div>
 
-      <h1 class="text-4xl md:text-6xl font-extrabold mb-10 leading-tight">
-        Where all your data<br />
-        <span class="blue-gradient-text">finally reasons together.</span>
-      </h1>
+      <!-- MIDDLE: Big headline (primary message) -->
+      <div class="md:col-span-3 lg:col-span-5 order-2">
+        <!-- Pill for md+ appears here (under the logo on mobile). Keeps visual rhythm. -->
+        <div class="hidden md:inline-block patent-pill px-5 py-2 rounded-full text-[10px] font-bold tracking-[0.3em] mb-8">
+          <i class="fas fa-shield-halved mr-2"></i> PATENTED GDI • IN/PA-5059
+        </div>
 
-      <p class="text-cyan-400 uppercase font-extrabold tracking-[0.35em] text-xs mb-10">
-        Generative Data Intelligence Platform
-      </p>
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-8 leading-tight">
+          Where all your data<br />
+          <span class="blue-gradient-text">finally reasons together.</span>
+        </h1>
 
-      <p class="text-lg text-slate-400 max-w-3xl leading-relaxed mb-16">
-        SchemaMind is the world’s first <strong class="text-white">Generative Data Intelligence (GDI)</strong> engine —
-        a reasoning layer that understands intent, resolves ambiguity, and produces
-        trusted datasets across databases, files, and documents.
-      </p>
+        <p class="text-cyan-400 uppercase font-extrabold tracking-[0.35em] text-[10px] md:text-xs mb-10">
+          Generative Data Intelligence Platform
+        </p>
 
-      <div class="relative bg-gradient-to-br from-[#0c1428] to-[#070b15] border border-white/10 rounded-[3rem] p-10 shadow-2xl">
-        <p class="text-xl italic font-semibold leading-relaxed">
-          “SchemaMind doesn’t translate questions into SQL.
-          <span class="text-blue-400">It reasons across all enterprise data</span>
-          and returns one trusted table.”
+        <div class="relative bg-gradient-to-br from-[#0c1428] to-[#070b15] border border-white/10 rounded-[2rem] md:rounded-[3rem] p-6 md:p-10 shadow-2xl">
+          <p class="text-lg md:text-xl italic font-semibold leading-relaxed">
+            “SchemaMind doesn’t translate questions into SQL.
+            <span class="text-blue-400">It reasons across all enterprise data</span>
+            and returns one trusted table.”
+          </p>
+        </div>
+      </div>
+
+      <!-- RIGHT: Description copy (supports headline) -->
+      <div class="lg:col-span-3 order-3">
+        <p class="text-lg text-slate-400 leading-relaxed">
+          SchemaMind is the world’s first <strong class="text-white">Generative Data Intelligence (GDI)</strong> engine —
+          a reasoning layer that understands intent, resolves ambiguity, and produces
+          trusted datasets across databases, files, and documents.
         </p>
       </div>
     </div>
-  </div>
-</header>
 
 <section id="hurdles" class="py-28">
   <div class="max-w-7xl mx-auto px-8">
