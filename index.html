@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -125,7 +126,7 @@
 
   <!-- Hero Section - Revolutionary Full-Screen -->
   <section id="hero" class="relative flex items-center justify-center text-center px-6">
-    <div class="max-w-6xl mx-auto pt-32 pb-20">
+    <div class="max-w-6xl mx-auto pt-48 pb-20"> <!-- Increased pt-32 to pt-48 to avoid overlap with banner text -->
       <div class="hero-gradient absolute inset-0 z-0"></div>
       
       <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight animate-fadeInUp">
@@ -134,12 +135,20 @@
       </h1>
       
       <p class="text-xl md:text-2xl text-cyan-300 font-light mb-12 animate-fadeInUp delay-200">
-        Powered by Patented Generative Data Intelligence (GDI)
+        The Generative Data Intelligence Platform
       </p>
       
       <div class="inline-block patent-pill px-6 py-3 rounded-full text-sm font-bold tracking-widest mb-12 animate-fadeInUp delay-400">
         <i class="fas fa-shield-halved mr-2"></i> PATENTED GDI • IN/PA-5059
       </div>
+      
+      <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-12 animate-fadeInUp delay-400">
+        SchemaMind is the world’s first Generative Data Intelligence platform — the mind that instantly understands, fuses, and generates perfect datasets from databases, spreadsheets, and PDFs using plain English.
+      </p>
+      
+      <p class="text-md md:text-lg italic text-slate-400 max-w-3xl mx-auto mb-16 animate-fadeInUp delay-600">
+        “Just like GPT gave the world a mind for text, SchemaMind gives enterprises a mind for schemas and data. Ask any question. SchemaMind thinks across all your sources and returns one correct, trusted table — automatically.”
+      </p>
       
       <a href="#demo" class="btn-primary px-10 py-5 rounded-full text-lg font-bold shadow-2xl animate-fadeInUp delay-600">
         Watch the Revolution <i class="fas fa-arrow-right ml-3"></i>
@@ -153,7 +162,7 @@
       <div class="text-center mb-20">
         <h2 class="text-5xl font-extrabold italic mb-6 animate-fadeInUp">The Ready-Data Hurdle</h2>
         <p class="text-slate-400 max-w-3xl mx-auto text-lg">
-          Legacy data stacks fail at the most critical moment — understanding intent, resolving ambiguity, and building trust.
+          Modern data stacks fail before execution — at intent, ambiguity, and trust. Existing systems like ETL platforms require extensive manual configuration, prior schema knowledge, and struggle with heterogeneous sources, leading to errors, inefficiencies, and low trust in outputs.
         </p>
       </div>
       
@@ -161,33 +170,32 @@
         <div class="problem-card p-8 rounded-3xl text-center animate-fadeInUp">
           <i class="fas fa-question-circle text-4xl text-yellow-400 mb-4"></i>
           <h3 class="text-lg font-bold mb-3">Ambiguity</h3>
-          <p class="text-slate-400">Same terms, different meanings across teams and systems.</p>
+          <p class="text-slate-400">Same terms have different meanings across sources. Conventional systems require manual clarification for vague queries like "get customer data," making them inaccessible for non-technical users.</p>
         </div>
-        <!-- Repeat for other hurdles with icons -->
         <div class="problem-card p-8 rounded-3xl text-center animate-fadeInUp delay-200">
           <i class="fas fa-language text-4xl text-red-400 mb-4"></i>
           <h3 class="text-lg font-bold mb-3">Intent Loss</h3>
-          <p class="text-slate-400">Natural language to SQL loses semantic depth.</p>
+          <p class="text-slate-400">Natural language to SQL translation breaks semantics. Users without expertise in query languages face barriers, and systems lack support for ambiguous or evolving queries.</p>
         </div>
         <div class="problem-card p-8 rounded-3xl text-center animate-fadeInUp delay-400">
           <i class="fas fa-database text-4xl text-orange-400 mb-4"></i>
           <h3 class="text-lg font-bold mb-3">Source Chaos</h3>
-          <p class="text-slate-400">Databases, files, PDFs, APIs — no unified view.</p>
+          <p class="text-slate-400">Too many heterogeneous sources like databases, files, PDFs. Interoperability challenges arise as data lacks predefined relationships, restricting unified views.</p>
         </div>
         <div class="problem-card p-8 rounded-3xl text-center animate-fadeInUp delay-600">
           <i class="fas fa-sync-alt text-4xl text-purple-400 mb-4"></i>
           <h3 class="text-lg font-bold mb-3">Schema Drift</h3>
-          <p class="text-slate-400">Silent changes break pipelines overnight.</p>
+          <p class="text-slate-400">Dynamic schema changes cause silent pipeline failures. Rigid mapping fails when new columns appear or naming conventions differ.</p>
         </div>
         <div class="problem-card p-8 rounded-3xl text-center animate-fadeInUp delay-800">
           <i class="fas fa-brain text-4xl text-cyan-400 mb-4"></i>
           <h3 class="text-lg font-bold mb-3">Guesswork</h3>
-          <p class="text-slate-400">No real execution intelligence.</p>
+          <p class="text-slate-400">No execution intelligence; source-specific commands are fragile. Errors in syntax or incompatible operations lead to failures without automated correction.</p>
         </div>
         <div class="problem-card p-8 rounded-3xl text-center animate-fadeInUp delay-1000">
           <i class="fas fa-lock text-4xl text-gray-400 mb-4"></i>
           <h3 class="text-lg font-bold mb-3">Low Trust</h3>
-          <p class="text-slate-400">No lineage, no confidence scores.</p>
+          <p class="text-slate-400">No lineage or confidence in results. Extracting from PDFs/DOCX requires manual parsing, limiting integration of important data.</p>
         </div>
       </div>
     </div>
@@ -199,7 +207,7 @@
       <div class="text-center mb-20">
         <h2 class="text-5xl font-extrabold italic mb-6 animate-fadeInUp">Revolutionary Solutions</h2>
         <p class="text-slate-400 max-w-3xl mx-auto text-lg">
-          SchemaMind uses patented GDI + AI reasoning to unify, understand, and trust all your data.
+          SchemaMind's patented AI-driven system (IN/PA-5059) overcomes these hurdles by processing natural language queries, automating discovery and extraction, and fusing data intelligently for trusted, unified outputs.
         </p>
       </div>
       
@@ -207,19 +215,33 @@
         <div class="feature-card p-10 rounded-3xl animate-fadeInUp">
           <i class="fas fa-brain text-5xl text-blue-400 mb-6"></i>
           <h3 class="text-2xl font-bold mb-4">AI-Powered Intent Reasoning</h3>
-          <p class="text-slate-400 text-lg">Understands natural language with context and resolves ambiguity.</p>
+          <p class="text-slate-400 text-lg">Refines ambiguous natural language queries using LLMs, user metadata, and auto-extracted source info to produce clarified queries, ensuring accurate understanding without manual intervention.</p>
         </div>
         <div class="feature-card p-10 rounded-3xl animate-fadeInUp delay-200">
           <i class="fas fa-network-wired text-5xl text-cyan-400 mb-6"></i>
           <h3 class="text-2xl font-bold mb-4">Unified Data Flow</h3>
-          <p class="text-slate-400 text-lg">Connects databases, files, APIs, and documents seamlessly.</p>
+          <p class="text-slate-400 text-lg">Automatically discovers sources from configs, extracts metadata (schemas, columns, types), selects relevant subsets, and handles PDFs/DOCX tables via embedding-based extraction for seamless integration.</p>
         </div>
         <div class="feature-card p-10 rounded-3xl animate-fadeInUp delay-400">
           <i class="fas fa-shield-alt text-5xl text-blue-400 mb-6"></i>
           <h3 class="text-2xl font-bold mb-4">Trusted & Verifiable Outputs</h3>
-          <p class="text-slate-400 text-lg">Full lineage, confidence scores, and explainability.</p>
+          <p class="text-slate-400 text-lg">Generates source-specific commands, evaluates with secondary LLM for confidence, self-heals failures, resolves dependencies, performs semantic merges aligning columns, maintains lineage, and outputs unified datasets.</p>
         </div>
-        <!-- Add more features as needed -->
+        <div class="feature-card p-10 rounded-3xl animate-fadeInUp delay-600">
+          <i class="fas fa-sync text-5xl text-purple-400 mb-6"></i>
+          <h3 class="text-2xl font-bold mb-4">Schema Adaptation</h3>
+          <p class="text-slate-400 text-lg">Handles dynamic schemas without breaking pipelines by using AI to infer equivalences and resolve conflicts through policies or aliases.</p>
+        </div>
+        <div class="feature-card p-10 rounded-3xl animate-fadeInUp delay-800">
+          <i class="fas fa-file-alt text-5xl text-orange-400 mb-6"></i>
+          <h3 class="text-2xl font-bold mb-4">Document Integration</h3>
+          <p class="text-slate-400 text-lg">Extracts structured data from embedded tables in PDFs/DOCX using markdown conversion, allowing them to participate in fusions.</p>
+        </div>
+        <div class="feature-card p-10 rounded-3xl animate-fadeInUp delay-1000">
+          <i class="fas fa-users text-5xl text-cyan-400 mb-6"></i>
+          <h3 class="text-2xl font-bold mb-4">Collaborative Insights</h3>
+          <p class="text-slate-400 text-lg">Enables non-technical users to query in plain English, with privacy/governance policies ensuring secure, compliant data handling.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -246,7 +268,7 @@
       Schema<span class="text-blue-400">Mind</span>
     </div>
     <p class="text-sm text-slate-500">
-      © 2026 SchemaMind • Patented Generative Data Intelligence
+      © 2026 SchemaMind • Patented Generative Data Intelligence • Invented by Shuaib Ahmad
     </p>
   </footer>
 
@@ -282,3 +304,4 @@
   </script>
 </body>
 </html>
+```
