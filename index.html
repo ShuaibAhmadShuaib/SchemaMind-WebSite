@@ -1,305 +1,1566 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SchemaMind | Generative Data Intelligence</title>
-  
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
-  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SchemaMind · Generative Data Intelligence Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     :root {
-      --bg-main: #05070c;
-      --bg-panel: #0b1220;
-      --border-subtle: rgba(255,255,255,0.08);
-      --brand-blue: #3b82f6;
-      --brand-cyan: #22d3ee;
-      --text-main: #e5e7eb;
-      --text-muted: #9ca3af;
-      --text-faint: #6b7280;
+      --bg-dark: #020617;
+      --bg-slate: #0f172a;
+      --card-bg: #1e293b;
+      --primary: #38bdf8;
+      --primary-glow: rgba(56, 189, 248, 0.3);
+      --accent-purple: #a855f7;
+      --accent-green: #10b981;
+      --accent-orange: #f97316;
+      --text-main: #f8fafc;
+      --text-dim: #94a3b8;
+      --border-color: #334155;
     }
 
     body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background: var(--bg-main);
+      background: var(--bg-dark);
       color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      scroll-behavior: smooth;
       overflow-x: hidden;
     }
 
-    /* Hero with dynamic background */
-    #hero {
-      background: 
-        linear-gradient(to bottom, rgba(5,7,12,0.7), rgba(5,7,12,0.9)),
-        url('schema-mind-banner.png') center/cover no-repeat fixed; /* Updated to use the local image file */
+    /* Sticky Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(2, 6, 23, 0.9);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .nav-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: var(--primary);
+      border-bottom: 2px solid var(--primary);
+    }
+
+    /* Sections Base */
+    section {
       min-height: 100vh;
+      padding: 100px 10% 60px 10%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-bottom: 1px solid var(--border-color);
       position: relative;
     }
 
-    .hero-gradient {
-      background: 
-        radial-gradient(800px 400px at 20% -10%, rgba(34,211,238,0.15), transparent 60%),
-        radial-gradient(600px 300px at 90% 10%, rgba(59,130,246,0.15), transparent 60%);
+    h1, h2, h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      color: #fff;
     }
 
-    .blue-gradient-text {
-      background: linear-gradient(90deg, #60a5fa, #22d3ee);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .pill {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 1rem;
     }
 
-    .nav-glass {
-      background: rgba(5,7,12,0.7);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border-subtle);
+    /* Neural Canvas for Hero */
+    #neural-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0.6;
     }
 
-    .feature-card, .problem-card {
-      background: linear-gradient(180deg, #0c1428, #080e1b);
-      border: 1px solid var(--border-subtle);
-      transition: all .4s ease;
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
     }
 
-    .feature-card:hover, .problem-card:hover {
-      transform: translateY(-8px) scale(1.02);
-      border-color: var(--brand-blue);
-      box-shadow: 0 30px 80px rgba(59,130,246,0.18);
+    .brand-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
     }
 
-    .patent-pill {
-      background: rgba(59,130,246,0.12);
-      border: 1px solid rgba(59,130,246,0.35);
-      color: #93c5fd;
+    .tagline-highlight {
+      font-weight: 700;
+      color: var(--primary);
+      position: relative;
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, #2563eb, #22d3ee);
-      box-shadow: 0 10px 30px rgba(34,211,238,0.25);
+    .tagline-highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background-color: rgba(56, 189, 248, 0.3);
+      z-index: -1;
+    }
+
+    /* Problem Section */
+    .silo-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      height: 400px;
+      margin: 0 auto;
+    }
+    
+    .silo-island {
+      position: absolute;
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 140px;
+      height: 140px;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    }
+    
+    .island-icon { font-size: 40px; margin-bottom: 10px; }
+    .island-label { font-size: 14px; font-weight: 600; text-align: center; color: #e2e8f0; }
+    .island-sql { top: 0; left: 180px; border-color: #3b82f6; }
+    .island-excel { top: 130px; left: 0; border-color: #10b981; }
+    .island-pdf { top: 130px; right: 0; border-color: #f43f5e; }
+    .island-csv { bottom: 0; left: 180px; border-color: #f59e0b; }
+
+    .broken-line {
+      stroke: #ef4444;
+      stroke-width: 2;
+      stroke-dasharray: 8, 8;
+      opacity: 0.5;
+    }
+
+    /* evolution Section */
+    .evolution-container {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      margin-top: 4rem;
+    }
+    
+    .step-card {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 1;
+      padding: 0 15px;
+    }
+    
+    .icon-circle {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: #0f172a;
+      border: 2px solid var(--border-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 32px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    .step-number {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 30px;
+      height: 30px;
+      background: var(--card-bg);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    
+    .step-title { font-size: 20px; font-weight: 700; margin-bottom: 10px; text-transform: uppercase; }
+    .step-content-box {
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 15px;
+      width: 100%;
+      text-align: center;
+      min-height: 100px;
+    }
+    
+    .query-box {
+      background: var(--card-bg);
+      border: 1px solid #475569;
+      border-radius: 6px;
+      padding: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      margin-top: 10px;
+      text-align: left;
+    }
+    
+    .connecting-line {
+      position: absolute;
+      top: 50px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: var(--border-color);
+      z-index: 0;
+    }
+
+    /* Capabilities Section */
+    .glow-spot {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.08;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .glow-blue { top: -100px; left: -100px; background-color: #3b82f6; }
+    .glow-purple { top: -100px; right: -100px; background-color: #a855f7; }
+    .glow-green { bottom: -100px; left: -100px; background-color: #10b981; }
+    .glow-orange { bottom: -100px; right: -100px; background-color: #f97316; }
+
+    .caps-header {
+      z-index: 10;
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .caps-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 44px;
+      font-weight: 700;
+      margin: 0 0 10px 0;
+      line-height: 1.1;
+      color: white;
+    }
+    
+    .title-highlight {
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+    }
+
+    .subtitle-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid var(--border-color);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: var(--text-dim);
+    }
+
+    .patent-star { color: #f59e0b; }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 24px;
+      flex: 1;
+      z-index: 10;
+    }
+
+    .layer-card {
+      background-color: rgba(15, 23, 42, 0.7);
+      border-radius: 16px;
+      border: 1px solid;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      backdrop-filter: blur(4px);
+    }
+
+    .layer-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid;
+    }
+
+    .layer-icon-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .layer-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .feature-bullet { margin-top: 4px; font-size: 14px; }
+    .feature-content { flex: 1; }
+    .feature-name { font-size: 16px; font-weight: 600; color: #f1f5f9; margin-bottom: 2px; }
+    .feature-desc { font-size: 13px; color: var(--text-dim); line-height: 1.4; }
+
+    .theme-blue { border-color: rgba(56, 189, 248, 0.3); }
+    .theme-blue .layer-header { border-bottom-color: rgba(56, 189, 248, 0.2); }
+    .theme-blue .layer-icon-box { background: rgba(56, 189, 248, 0.15); color: var(--primary); }
+    .theme-blue .layer-title { color: var(--primary); }
+    .theme-blue .feature-bullet { color: var(--primary); }
+
+    .theme-purple { border-color: rgba(168, 85, 247, 0.3); }
+    .theme-purple .layer-header { border-bottom-color: rgba(168, 85, 247, 0.2); }
+    .theme-purple .layer-icon-box { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
+    .theme-purple .layer-title { color: #c084fc; }
+    .theme-purple .feature-bullet { color: #c084fc; }
+
+    .theme-green { border-color: rgba(16, 185, 129, 0.3); }
+    .theme-green .layer-header { border-bottom-color: rgba(16, 185, 129, 0.2); }
+    .theme-green .layer-icon-box { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+    .theme-green .layer-title { color: #34d399; }
+    .theme-green .feature-bullet { color: #34d399; }
+
+    .theme-orange { border-color: rgba(249, 115, 22, 0.3); }
+    .theme-orange .layer-header { border-bottom-color: rgba(249, 115, 22, 0.2); }
+    .theme-orange .layer-icon-box { background: rgba(249, 115, 22, 0.15); color: #fb923c; }
+    .theme-orange .layer-title { color: #fb923c; }
+    .theme-orange .feature-bullet { color: #fb923c; }
+
+    .center-connector {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      background: #0f172a;
+      border: 2px solid var(--border-color);
+      border-radius: 50%;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .brain-icon { font-size: 40px; color: var(--text-dim); }
+
+    /* Comparison Matrix */
+    .bg-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%231e293b" fill-opacity="0.4"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .header-section {
+      z-index: 10;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .slide-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 48px;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+      color: #f8fafc;
+    }
+
+    .slide-subtitle {
+      font-size: 16px;
+      color: var(--text-dim);
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-top: 10px;
+      z-index: 10;
+      position: relative;
+    }
+
+    th {
+      padding: 20px 15px;
+      text-align: center;
+      vertical-align: middle;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text-dim);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    th.feature-header {
+      text-align: left;
+      padding-left: 20px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .comp-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+      display: block;
+      color: #64748b;
+    }
+
+    th.schemamind-header {
+      background-color: rgba(56, 189, 248, 0.1);
+      color: var(--primary);
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      border: 2px solid var(--primary);
+      border-bottom: none;
+      padding-top: 25px;
+      padding-bottom: 20px;
+      position: relative;
+    }
+
+    .best-choice-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--primary);
+      color: #0f172a;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .sm-logo-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+      display: block;
+      color: var(--primary);
+      filter: drop-shadow(0 0 8px var(--primary-glow));
+    }
+
+    .sm-name { font-size: 20px; font-weight: 700; }
+
+    td {
+      padding: 16px 15px;
+      border-bottom: 1px solid var(--border-color);
+      color: #e2e8f0;
+      font-size: 15px;
+      vertical-align: middle;
+    }
+
+    .feature-name {
+      font-weight: 500;
+      padding-left: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .feature-icon { color: #64748b; width: 24px; text-align: center; }
+    .text-center { text-align: center; }
+
+    td.schemamind-cell {
+      background-color: rgba(56, 189, 248, 0.05);
+      border-left: 2px solid var(--primary);
+      border-right: 2px solid var(--primary);
+      text-align: center;
+    }
+
+    tr:last-child td.schemamind-cell {
+      border-bottom: 2px solid var(--primary);
+      border-bottom-left-radius: 16px;
+      border-bottom-right-radius: 16px;
+    }
+
+    .icon-check { color: #4ade80; font-size: 20px; }
+    .icon-cross { color: #475569; font-size: 16px; opacity: 0.5; }
+    .icon-partial { color: #f59e0b; font-size: 18px; }
+    .cell-text { display: block; font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+
+    /* Impact Section */
+    .impact-bg-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M0 0h40v40H0V0zm1 1h38v38H1V1z" fill="%231e293b" fill-opacity="0.3" fill-rule="evenodd"/%3E%3C/svg%3E');
+      z-index: 0;
+      pointer-events: none;
+    }
+    
+    .impact-glow { 
+      position: absolute; 
+      border-radius: 50%; 
+      filter: blur(100px); 
+      opacity: 0.1; 
+      z-index: 0; 
+      pointer-events: none; 
+    }
+    .impact-glow-green { width: 500px; height: 500px; bottom: -150px; left: -150px; background-color: #10b981; }
+    .impact-glow-blue { width: 600px; height: 600px; top: -200px; right: -100px; background-color: #3b82f6; }
+
+    .cards-container {
+      display: flex;
+      gap: 30px;
+      flex: 1;
+      align-items: stretch;
+      z-index: 10;
+      position: relative;
+    }
+    
+    .impact-card {
+      flex: 1;
+      background: rgba(30, 41, 59, 0.4);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 20px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease;
+      overflow: hidden;
+    }
+    
+    .impact-card:hover { transform: translateY(-5px); }
+    
+    .card-header {
+      padding: 24px 24px 16px 24px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    
+    .finance-icon { background: rgba(59, 130, 246, 0.1); color: #60a5fa; }
+    .sales-icon { background: rgba(168, 85, 247, 0.1); color: #c084fc; }
+    .health-icon { background: rgba(16, 185, 129, 0.1); color: #34d399; }
+    
+    .card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin: 0;
+    }
+    
+    .card-body { padding: 24px; flex: 1; display: flex; flex-direction: column; gap: 20px; }
+    
+    .comparison-row { display: flex; flex-direction: column; gap: 6px; }
+    .comp-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px; }
+    .label-before { color: #ef4444; }
+    .label-after { color: #10b981; }
+    
+    .comp-text {
+      font-size: 15px;
+      color: #cbd5e1;
+      line-height: 1.5;
+      background: rgba(15, 23, 42, 0.3);
+      padding: 10px 12px;
+      border-radius: 8px;
+      border-left: 2px solid;
+    }
+    
+    .text-before { border-left-color: #ef4444; }
+    .text-after { border-left-color: #10b981; background: rgba(16, 185, 129, 0.05); }
+    
+    .arrow-down { align-self: center; color: #64748b; font-size: 14px; opacity: 0.5; margin: -8px 0; }
+    
+    .card-footer {
+      background: rgba(15, 23, 42, 0.6);
+      padding: 24px;
+      border-top: 1px solid rgba(148, 163, 184, 0.1);
+      text-align: center;
+    }
+    
+    .impact-label { font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+    .impact-metric { font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700; margin: 0; }
+    .metric-finance { color: #60a5fa; }
+    .metric-sales { color: #c084fc; }
+    .metric-health { color: #34d399; }
+    .impact-desc { font-size: 14px; color: #cbd5e1; margin-top: 4px; }
+
+    /* Vision Section */
+    #vision-cta {
+      width: 100%;
+      min-height: 100vh;
+      background-color: var(--bg-slate);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+	.vision-container {
+	  width: 1280px;
+	  max-width: 100%;
+	  min-height: 720px; /* changed from height to min-height */
+	  height: auto; /* added */
+	  position: relative;
+	  background-color: var(--bg-slate);
+	  display: flex;
+	  flex-direction: column;
+	  overflow: visible; /* changed from hidden to visible */
+	  margin: 0 auto;
+	}
+
+    .vision-bg-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M54.627 0l.83.828-1.415 1.415-.828-.828-.828.828-1.415-1.415.828-.828-.828-.828 1.415-1.415.828.828.828-.828 1.415 1.415-.828.828zM22.485 22.485l.83.83-1.415 1.415-.828-.83-.828.83-1.415-1.415.828-.828-.828-.828 1.415-1.415.828.828.828-.828 1.415 1.415-.828.828zM0 22.485l.828.83L-.586 24.73l-.828-.83-.828.83L-3.657 23.315l.828-.828-.828-.828 1.415-1.415.828.828.828-.828 1.415 1.415-.828.828zM0 54.627l.828.83L-.586 56.87l-.828-.83-.828.83L-3.657 55.457l.828-.828-.828-.828 1.415-1.415.828.828.828-.828 1.415 1.415-.828.828zM54.627 54.627l.83.83-1.415 1.415-.828-.83-.828.83-1.415-1.415.828-.828-.828-.828 1.415-1.415.828.828.828-.828 1.415 1.415-.828.828zM22.485 54.627l.83.83-1.415 1.415-.828-.83-.828.83-1.415-1.415.828-.828-.828-.828 1.415-1.415.828.828.828-.828 1.415 1.415-.828.828z" fill="%23334155" fill-opacity="0.2" fill-rule="evenodd"/%3E%3C/svg%3E');
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .vision-glow-spot {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.15;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .vision-glow-blue { width: 800px; height: 800px; top: -400px; left: 240px; background-color: var(--primary); }
+    .vision-glow-purple { width: 600px; height: 600px; bottom: -200px; right: -100px; background-color: #a855f7; }
+
+    .vision-main-content {
+      z-index: 10;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 60px;
+      text-align: center;
+    }
+
+    .vision-overline {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-dim);
+      font-size: 16px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      background: rgba(30, 41, 59, 0.5);
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+    }
+
+    .vision-statement {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 64px;
+      font-weight: 700;
+      line-height: 1.1;
+      color: #f8fafc;
+      margin-bottom: 60px;
+      max-width: 1000px;
+    }
+
+    .brand-highlight {
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+    }
+    
+    .brand-highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 8px;
+      left: 0;
+      width: 100%;
+      height: 12px;
+      background-color: rgba(56, 189, 248, 0.2);
+      z-index: -1;
+      transform: skewX(-12deg);
+    }
+
+    .vision-cta-container {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .vision-btn {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 16px 32px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
       transition: all 0.3s ease;
+      text-decoration: none;
     }
 
-    .btn-primary:hover {
-      transform: translateY(-2px) scale(1.05);
-      box-shadow: 0 20px 50px rgba(34,211,238,0.4);
+    .vision-btn-primary {
+      background-color: var(--primary);
+      color: #0f172a;
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 20px var(--primary-glow);
     }
 
-    /* Animations */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
+    .vision-btn-secondary {
+      background-color: transparent;
+      color: #e2e8f0;
+      border: 2px solid #475569;
     }
 
-    .animate-fadeInUp {
-      animation: fadeInUp 1s ease-out forwards;
+    .vision-btn-accent {
+      background-color: rgba(168, 85, 247, 0.15);
+      color: #d8b4fe;
+      border: 2px solid #a855f7;
     }
 
-    .delay-200 { animation-delay: 0.2s; }
-    .delay-400 { animation-delay: 0.4s; }
-    .delay-600 { animation-delay: 0.6s; }
+    .vision-btn:hover { transform: translateY(-2px); }
+
+    .vision-footer {
+      width: 100%;
+      background-color: rgba(15, 23, 42, 0.8);
+      border-top: 1px solid var(--border-color);
+      padding: 30px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      z-index: 20;
+    }
+
+    .vision-founder-block { display: flex; align-items: center; gap: 16px; }
+    .vision-founder-avatar {
+      width: 56px;
+      height: 56px;
+      background-color: var(--border-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #475569;
+      color: var(--text-dim);
+      font-size: 24px;
+    }
+    .vision-founder-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; color: #f1f5f9; }
+    .vision-founder-title { font-size: 14px; color: var(--text-dim); }
+
+    .vision-contact-block { display: flex; gap: 30px; }
+    .vision-contact-item { display: flex; align-items: center; gap: 8px; color: #cbd5e1; font-size: 14px; }
+    .vision-contact-item i { color: var(--primary); }
+
+    .vision-patent-badge {
+      background-color: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fbbf24;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+        /* --- EXECUTIVE SUMMARY SECTION - FIXED (NO DOUBLE SCROLL) --- */
+	#executive-summary {
+	  background-color: #0f172a;
+	  min-height: 100vh;
+	  padding: 120px 5% 80px;
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: center;
+	  align-items: center;
+	}
+
+	.exec-container {
+	  width: 1280px;
+	  max-width: 96%;
+	  height: fit-content;           /* ← changed from auto/min-height/max-height */
+	  margin: 0 auto;
+	  position: relative;
+	  background-color: #0f172a;
+	  padding: 48px 64px;
+	  box-sizing: border-box;
+	  display: flex;
+	  flex-direction: column;
+	  border: 1px solid #334155;
+	  border-radius: 24px;
+	  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+	  overflow: visible;              /* ← changed from overflow-y: auto */
+	}
+    .exec-bg-pattern {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%231e293b" fill-opacity="0.4"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+      z-index: 0; pointer-events: none;
+    }
+    .exec-header {
+      z-index: 10; display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; border-bottom: 1px solid rgba(148,163,184,0.2); padding-bottom: 15px;
+    }
+    .exec-title {
+      font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700; color: #f8fafc; margin: 0;
+    }
+    .exec-subtitle {
+      font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #38bdf8; background: rgba(56,189,248,0.1); padding: 6px 12px; border-radius: 4px; margin: 0;
+    }
+    .exec-grid {
+      display: grid; grid-template-columns: 350px 1fr; grid-template-rows: 1fr; gap: 24px; flex: 1; z-index: 10;
+    }
+    .exec-left-col { display: flex; flex-direction: column; gap: 24px; }
+    .exec-mission-card {
+      background-color: rgba(30,41,59,0.6); border: 1px solid #38bdf8; border-radius: 16px; padding: 30px; flex: 1; display: flex; flex-direction: column; box-shadow: 0 0 20px rgba(56,189,248,0.1); position: relative; overflow: hidden;
+    }
+    .corner-accent { position: absolute; top:0; left:0; width:100%; height:6px; background-color:#38bdf8; }
+    .section-label {
+      font-family: 'Space Grotesk', sans-serif; font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; color: #94a3b8; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+    }
+    .mission-text {
+      font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 600; line-height: 1.4; color: #ffffff; margin: 0;
+    }
+    .highlight-blue { color: #38bdf8; }
+    .exec-patent-card {
+      background-color: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.3); border-radius: 16px; padding: 20px; display: flex; flex-direction: column;
+    }
+    .patent-number { font-family: 'JetBrains Mono', monospace; font-size: 18px; color: #fbbf24; margin:5px 0 0 0; }
+    .exec-right-grid {
+      display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 24px;
+    }
+    .exec-info-card {
+      background-color: rgba(15,23,42,0.6); border: 1px solid rgba(51,65,85,0.8); border-radius: 12px; padding: 24px; display: flex; flex-direction: column; transition: all 0.2s;
+    }
+    .exec-info-card:hover { border-color: rgba(148,163,184,0.4); background-color: rgba(30,41,59,0.6); }
+    .card-icon { font-size:24px; margin-bottom:16px; width:48px; height:48px; border-radius:10px; display:flex; align-items:center; justify-content:center; }
+    .icon-innovation { background: rgba(168,85,247,0.1); color: #c084fc; }
+    .icon-market { background: rgba(16,185,129,0.1); color: #34d399; }
+    .icon-caps { background: rgba(56,189,248,0.1); color: #38bdf8; }
+    .icon-timing { background: rgba(244,63,94,0.1); color: #fb7185; }
+    .card-heading { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; color: #f1f5f9; margin: 0 0 10px 0; }
+    .card-body { font-size:14px; color:#cbd5e1; line-height:1.5; margin:0; }
+    .cap-list { list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:8px; }
+    .cap-tag { background: rgba(51,65,85,0.5); border:1px solid rgba(71,85,105,0.5); padding:4px 10px; border-radius:4px; font-size:12px; color:#e2e8f0; white-space:nowrap; }
+    .stat-highlight { font-size:28px; font-weight:700; color:#34d399; display:block; margin-bottom:4px; font-family:'Space Grotesk',sans-serif; }
+    /* --- end executive summary styles --- */
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      section { padding: 80px 5% 40px 5%; }
+      .feature-grid { gap: 16px; }
+      .cards-container { flex-direction: column; }
+      .vision-statement { font-size: 48px; }
+      .vision-cta-container { flex-direction: column; align-items: center; }
+      .exec-container { height: auto; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav class="nav-glass fixed top-0 left-0 right-0 z-50 px-6 py-4 transition-all duration-300">
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
-      <div class="text-2xl font-extrabold italic tracking-tight">
-        Schema<span class="text-blue-400">Mind</span>
-      </div>
-      <div class="hidden md:flex space-x-10 text-sm font-bold uppercase tracking-wider text-slate-400">
-        <a href="#hero" class="hover:text-blue-400 transition-colors">Introduction</a>
-        <a href="#hurdles" class="hover:text-blue-400 transition-colors">Hurdles</a>
-        <a href="#solutions" class="hover:text-blue-400 transition-colors">Solutions</a>
-        <a href="#demo" class="hover:text-blue-400 transition-colors">Demo</a>
-      </div>
+  <nav>
+    <div class="nav-links">
+      <a href="#hero" class="nav-link">Home</a>
+      <a href="#problem" class="nav-link">Problem</a>
+      <a href="#breakthrough" class="nav-link">Breakthrough</a>
+      <a href="#how-it-works" class="nav-link">Evolution</a>
+      <a href="#capabilities" class="nav-link">Capabilities</a>
+      <a href="#comparison-matrix-section" class="nav-link">Comparison</a>
+      <a href="#impact-cards" class="nav-link">Impact</a>
+      <!-- new executive summary nav item -->
+      <a href="#executive-summary" class="nav-link">Executive Summary</a>
+      <a href="#vision-cta" class="nav-link">Vision</a>
     </div>
   </nav>
 
-  <!-- Hero Section - Revolutionary Full-Screen -->
-  <section id="hero" class="relative flex items-center justify-center text-center px-6">
-    <div class="max-w-6xl mx-auto pt-48 pb-20"> <!-- Increased pt-32 to pt-48 to avoid overlap with banner text -->
-      <div class="hero-gradient absolute inset-0 z-0"></div>
-      
-      <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight animate-fadeInUp">
-        Where all your data<br />
-        <span class="blue-gradient-text">finally meets together</span>
-      </h1>
-      
-      <p class="text-xl md:text-2xl text-cyan-300 font-light mb-12 animate-fadeInUp delay-200">
-        The Generative Data Intelligence Platform
-      </p>
-      
-      <div class="inline-block patent-pill px-6 py-3 rounded-full text-sm font-bold tracking-widest mb-12 animate-fadeInUp delay-400">
-        <i class="fas fa-shield-halved mr-2"></i> PATENTED GDI • IN/PA-5059
-      </div>
-      
-      <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-12 animate-fadeInUp delay-400">
-        SchemaMind is the world’s first Generative Data Intelligence platform — the mind that instantly understands, fuses, and generates perfect datasets from databases, spreadsheets, and PDFs using plain English.
-      </p>
-      
-      <p class="text-md md:text-lg italic text-slate-400 max-w-3xl mx-auto mb-16 animate-fadeInUp delay-600">
-        “Just like GPT gave the world a mind for text, SchemaMind gives enterprises a mind for schemas and data. Ask any question. SchemaMind thinks across all your sources and returns one correct, trusted table — automatically.”
-      </p>
-      
-      <a href="#demo" class="btn-primary px-10 py-5 rounded-full text-lg font-bold shadow-2xl animate-fadeInUp delay-600">
-        Watch the Revolution <i class="fas fa-arrow-right ml-3"></i>
-      </a>
-    </div>
-  </section>
+	<section id="hero">
+		<canvas id="neural-canvas"></canvas>
+		<div class="hero-content">
+		  <div class="brand-name">
+			<img src="./schemamind.png" alt="SchemaMind" style="height: 1em; width: auto; vertical-align: middle; margin-right: 0.25rem;">
+			<h1 style="display: inline;">
+			  <span style="color: white;">Schema</span><span style="color: var(--primary);">Mind</span>
+			</h1>
+		  </div>
+		  <div class="pill" style="background: rgba(30, 41, 59, 0.8); border: 1px solid var(--border-color); color: var(--primary);">
+			The Generative Data Intelligence Platform
+		  </div>
+		  <h2 style="font-size: 4.5rem; font-weight: 300; line-height: 1.1; margin-bottom: 3.5rem;">
+			Where all your data<br/>
+			<span class="tagline-highlight">finally meets together.</span>
+		  </h2>
+		</div>
+	</section>
+  
 
-  <!-- Hurdles Section -->
-  <section id="hurdles" class="py-32 bg-gradient-to-b from-[#05070c] to-[#0b1220]">
-    <div class="max-w-7xl mx-auto px-8">
-      <div class="text-center mb-20">
-        <h2 class="text-5xl font-extrabold italic mb-6 animate-fadeInUp">The Ready-Data Hurdle</h2>
-        <p class="text-slate-400 max-w-3xl mx-auto text-lg">
-          Modern data stacks fail before execution — at intent, ambiguity, and trust. Existing systems like ETL platforms require extensive manual configuration, prior schema knowledge, and struggle with heterogeneous sources, leading to errors, inefficiencies, and low trust in outputs.
-        </p>
+  <!-- PROBLEM SECTION -->
+  <section id="problem">
+    <div class="pill" style="color: #ef4444; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2);">The Problem</div>
+    <h2 style="font-size: 42px; font-weight: 700; margin-bottom: 40px;">Enterprise Data is Trapped in Silos</h2>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div class="visual-container">
+        <div class="silo-wrapper">
+          <svg style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1;">
+            <line class="broken-line" x1="250" y1="140" x2="140" y2="200"></line>
+            <line class="broken-line" x1="250" y1="140" x2="360" y2="200"></line>
+            <line class="broken-line" x1="140" y1="270" x2="250" y2="330"></line>
+            <line class="broken-line" x1="360" y1="270" x2="250" y2="330"></line>
+          </svg>
+          <div class="silo-island island-sql"><i class="fa-solid fa-database island-icon" style="color: #60a5fa;"></i><p class="island-label">SQL Databases</p></div>
+          <div class="silo-island island-excel"><i class="fa-solid fa-file-excel island-icon" style="color: #34d399;"></i><p class="island-label">Spreadsheets</p></div>
+          <div class="silo-island island-pdf"><i class="fa-solid fa-file-pdf island-icon" style="color: #fb7185;"></i><p class="island-label">PDF Reports</p></div>
+          <div class="silo-island island-csv"><i class="fa-solid fa-file-csv island-icon" style="color: #fbbf24;"></i><p class="island-label">CSV Files</p></div>
+        </div>
       </div>
-      
-      <div class="grid md:grid-cols-3 lg:grid-cols-6 gap-6">
-        <div class="problem-card p-8 rounded-3xl text-center animate-fadeInUp">
-          <i class="fas fa-question-circle text-4xl text-yellow-400 mb-4"></i>
-          <h3 class="text-lg font-bold mb-3">Ambiguity</h3>
-          <p class="text-slate-400">Same terms have different meanings across sources. Conventional systems require manual clarification for vague queries like "get customer data," making them inaccessible for non-technical users.</p>
-        </div>
-        <div class="problem-card p-8 rounded-3xl text-center animate-fadeInUp delay-200">
-          <i class="fas fa-language text-4xl text-red-400 mb-4"></i>
-          <h3 class="text-lg font-bold mb-3">Intent Loss</h3>
-          <p class="text-slate-400">Natural language to SQL translation breaks semantics. Users without expertise in query languages face barriers, and systems lack support for ambiguous or evolving queries.</p>
-        </div>
-        <div class="problem-card p-8 rounded-3xl text-center animate-fadeInUp delay-400">
-          <i class="fas fa-database text-4xl text-orange-400 mb-4"></i>
-          <h3 class="text-lg font-bold mb-3">Source Chaos</h3>
-          <p class="text-slate-400">Too many heterogeneous sources like databases, files, PDFs. Interoperability challenges arise as data lacks predefined relationships, restricting unified views.</p>
-        </div>
-        <div class="problem-card p-8 rounded-3xl text-center animate-fadeInUp delay-600">
-          <i class="fas fa-sync-alt text-4xl text-purple-400 mb-4"></i>
-          <h3 class="text-lg font-bold mb-3">Schema Drift</h3>
-          <p class="text-slate-400">Dynamic schema changes cause silent pipeline failures. Rigid mapping fails when new columns appear or naming conventions differ.</p>
-        </div>
-        <div class="problem-card p-8 rounded-3xl text-center animate-fadeInUp delay-800">
-          <i class="fas fa-brain text-4xl text-cyan-400 mb-4"></i>
-          <h3 class="text-lg font-bold mb-3">Guesswork</h3>
-          <p class="text-slate-400">No execution intelligence; source-specific commands are fragile. Errors in syntax or incompatible operations lead to failures without automated correction.</p>
-        </div>
-        <div class="problem-card p-8 rounded-3xl text-center animate-fadeInUp delay-1000">
-          <i class="fas fa-lock text-4xl text-gray-400 mb-4"></i>
-          <h3 class="text-lg font-bold mb-3">Low Trust</h3>
-          <p class="text-slate-400">No lineage or confidence in results. Extracting from PDFs/DOCX requires manual parsing, limiting integration of important data.</p>
-        </div>
+      <div style="background: rgba(30, 41, 59, 0.4); border: 1px solid var(--border-color); border-radius: 16px; padding: 40px;">
+        <h3 style="font-size:18px; margin-bottom:15px;">Manual Extraction Takes Weeks</h3>
+        <p style="color: var(--text-dim); margin-bottom:20px;">Teams waste 80% of their time finding and cleaning data across formats.</p>
+        <h3 style="font-size:18px; margin-bottom:15px;">Heavy Reliance on Data Engineers</h3>
+        <p style="color: var(--text-dim);">Business users can't self-serve; every question requires a ticket and a wait.</p>
       </div>
     </div>
   </section>
 
-  <!-- Solutions Section -->
-  <section id="solutions" class="py-32 bg-[#0b1220]">
-    <div class="max-w-7xl mx-auto px-8">
-      <div class="text-center mb-20">
-        <h2 class="text-5xl font-extrabold italic mb-6 animate-fadeInUp">Revolutionary Solutions</h2>
-        <p class="text-slate-400 max-w-3xl mx-auto text-lg">
-          SchemaMind's patented AI-driven system (IN/PA-5059) overcomes these hurdles by processing natural language queries, automating discovery and extraction, and fusing data intelligently for trusted, unified outputs.
-        </p>
+  <!-- BREAKTHROUGH SECTION -->
+  <section id="breakthrough" style="text-align:center;">
+    <h2 style="font-size:3.5rem; margin-bottom:4rem;">What GPT did for <span style="color:#10b981;">text</span>,<br>SchemaMind does for <span style="color: var(--primary);">enterprise data</span>.</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div style="background: var(--card-bg); border:1px solid var(--border-color); border-radius:20px; padding:40px;">
+        <i class="fa-solid fa-message" style="font-size:3rem; color:#10b981; margin-bottom:1.5rem;"></i>
+        <h3 style="font-size:1.5rem; margin-bottom:1rem;">Generative Text</h3>
+        <p style="color: var(--text-dim);">Understands the unstructured web.</p>
       </div>
-      
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="feature-card p-10 rounded-3xl animate-fadeInUp">
-          <i class="fas fa-brain text-5xl text-blue-400 mb-6"></i>
-          <h3 class="text-2xl font-bold mb-4">AI-Powered Intent Reasoning</h3>
-          <p class="text-slate-400 text-lg">Refines ambiguous natural language queries using LLMs, user metadata, and auto-extracted source info to produce clarified queries, ensuring accurate understanding without manual intervention.</p>
-        </div>
-        <div class="feature-card p-10 rounded-3xl animate-fadeInUp delay-200">
-          <i class="fas fa-network-wired text-5xl text-cyan-400 mb-6"></i>
-          <h3 class="text-2xl font-bold mb-4">Unified Data Flow</h3>
-          <p class="text-slate-400 text-lg">Automatically discovers sources from configs, extracts metadata (schemas, columns, types), selects relevant subsets, and handles PDFs/DOCX tables via embedding-based extraction for seamless integration.</p>
-        </div>
-        <div class="feature-card p-10 rounded-3xl animate-fadeInUp delay-400">
-          <i class="fas fa-shield-alt text-5xl text-blue-400 mb-6"></i>
-          <h3 class="text-2xl font-bold mb-4">Trusted & Verifiable Outputs</h3>
-          <p class="text-slate-400 text-lg">Generates source-specific commands, evaluates with secondary LLM for confidence, self-heals failures, resolves dependencies, performs semantic merges aligning columns, maintains lineage, and outputs unified datasets.</p>
-        </div>
-        <div class="feature-card p-10 rounded-3xl animate-fadeInUp delay-600">
-          <i class="fas fa-sync text-5xl text-purple-400 mb-6"></i>
-          <h3 class="text-2xl font-bold mb-4">Schema Adaptation</h3>
-          <p class="text-slate-400 text-lg">Handles dynamic schemas without breaking pipelines by using AI to infer equivalences and resolve conflicts through policies or aliases.</p>
-        </div>
-        <div class="feature-card p-10 rounded-3xl animate-fadeInUp delay-800">
-          <i class="fas fa-file-alt text-5xl text-orange-400 mb-6"></i>
-          <h3 class="text-2xl font-bold mb-4">Document Integration</h3>
-          <p class="text-slate-400 text-lg">Extracts structured data from embedded tables in PDFs/DOCX using markdown conversion, allowing them to participate in fusions.</p>
-        </div>
-        <div class="feature-card p-10 rounded-3xl animate-fadeInUp delay-1000">
-          <i class="fas fa-users text-5xl text-cyan-400 mb-6"></i>
-          <h3 class="text-2xl font-bold mb-4">Collaborative Insights</h3>
-          <p class="text-slate-400 text-lg">Enables non-technical users to query in plain English, with privacy/governance policies ensuring secure, compliant data handling.</p>
-        </div>
+      <div style="background: var(--card-bg); border:2px solid var(--primary); border-radius:20px; padding:40px;">
+        <i class="fa-solid fa-brain-circuit" style="font-size:3rem; color: var(--primary); margin-bottom:1.5rem;"></i>
+        <h3 style="font-size:1.5rem; margin-bottom:1rem;">Generative Data Intelligence</h3>
+        <p style="color: var(--text-dim);">Understands databases, PDFs, & Excel.</p>
       </div>
     </div>
   </section>
-
-  <!-- Demo Section -->
-  <section id="demo" class="py-32 bg-black">
-    <div class="max-w-6xl mx-auto px-8 text-center">
-      <h2 class="text-5xl font-extrabold italic text-blue-400 mb-16 animate-fadeInUp">
-        Witness the Revolution
+  
+  <!-- EVOLUTIONEVOLUTION SECTION - Slim, Aligned with Existing Design -->
+<section id="evolution" style="padding: 60px 5%; background: #0f172a;">
+  <div style="max-width: 1280px; margin: 0 auto;">
+    
+    <!-- Section Header - Matching your style -->
+    <div style="text-align: center; margin-bottom: 40px;">
+      <h2 style="font-size: 2.5rem; margin: 0; line-height: 1.2; font-family: 'Space Grotesk', sans-serif;">
+        From <span style="color: #f87171;">Rigid Pipelines</span> to <span style="color: var(--primary);">Generative Intelligence</span>
       </h2>
+    </div>
+
+    <!-- Visual Timeline - Compact -->
+    <div style="position: relative; height: 260px; margin: 20px 0 40px;">
       
-      <div class="relative group max-w-5xl mx-auto">
-        <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-3xl blur opacity-30 group-hover:opacity-50 transition-opacity"></div>
-        <div class="relative aspect-video bg-black rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
-          <iframe class="w-full h-full" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen title="SchemaMind Demo"></iframe>
+      <!-- Era 1: ETL -->
+      <div style="position: absolute; left: 0; width: 200px; text-align: center;">
+        <div style="background: rgba(248,113,113,0.1); border: 1px solid #f87171; border-radius: 16px; padding: 16px; transform: translateY(-15px);">
+          <div style="font-size: 32px; margin-bottom: 8px; color: #f87171;">
+            <i class="fa-solid fa-gear"></i>
+          </div>
+          <h3 style="color: #f87171; font-size: 20px; font-weight: 600; margin: 0;">ETL</h3>
+          <p style="color: #fecaca; font-size: 11px; margin: 2px 0 0;">1970s–2000s</p>
+          <div style="width: 24px; height: 24px; background: #f87171; border-radius: 50%; position: absolute; bottom: -32px; left: 50%; transform: translateX(-50%); border: 3px solid #0f172a;"></div>
+        </div>
+      </div>
+
+      <!-- Era 2: Semantic Layer -->
+      <div style="position: absolute; left: 50%; transform: translateX(-50%); width: 220px; text-align: center;">
+        <div style="background: rgba(251,191,36,0.1); border: 1px solid #fbbf24; border-radius: 16px; padding: 16px; transform: translateY(-15px);">
+          <div style="font-size: 32px; margin-bottom: 8px; color: #fbbf24;">
+            <i class="fa-solid fa-layer-group"></i>
+          </div>
+          <h3 style="color: #fbbf24; font-size: 20px; font-weight: 600; margin: 0;">Semantic Layer</h3>
+          <p style="color: #fde68a; font-size: 11px; margin: 2px 0 0;">2000s–2020s</p>
+          <div style="width: 24px; height: 24px; background: #fbbf24; border-radius: 50%; position: absolute; bottom: -32px; left: 50%; transform: translateX(-50%); border: 3px solid #0f172a;"></div>
+        </div>
+      </div>
+
+      <!-- Era 3: GDI -->
+      <div style="position: absolute; right: 0; width: 220px; text-align: center;">
+        <div style="background: rgba(56,189,248,0.15); border: 1px solid var(--primary); border-radius: 16px; padding: 16px; transform: translateY(-18px); box-shadow: 0 0 20px rgba(56,189,248,0.2);">
+          <div style="font-size: 32px; margin-bottom: 8px; color: var(--primary);">
+            <i class="fa-solid fa-brain-circuit"></i>
+          </div>
+          <h3 style="color: var(--primary); font-size: 20px; font-weight: 600; margin: 0;">GDI</h3>
+          <p style="color: #bae6fd; font-size: 11px; margin: 2px 0 0;">Now: Generative AI</p>
+          <div style="width: 28px; height: 28px; background: var(--primary); border-radius: 50%; position: absolute; bottom: -34px; left: 50%; transform: translateX(-50%); border: 3px solid #0f172a; box-shadow: 0 0 10px var(--primary);"></div>
+        </div>
+      </div>
+
+      <!-- Era Descriptors -->
+      <div style="position: absolute; top: 170px; left: 0; width: 200px; text-align: center; color: #f87171; font-size: 11px; font-weight: 500;">
+        <i class="fa-solid fa-arrow-right"></i> Rigid, Manual
+      </div>
+      <div style="position: absolute; top: 170px; left: 50%; transform: translateX(-50%); width: 220px; text-align: center; color: #fbbf24; font-size: 11px; font-weight: 500;">
+        <i class="fa-solid fa-arrow-right"></i> Predefined Logic
+      </div>
+      <div style="position: absolute; top: 170px; right: 0; width: 220px; text-align: center; color: var(--primary); font-size: 11px; font-weight: 500;">
+        <i class="fa-solid fa-arrow-right"></i> Self-Healing
+      </div>
+    </div>
+
+    <!-- Compact Comparison Grid - Matches your card styles -->
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px;">
+      
+      <!-- ETL Card -->
+      <div style="background: rgba(15,23,42,0.6); border: 1px solid rgba(248,113,113,0.2); border-radius: 12px; padding: 16px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+          <div style="width: 28px; height: 28px; background: rgba(248,113,113,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #f87171; font-size: 14px;">
+            <i class="fa-solid fa-gear"></i>
+          </div>
+          <h4 style="color: #f87171; font-size: 15px; font-weight: 600; margin: 0;">ETL</h4>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #94a3b8;"><i class="fa-solid fa-xmark" style="color: #ef4444; font-size: 14px;"></i> Batch-only</div>
+          <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #94a3b8;"><i class="fa-solid fa-xmark" style="color: #ef4444; font-size: 14px;"></i> No PDFs</div>
+        </div>
+      </div>
+
+      <!-- Semantic Layer Card -->
+      <div style="background: rgba(15,23,42,0.6); border: 1px solid rgba(251,191,36,0.2); border-radius: 12px; padding: 16px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+          <div style="width: 28px; height: 28px; background: rgba(251,191,36,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #fbbf24; font-size: 14px;">
+            <i class="fa-solid fa-layer-group"></i>
+          </div>
+          <h4 style="color: #fbbf24; font-size: 15px; font-weight: 600; margin: 0;">Semantic</h4>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #94a3b8;"><i class="fa-solid fa-exclamation-triangle" style="color: #fbbf24; font-size: 12px;"></i> Predefined</div>
+          <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #94a3b8;"><i class="fa-solid fa-exclamation-triangle" style="color: #fbbf24; font-size: 12px;"></i> No drift handling</div>
+        </div>
+      </div>
+
+      <!-- GDI Card (Highlighted) -->
+      <div style="background: rgba(56,189,248,0.08); border: 1px solid var(--primary); border-radius: 12px; padding: 16px; position: relative;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+          <div style="width: 28px; height: 28px; background: rgba(56,189,248,0.15); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 14px;">
+            <i class="fa-solid fa-brain-circuit"></i>
+          </div>
+          <h4 style="color: var(--primary); font-size: 15px; font-weight: 600; margin: 0;">GDI</h4>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #94a3b8;"><i class="fa-solid fa-check-circle" style="color: #4ade80; font-size: 14px;"></i> Natural language</div>
+          <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #94a3b8;"><i class="fa-solid fa-check-circle" style="color: #4ade80; font-size: 14px;"></i> Self-healing</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- HOW IT WORKS SECTION -->
+  <section id="how-it-works">
+    <div class="text-center mb-12">
+      <h2 style="font-size: 3.5rem; line-height: 1.1;">Ask in English. <span style="color: var(--primary)">Get Perfect Datasets.</span> <span style="color:#34d399">Instantly.</span></h2>
+    </div>
+
+    <div class="evolution-container">
+      <div class="connecting-line"></div>
+      
+      <div class="step-card">
+        <div class="icon-circle" style="border-color: var(--primary); color: var(--primary);">
+          <i class="fa-solid fa-microphone-lines"></i>
+          <div class="step-number" style="background: var(--primary); color: #020617;">1</div>
+        </div>
+        <div class="step-title" style="color: var(--primary);">Ask</div>
+        <div class="step-content-box">
+          <p style="color: var(--text-dim); font-size: 14px;">Natural Language Query</p>
+          <div class="query-box">> Show me Q4 revenue by region</div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="icon-circle" style="border-color: #818cf8; color: #818cf8;">
+          <i class="fa-solid fa-brain"></i>
+          <div class="step-number" style="background: #818cf8; color: #020617;">2</div>
+        </div>
+        <div class="step-title" style="color: #818cf8;">Think</div>
+        <div class="step-content-box">
+          <p style="color: var(--text-dim); font-size: 14px;">Analyzes & Connects Sources</p>
+          <div style="display:flex; gap:10px; justify-content:center; margin-top:10px; color:#94a3b8;">
+            <i class="fa-solid fa-database"></i> <i class="fa-solid fa-file-excel"></i> <i class="fa-solid fa-file-pdf"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="icon-circle" style="border-color: #34d399; color: #34d399;">
+          <i class="fa-solid fa-table-list"></i>
+          <div class="step-number" style="background: #34d399; color: #020617;">3</div>
+        </div>
+        <div class="step-title" style="color: #34d399;">Deliver</div>
+        <div class="step-content-box">
+          <p style="color: var(--text-dim); font-size: 14px;">Unified, Trusted Dataset</p>
+          <div style="background:rgba(52,211,153,0.1); color:#34d399; padding:5px; border-radius:4px; font-size:12px; margin-top:10px;">
+            <i class="fa-solid fa-check-circle"></i> Ready for Analysis
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex; justify-content:center; gap:40px; margin-top:60px;">
+      <div style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-xmark" style="color:#ef4444;"></i> No Warehouse</div>
+      <div style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-xmark" style="color:#ef4444;"></i> No ETL</div>
+      <div style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-xmark" style="color:#ef4444;"></i> No Waiting</div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES SECTION -->
+  <section id="capabilities">
+    <div class="glow-spot glow-blue"></div>
+    <div class="glow-spot glow-purple"></div>
+    <div class="glow-spot glow-green"></div>
+    <div class="glow-spot glow-orange"></div>
+
+    <div class="caps-header">
+      <h1 class="caps-title">Powered by <span class="title-highlight">12 Patent-Pending</span> AI Capabilities</h1>
+      <div class="subtitle-badge">
+        <i class="fa-solid fa-star patent-star"></i>
+        <p>Indian Patent Application 2510001IN-CS</p>
+      </div>
+    </div>
+
+    <div class="feature-grid">
+      <div class="layer-card theme-blue">
+        <div class="layer-header"><div class="layer-icon-box"><i class="fa-solid fa-brain"></i></div><p class="layer-title">Intelligence Layer</p></div>
+        <div class="feature-list">
+          <div class="feature-item"><i class="fa-solid fa-comments feature-bullet"></i><div class="feature-content"><p class="feature-name">Natural Language Querying</p><p class="feature-desc">Query heterogeneous databases using plain English, no SQL required.</p></div></div>
+          <div class="feature-item"><i class="fa-solid fa-circle-question feature-bullet"></i><div class="feature-content"><p class="feature-name">AI Query Disambiguation</p><p class="feature-desc">LLM generates clarifying questions to resolve ambiguity before execution.</p></div></div>
+          <div class="feature-item"><i class="fa-solid fa-wand-magic-sparkles feature-bullet"></i><div class="feature-content"><p class="feature-name">Semantic Column Matching</p><p class="feature-desc">Aligns "client_id", "cust_id", & "customer_id" across disparate sources.</p></div></div>
+        </div>
+      </div>
+      <div class="layer-card theme-purple">
+        <div class="layer-header"><div class="layer-icon-box"><i class="fa-solid fa-robot"></i></div><p class="layer-title">Automation Layer</p></div>
+        <div class="feature-list">
+          <div class="feature-item"><i class="fa-solid fa-magnifying-glass-location feature-bullet"></i><div class="feature-content"><p class="feature-name">Auto Source Discovery</p><p class="feature-desc">Automatically discovers SQL, CSV, Excel, and PDF data sources.</p></div></div>
+          <div class="feature-item"><i class="fa-solid fa-eye-slash feature-bullet"></i><div class="feature-content"><p class="feature-name">Zero-Schema Extraction</p><p class="feature-desc">Extracts schemas & types without user-provided definitions.</p></div></div>
+          <div class="feature-item"><i class="fa-solid fa-arrow-rotate-right feature-bullet"></i><div class="feature-content"><p class="feature-name">Schema Evolution Detection</p><p class="feature-desc">Monitors and adapts automatically to live schema changes.</p></div></div>
+        </div>
+      </div>
+      <div class="layer-card theme-green">
+        <div class="layer-header"><div class="layer-icon-box"><i class="fa-solid fa-shield-halved"></i></div><p class="layer-title">Reliability Layer</p></div>
+        <div class="feature-list">
+          <div class="feature-item"><i class="fa-solid fa-gauge-high feature-bullet"></i><div class="feature-content"><p class="feature-name">Confidence-Scored Plans</p><p class="feature-desc">Generates execution plans with 0–10 reliability scoring.</p></div></div>
+          <div class="feature-item"><i class="fa-solid fa-kit-medical feature-bullet"></i><div class="feature-content"><p class="feature-name">Self-Healing Generation</p><p class="feature-desc">Automatically detects, corrects, and re-generates incorrect plans.</p></div></div>
+          <div class="feature-item"><i class="fa-solid fa-diagram-project feature-bullet"></i><div class="feature-content"><p class="feature-name">Dependency Resolution</p><p class="feature-desc">Uses temporary tables to resolve complex cross-source dependencies.</p></div></div>
+        </div>
+      </div>
+      <div class="layer-card theme-orange">
+        <div class="layer-header"><div class="layer-icon-box"><i class="fa-solid fa-file-invoice"></i></div><p class="layer-title">Universal Extraction</p></div>
+        <div class="feature-list">
+          <div class="feature-item"><i class="fa-solid fa-file-pdf feature-bullet"></i><div class="feature-content"><p class="feature-name">PDF/DOCX Table Extraction</p><p class="feature-desc">Converts embedded document tables into structured datasets.</p></div></div>
+          <div class="feature-item"><i class="fa-solid fa-spell-check feature-bullet"></i><div class="feature-content"><p class="feature-name">Domain Verb Mapping</p><p class="feature-desc">Maps business verbs (e.g., "Churned") to data columns user-defined.</p></div></div>
+          <div class="feature-item"><i class="fa-solid fa-code-branch feature-bullet"></i><div class="feature-content"><p class="feature-name">Column Lineage Tracking</p><p class="feature-desc">Every unified column traces back to its original source field.</p></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="center-connector"><i class="fa-solid fa-network-wired brain-icon"></i></div>
+  </section>
+
+  <!-- COMPARISON MATRIX SECTION -->
+  <section id="comparison-matrix-section">
+    <div class="bg-pattern"></div>
+    <div class="glow-spot glow-blue" style="top: -100px; left: -100px; width:500px; height:500px;"></div>
+    <div class="glow-spot glow-green" style="bottom: -100px; right: -100px; width:500px; height:500px;"></div>
+    
+    <div class="header-section">
+      <h1 class="slide-title">Category-Defining Innovation</h1>
+      <p class="slide-subtitle">SchemaMind isn't just better—it's the only platform built for Generative Data Intelligence.</p>
+    </div>
+
+    <div class="matrix-container">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th class="feature-header">Capabilities</th>
+            <th>
+              <i class="fa-solid fa-server comp-icon"></i>
+              <p>Traditional ETL</p>
+              <p style="font-size: 12px; font-weight: 400; margin-top: 4px;">(e.g., Fivetran)</p>
+            </th>
+            <th>
+              <i class="fa-solid fa-layer-group comp-icon"></i>
+              <p>Semantic Layer</p>
+              <p style="font-size: 12px; font-weight: 400; margin-top: 4px;">(e.g., dbt)</p>
+            </th>
+            <th>
+              <i class="fa-solid fa-file-invoice comp-icon"></i>
+              <p>Document AI</p>
+              <p style="font-size: 12px; font-weight: 400; margin-top: 4px;">(e.g., Azure)</p>
+            </th>
+            <th class="schemamind-header">
+              <div class="best-choice-badge">GDI</div>
+              <i class="fa-solid fa-brain comp-icon sm-logo-icon"></i>
+              <p class="sm-name">SchemaMind</p>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><div class="feature-name"><i class="fa-solid fa-comments feature-icon"></i><p>Natural Language Querying</p></div></td><td class="text-center"><i class="fa-solid fa-minus icon-cross"></i></td><td class="text-center"><i class="fa-solid fa-minus icon-cross"></i></td><td class="text-center"><i class="fa-solid fa-minus icon-cross"></i></td><td class="schemamind-cell"><i class="fa-solid fa-circle-check icon-check"></i></td></tr>
+          <tr><td><div class="feature-name"><i class="fa-solid fa-magnifying-glass-location feature-icon"></i><p>Auto Source Discovery</p></div></td><td class="text-center"><i class="fa-solid fa-minus icon-cross"></i></td><td class="text-center"><i class="fa-solid fa-minus icon-cross"></i></td><td class="text-center"><i class="fa-solid fa-minus icon-cross"></i></td><td class="schemamind-cell"><i class="fa-solid fa-circle-check icon-check"></i></td></tr>
+          <tr><td><div class="feature-name"><i class="fa-solid fa-network-wired feature-icon"></i><p>Cross-Source Fusion</p></div></td><td class="text-center"><i class="fa-solid fa-circle-exclamation icon-partial"></i><span class="cell-text">Manual Mapping</span></td><td class="text-center"><i class="fa-solid fa-minus icon-cross"></i></td><td class="text-center"><i class="fa-solid fa-minus icon-cross"></i></td><td class="schemamind-cell"><i class="fa-solid fa-circle-check icon-check"></i><span class="cell-text" style="color: var(--primary);">Full Semantic Merge</span></td></tr>
+          <tr><td><div class="feature-name"><i class="fa-solid fa-file-pdf feature-icon"></i><p>PDF / Doc Integration</p></div></td><td class="text-center"><i class="fa-solid fa-minus icon-cross"></i></td><td class="text-center"><i class="fa-solid fa-minus icon-cross"></i></td><td class="text-center"><i class="fa-solid fa-circle-exclamation icon-partial"></i><span class="cell-text">Single Source Only</span></td><td class="schemamind-cell"><i class="fa-solid fa-circle-check icon-check"></i></td></tr>
+          <tr><td><div class="feature-name"><i class="fa-solid fa-kit-medical feature-icon"></i><p>Self-Healing Execution</p></div></td><td class="text-center"><i class="fa-solid fa-minus icon-cross"></i></td><td class="text-center"><i class="fa-solid fa-minus icon-cross"></i></td><td class="text-center"><i class="fa-solid fa-minus icon-cross"></i></td><td class="schemamind-cell"><i class="fa-solid fa-circle-check icon-check"></i></td></tr>
+          <tr><td><div class="feature-name"><i class="fa-solid fa-bolt feature-icon"></i><p>Zero Setup (No Code)</p></div></td><td class="text-center"><i class="fa-solid fa-minus icon-cross"></i><span class="cell-text">Heavy Config</span></td><td class="text-center"><i class="fa-solid fa-minus icon-cross"></i><span class="cell-text">Heavy SQL</span></td><td class="text-center"><i class="fa-solid fa-minus icon-cross"></i></td><td class="schemamind-cell"><i class="fa-solid fa-circle-check icon-check"></i></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- IMPACT SECTION -->
+  <section id="impact-cards">
+    <div class="impact-bg-pattern"></div>
+    <div class="impact-glow impact-glow-green"></div>
+    <div class="impact-glow impact-glow-blue"></div>
+
+    <div class="content-wrapper">
+      <div class="header-section">
+        <h1 class="slide-title">
+          Real-World Impact: From <span style="color: #f87171;">Weeks</span> to <span style="color: #34d399;">Minutes</span>
+        </h1>
+        <p class="slide-subtitle">Transforming manual data drudgery into instant intelligence across every department.</p>
+      </div>
+      
+      <div class="cards-container">
+        <div class="impact-card">
+          <div class="card-header">
+            <div class="icon-box finance-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+            <p class="card-title">Finance Team</p>
+          </div>
+          <div class="card-body">
+            <div class="comparison-row">
+              <div class="comp-label label-before"><i class="fa-solid fa-clock"></i> Before</div>
+              <p class="comp-text text-before">Several Weeks manually typing data from PDF invoices into Excel.</p>
+            </div>
+            <i class="fa-solid fa-arrow-down arrow-down"></i>
+            <div class="comparison-row">
+              <div class="comp-label label-after"><i class="fa-solid fa-bolt"></i> After</div>
+              <p class="comp-text text-after">30 seconds. SchemaMind extracts & standardizes automatically.</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <p class="impact-label">Efficiency Gain</p>
+            <p class="impact-metric metric-finance">70-80%</p>
+            <p class="impact-desc">Time Reduction</p>
+          </div>
+        </div>
+        
+        <div class="impact-card">
+          <div class="card-header">
+            <div class="icon-box sales-icon"><i class="fa-solid fa-chart-line"></i></div>
+            <p class="card-title">Sales Analytics</p>
+          </div>
+          <div class="card-body">
+            <div class="comparison-row">
+              <div class="comp-label label-before"><i class="fa-solid fa-hourglass-start"></i> Before</div>
+              <p class="comp-text text-before">Waiting days for data engineers to build new SQL reports.</p>
+            </div>
+            <i class="fa-solid fa-arrow-down arrow-down"></i>
+            <div class="comparison-row">
+              <div class="comp-label label-after"><i class="fa-solid fa-bolt"></i> After</div>
+              <p class="comp-text text-after">Ask "Show Q4 revenue" in English and get results instantly.</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <p class="impact-label">Business Value</p>
+            <p class="impact-metric metric-sales">Instant</p>
+            <p class="impact-desc">Self-Service Analytics</p>
+          </div>
+        </div>
+        
+        <div class="impact-card">
+          <div class="card-header">
+            <div class="icon-box health-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+            <p class="card-title">Healthcare</p>
+          </div>
+          <div class="card-body">
+            <div class="comparison-row">
+              <div class="comp-label label-before"><i class="fa-solid fa-folder-open"></i> Before</div>
+              <p class="comp-text text-before">Disparate EHR systems, lab results, and PDF documents.</p>
+            </div>
+            <i class="fa-solid fa-arrow-down arrow-down"></i>
+            <div class="comparison-row">
+              <div class="comp-label label-after"><i class="fa-solid fa-bolt"></i> After</div>
+              <p class="comp-text text-after">Unified patient view merging EHR data with PDF clinical notes.</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <p class="impact-label">Outcome</p>
+            <p class="impact-metric metric-health">Unified</p>
+            <p class="impact-desc">Patient View</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="py-20 text-center border-t border-white/10 bg-[#05070c]">
-    <div class="text-4xl font-extrabold italic mb-6">
-      Schema<span class="text-blue-400">Mind</span>
+    <!-- NEW EXECUTIVE SUMMARY SECTION (fixed - no double scroll) -->
+  <section id="executive-summary">
+    <div class="exec-container">
+      <div class="exec-bg-pattern"></div>
+      <div class="exec-header">
+        <h1 class="exec-title">Executive Summary</h1>
+        <p class="exec-subtitle">SchemaMind Overview</p>
+      </div>
+      <div class="exec-grid">
+        <!-- Left Column -->
+        <div class="exec-left-col">
+          <div class="exec-mission-card">
+            <div class="corner-accent"></div>
+            <div class="section-label"><i class="fa-solid fa-crosshairs"></i> What We Do</div>
+            <p class="mission-text">The world's first <span class="highlight-blue">Generative Data Intelligence</span> platform — instantly fusing databases, spreadsheets, and PDFs using plain English.</p>
+            <div style="flex:1"></div>
+            <div style="margin-top: 20px; font-size: 14px; color: #94a3b8; display: flex; align-items: center; gap: 8px;">
+              <i class="fa-solid fa-bolt" style="color: #38bdf8;"></i> No Warehouse. No ETL. No Waiting.
+            </div>
+          </div>
+          <div class="exec-patent-card">
+            <div class="section-label" style="color: #fbbf24;"><i class="fa-solid fa-certificate"></i> Patent Status</div>
+            <p class="card-body" style="color: #fcd34d;">Patent Application Filed</p>
+            <p class="patent-number">2510001IN-CS</p>
+          </div>
+        </div>
+        <!-- Right Grid -->
+        <div class="exec-right-grid">
+          <div class="exec-info-card">
+            <div class="card-icon icon-innovation"><i class="fa-solid fa-lightbulb"></i></div>
+            <h3 class="card-heading">The Innovation</h3>
+            <p class="card-body">Patent-pending AI reasoning engine that "thinks" across all data sources to generate perfect datasets automatically, replacing rigid ETL pipelines.</p>
+          </div>
+          <div class="exec-info-card">
+            <div class="card-icon icon-market"><i class="fa-solid fa-chart-pie"></i></div>
+            <h3 class="card-heading">Market Opportunity</h3>
+            <p class="card-body"><span class="stat-highlight">$3B+</span> Unlocking the dark data problem—tapping 80-90% of enterprise data trapped in PDFs, spreadsheets, and silos—for AI-ready intelligence with first-mover advantage.</p>
+          </div>
+          <div class="exec-info-card">
+            <div class="card-icon icon-caps"><i class="fa-solid fa-layer-group"></i></div>
+            <h3 class="card-heading">Key Capabilities</h3>
+            <ul class="cap-list"><li class="cap-tag">Semantic Matching</li><li class="cap-tag">NL Querying</li><li class="cap-tag">Self-Healing Plans</li><li class="cap-tag">Doc Extraction</li><li class="cap-tag">Zero-Schema</li><li class="cap-tag">Lineage Tracking</li></ul>
+          </div>
+          <div class="exec-info-card">
+            <div class="card-icon icon-timing"><i class="fa-solid fa-hourglass-half"></i></div>
+            <h3 class="card-heading">Why Now?</h3>
+            <p class="card-body"><strong>GPT proved generative AI for text.</strong><br/>SchemaMind brings that same transformative power to enterprise structured data, solving the "last mile" of data unification.</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <p class="text-sm text-slate-500">
-      © 2026 SchemaMind • Patented Generative Data Intelligence • Invented by Shuaib Ahmad
-    </p>
-  </footer>
+  </section>
 
-  <!-- ScrollSpy Script -->
+  <!-- VISION & CALL TO ACTION SECTION -->
+  <section id="vision-cta">
+    <div class="vision-container">
+      <div class="vision-bg-pattern"></div>
+      <div class="vision-glow-spot vision-glow-blue"></div>
+      <div class="vision-glow-spot vision-glow-purple"></div>
+      
+	<div class="vision-main-content">
+		<div class="vision-overline">
+			<p>Building the Mind for Enterprise Data</p>
+		</div>
+		<h1 class="vision-statement">
+			"Every enterprise will have a data mind—<span class="brand-highlight"><span style="color: white;">Schema</span><span style="color: var(--primary);">Mind</span></span>"
+		</h1>
+		<div class="vision-cta-container">
+			<div class="vision-btn vision-btn-secondary">
+				<i class="fa-solid fa-play"></i>
+				<p>See the 60-second demo</p>
+			</div>
+		</div>
+	</div>
+      
+      <div class="vision-footer">
+        <div class="vision-founder-block">
+          <div class="vision-founder-avatar"><i class="fa-solid fa-user"></i></div>
+          <div class="vision-founder-info">
+            <p class="vision-founder-name">Shuaib Ahmad</p>
+            <p class="vision-founder-title">Inventor, SchemaMind</p>
+          </div>
+        </div>
+        <div class="vision-contact-block">
+          <div class="vision-contact-item"><i class="fa-solid fa-envelope"></i><p>info@schemamind.tech</p></div>
+          <div class="vision-contact-item"><i class="fa-solid fa-globe"></i><p>www.schemamind.tech</p></div>
+          <div class="vision-contact-item"><i class="fa-brands fa-linkedin"></i><p>@schemamind</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const sections = document.querySelectorAll('section[id]');
-      const navLinks = document.querySelectorAll('nav a[href^="#"]');
-
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            navLinks.forEach(link => {
-              link.classList.remove('text-blue-400');
-              if (link.getAttribute('href') === `#${entry.target.id}`) {
-                link.classList.add('text-blue-400');
-              }
-            });
+    // Neural Network Animation
+    const canvas = document.getElementById('neural-canvas');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      
+      const particles = [];
+      for (let i = 0; i < 70; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+          size: Math.random() * 2 + 1
+        });
+      }
+      
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+          if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = '#38bdf8';
+          ctx.fill();
+        });
+        
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.15)';
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            if (Math.sqrt(dx*dx + dy*dy) < 180) {
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.stroke();
+            }
           }
-        });
-      }, { threshold: 0.5 });
+        }
+        requestAnimationFrame(animate);
+      }
+      animate();
+    }
 
-      sections.forEach(section => observer.observe(section));
-
-      // Smooth scroll
-      navLinks.forEach(link => {
-        link.addEventListener('click', e => {
-          e.preventDefault();
-          document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-        });
+    // Active link highlight on scroll
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    window.addEventListener('scroll', () => {
+      let current = "";
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150;
+        const sectionBottom = sectionTop + section.offsetHeight;
+        if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      navLinks.forEach(a => {
+        a.classList.remove('active');
+        if (a.getAttribute('href').includes(current)) {
+          a.classList.add('active');
+        }
       });
     });
+
+    // Trigger scroll event on load
+    window.dispatchEvent(new Event('scroll'));
   </script>
 </body>
 </html>
