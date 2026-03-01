@@ -69,7 +69,6 @@
       height: 100%;
     }
 
-    /* Top-level nav items */
     .nav-item {
       position: relative;
       height: 100%;
@@ -112,7 +111,6 @@
       background: var(--primary);
     }
 
-    /* Dropdown */
     .dropdown-menu {
       display: none;
       position: absolute;
@@ -162,7 +160,6 @@
     .chevron { font-size: 9px; transition: transform 0.2s; }
     .nav-item:hover .chevron { transform: rotate(180deg); }
 
-    /* Hamburger for mobile */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -275,28 +272,51 @@
     }
 
     /* ─── PROBLEM ─── */
-    .silo-wrapper {
-      position: relative; width: 100%; max-width: 500px;
-      height: 400px; margin: 0 auto;
+
+    /* FIX 2: Responsive Silo Layout using CSS Grid instead of absolute positioning */
+    .silo-grid-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 16px;
+      max-width: 380px;
+      width: 100%;
+      margin: 0 auto;
+      position: relative;
     }
 
     .silo-island {
-      position: absolute;
       background: rgba(30, 41, 59, 0.8);
-      border: 1px solid var(--border-color); border-radius: 16px;
-      padding: 20px; display: flex; flex-direction: column;
-      align-items: center; width: 140px; height: 140px;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 120px;
       box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5);
+      transition: transform 0.2s;
     }
 
-    .island-icon { font-size: 40px; margin-bottom: 10px; }
-    .island-label { font-size: 14px; font-weight: 600; text-align: center; color: #e2e8f0; }
-    .island-sql  { top: 0;   left: 180px; border-color: #3b82f6; }
-    .island-excel{ top: 130px; left: 0;   border-color: #10b981; }
-    .island-pdf  { top: 130px; right: 0;  border-color: #f43f5e; }
-    .island-csv  { bottom: 0; left: 180px; border-color: #f59e0b; }
+    .silo-island:hover { transform: translateY(-3px); }
 
-    .broken-line { stroke: #ef4444; stroke-width: 2; stroke-dasharray: 8,8; opacity: 0.5; }
+    .island-icon { font-size: 36px; margin-bottom: 8px; }
+    .island-label { font-size: 13px; font-weight: 600; text-align: center; color: #e2e8f0; }
+    .island-sql   { border-color: #3b82f6; }
+    .island-excel { border-color: #10b981; }
+    .island-pdf   { border-color: #f43f5e; }
+    .island-csv   { border-color: #f59e0b; }
+
+    /* Connector lines overlay using CSS instead of SVG for responsiveness */
+    .silo-connectors {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .silo-grid-wrapper > .silo-island { position: relative; z-index: 1; }
 
     /* ─── EVOLUTION TIMELINE ─── */
     .evolution-container {
@@ -565,7 +585,7 @@
     .metric-health { color: #34d399; }
     .impact-desc   { font-size: 14px; color: #cbd5e1; margin-top: 4px; }
 
-    /* ─── EXECUTIVE SUMMARY ─── */
+    /* ─── EXECUTIVE SUMMARY - FIX 1 ─── */
     #executive-summary {
       background-color: #0f172a; min-height: 100vh;
       padding: 120px 5% 80px;
@@ -595,13 +615,15 @@
     .exec-title    { font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700; color: #f8fafc; margin: 0; }
     .exec-subtitle { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #38bdf8; background: rgba(56,189,248,0.1); padding: 6px 12px; border-radius: 4px; margin: 0; }
 
-    .exec-grid { display: grid; grid-template-columns: 350px 1fr; gap: 24px; flex: 1; z-index: 10; }
+    /* FIX 1: Changed left column from 350px to 420px, and ensured text is left-aligned */
+    .exec-grid { display: grid; grid-template-columns: 420px 1fr; gap: 24px; flex: 1; z-index: 10; }
     .exec-left-col { display: flex; flex-direction: column; gap: 24px; }
 
     .exec-mission-card {
       background-color: rgba(30,41,59,0.6); border: 1px solid #38bdf8;
       border-radius: 16px; padding: 30px; flex: 1; display: flex; flex-direction: column;
       box-shadow: 0 0 20px rgba(56,189,248,0.1); position: relative; overflow: hidden;
+      text-align: left; /* FIX: explicit left align */
     }
 
     .corner-accent { position: absolute; top: 0; left: 0; width: 100%; height: 6px; background-color: #38bdf8; }
@@ -612,12 +634,23 @@
       display: flex; align-items: center; gap: 8px;
     }
 
-    .mission-text  { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 600; line-height: 1.4; color: #fff; margin: 0; }
+    /* FIX 1: mission-text - left aligned, comfortable line-height */
+    .mission-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px; /* slightly reduced from 24px for better fit */
+      font-weight: 600;
+      line-height: 1.5;
+      color: #fff;
+      margin: 0;
+      text-align: left;
+    }
+
     .highlight-blue { color: #38bdf8; }
 
     .exec-patent-card {
       background-color: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.3);
       border-radius: 16px; padding: 20px; display: flex; flex-direction: column;
+      text-align: left; /* FIX: explicit left align */
     }
     .patent-number { font-family: 'JetBrains Mono', monospace; font-size: 18px; color: #fbbf24; margin: 5px 0 0; }
 
@@ -626,6 +659,7 @@
     .exec-info-card {
       background-color: rgba(15,23,42,0.6); border: 1px solid rgba(51,65,85,0.8);
       border-radius: 12px; padding: 24px; display: flex; flex-direction: column; transition: all 0.2s;
+      text-align: left; /* FIX: explicit left align */
     }
     .exec-info-card:hover { border-color: rgba(148,163,184,0.4); background-color: rgba(30,41,59,0.6); }
 
@@ -727,7 +761,7 @@
       display: flex; align-items: center; gap: 8px;
     }
 
-    /* ─── MOBILE ─── */
+    /* ─── MOBILE RESPONSIVE ─── */
     @media (max-width: 1024px) {
       section { padding: 80px 5% 40px; }
       .feature-grid { gap: 16px; }
@@ -735,6 +769,8 @@
       .vision-statement { font-size: 48px; }
       .vision-cta-container { flex-direction: column; align-items: center; }
       .exec-container { height: auto; }
+      /* FIX 1: Collapse exec grid to single column on medium screens */
+      .exec-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 768px) {
@@ -749,7 +785,17 @@
       .caps-title { font-size: 32px !important; }
       .slide-title { font-size: 32px !important; }
 
-      .silo-wrapper { transform: scale(0.7); height: 280px; margin: 0 auto 20px; }
+      /* FIX 2: Responsive silo on small screens */
+      .silo-grid-wrapper {
+        max-width: 300px;
+        gap: 12px;
+      }
+      .silo-island {
+        min-height: 100px;
+        padding: 16px 12px;
+      }
+      .island-icon { font-size: 28px; }
+      .island-label { font-size: 12px; }
 
       .evolution-container { flex-direction: column; gap: 30px; margin-top: 2rem; }
       .connecting-line { display: none; }
@@ -764,11 +810,12 @@
       .cards-container { gap: 20px; }
       .impact-metric { font-size: 28px; }
 
+      /* FIX 1: Executive summary mobile */
       .exec-grid { grid-template-columns: 1fr; }
       .exec-container { padding: 30px 20px; }
       .exec-title { font-size: 28px; }
       .exec-header { flex-direction: column; align-items: flex-start; gap: 10px; }
-      .mission-text { font-size: 20px; }
+      .mission-text { font-size: 18px; }
       .exec-right-grid { grid-template-columns: 1fr; }
 
       .vision-container { height: auto !important; min-height: auto !important; }
@@ -792,6 +839,16 @@
       .vision-btn { width: 100%; justify-content: center; }
       .exec-container { padding: 20px 15px; }
       .exec-title { font-size: 24px; }
+
+      /* FIX 2: Single column silo on very small screens */
+      .silo-grid-wrapper {
+        grid-template-columns: 1fr 1fr;
+        max-width: 260px;
+        gap: 10px;
+      }
+      .silo-island { min-height: 90px; padding: 12px 8px; }
+      .island-icon { font-size: 24px; margin-bottom: 6px; }
+      .island-label { font-size: 11px; }
     }
   </style>
 </head>
@@ -804,13 +861,9 @@
 	</a>
 
     <div class="nav-links" id="nav-links">
-
-      <!-- Home (direct link) -->
       <div class="nav-item">
         <a href="#hero" class="nav-link" data-section="hero">Home</a>
       </div>
-
-      <!-- Problem & Solution group -->
       <div class="nav-item">
         <button aria-haspopup="true">
           Why <i class="fa-solid fa-chevron-down chevron"></i>
@@ -822,8 +875,6 @@
           <a href="#how-it-works" class="nav-link" data-section="how-it-works"><i class="fa-solid fa-gears"></i> How It Works</a>
         </div>
       </div>
-
-      <!-- Platform group -->
       <div class="nav-item">
         <button aria-haspopup="true">
           Platform <i class="fa-solid fa-chevron-down chevron"></i>
@@ -833,8 +884,6 @@
           <a href="#comparison-matrix-section" class="nav-link" data-section="comparison-matrix-section"><i class="fa-solid fa-table"></i> Comparison</a>
         </div>
       </div>
-
-      <!-- Impact group -->
       <div class="nav-item">
         <button aria-haspopup="true">
           Impact <i class="fa-solid fa-chevron-down chevron"></i>
@@ -844,15 +893,11 @@
           <a href="#executive-summary" class="nav-link" data-section="executive-summary"><i class="fa-solid fa-file-contract"></i> Executive Summary</a>
         </div>
       </div>
-
-      <!-- Vision (direct link) -->
       <div class="nav-item">
         <a href="#vision-cta" class="nav-link" data-section="vision-cta">Vision</a>
       </div>
-
     </div>
 
-    <!-- Hamburger -->
     <button class="hamburger" id="hamburger" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
@@ -893,24 +938,43 @@
         Where all your data<br/>
         <span class="tagline-highlight">finally meets together.</span>
       </h2>
+    </div>
+  </section>
 
   <!-- ═══ PROBLEM ═══ -->
   <section id="problem">
     <div class="pill" style="color:#ef4444; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.2);">The Problem</div>
     <h2 style="font-size:42px; font-weight:700; margin-bottom:40px;">Enterprise Data is Trapped in Silos</h2>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <div class="visual-container">
-        <div class="silo-wrapper">
-          <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;">
-            <line class="broken-line" x1="250" y1="140" x2="140" y2="200"></line>
-            <line class="broken-line" x1="250" y1="140" x2="360" y2="200"></line>
-            <line class="broken-line" x1="140" y1="270" x2="250" y2="330"></line>
-            <line class="broken-line" x1="360" y1="270" x2="250" y2="330"></line>
+      <div class="visual-container" style="display:flex; justify-content:center;">
+
+        <!-- FIX 2: Replaced absolute-positioned silo layout with responsive CSS Grid -->
+        <div class="silo-grid-wrapper">
+          <!-- Dashed connector lines using SVG overlay -->
+          <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;" xmlns="http://www.w3.org/2000/svg">
+            <!-- Cross connections between all 4 islands -->
+            <line x1="50%" y1="50%" x2="0%" y2="0%" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="6,5" opacity="0.45"/>
+            <line x1="50%" y1="50%" x2="100%" y2="0%" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="6,5" opacity="0.45"/>
+            <line x1="50%" y1="50%" x2="0%" y2="100%" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="6,5" opacity="0.45"/>
+            <line x1="50%" y1="50%" x2="100%" y2="100%" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="6,5" opacity="0.45"/>
           </svg>
-          <div class="silo-island island-sql"><i class="fa-solid fa-database island-icon" style="color:#60a5fa;"></i><p class="island-label">SQL Databases</p></div>
-          <div class="silo-island island-excel"><i class="fa-solid fa-file-excel island-icon" style="color:#34d399;"></i><p class="island-label">Spreadsheets</p></div>
-          <div class="silo-island island-pdf"><i class="fa-solid fa-file-pdf island-icon" style="color:#fb7185;"></i><p class="island-label">PDF Reports</p></div>
-          <div class="silo-island island-csv"><i class="fa-solid fa-file-csv island-icon" style="color:#fbbf24;"></i><p class="island-label">CSV Files</p></div>
+
+          <div class="silo-island island-sql">
+            <i class="fa-solid fa-database island-icon" style="color:#60a5fa;"></i>
+            <p class="island-label">SQL Databases</p>
+          </div>
+          <div class="silo-island island-excel">
+            <i class="fa-solid fa-file-excel island-icon" style="color:#34d399;"></i>
+            <p class="island-label">Spreadsheets</p>
+          </div>
+          <div class="silo-island island-pdf">
+            <i class="fa-solid fa-file-pdf island-icon" style="color:#fb7185;"></i>
+            <p class="island-label">PDF Reports</p>
+          </div>
+          <div class="silo-island island-csv">
+            <i class="fa-solid fa-file-csv island-icon" style="color:#fbbf24;"></i>
+            <p class="island-label">CSV Files</p>
+          </div>
         </div>
       </div>
       <div style="background:rgba(30,41,59,0.4); border:1px solid var(--border-color); border-radius:16px; padding:40px;">
@@ -1200,6 +1264,7 @@
   </section>
 
   <!-- ═══ EXECUTIVE SUMMARY ═══ -->
+  <!-- FIX 1 applied via CSS above - left-aligned text, wider left column -->
   <section id="executive-summary">
     <div class="exec-container">
       <div class="exec-bg-pattern"></div>
@@ -1220,7 +1285,7 @@
           </div>
           <div class="exec-patent-card">
             <div class="section-label" style="color:#fbbf24;"><i class="fa-solid fa-certificate"></i> Patent Status</div>
-            <p class="card-body" style="color:#fcd34d;">Patent Application Filed</p>
+            <p style="color:#fcd34d;">Patent Application Filed</p>
             <p class="patent-number">2510001IN-CS</p>
           </div>
         </div>
@@ -1228,12 +1293,12 @@
           <div class="exec-info-card">
             <div class="card-icon icon-innovation"><i class="fa-solid fa-lightbulb"></i></div>
             <h3 class="card-heading">The Innovation</h3>
-            <p class="card-body">Patent-pending AI reasoning engine that "thinks" across all data sources to generate perfect datasets automatically, replacing rigid ETL pipelines.</p>
+            <p style="color:var(--text-dim); font-size:14px; line-height:1.6;">Patent-pending AI reasoning engine that "thinks" across all data sources to generate perfect datasets automatically, replacing rigid ETL pipelines.</p>
           </div>
           <div class="exec-info-card">
             <div class="card-icon icon-market"><i class="fa-solid fa-chart-pie"></i></div>
             <h3 class="card-heading">Market Opportunity</h3>
-            <p class="card-body"><span class="stat-highlight">$3B+</span> Unlocking the dark data problem—tapping 80-90% of enterprise data trapped in PDFs, spreadsheets, and silos—for AI-ready intelligence with first-mover advantage.</p>
+            <p style="color:var(--text-dim); font-size:14px; line-height:1.6;"><span class="stat-highlight">$3B+</span> Unlocking the dark data problem—tapping 80-90% of enterprise data trapped in PDFs, spreadsheets, and silos—for AI-ready intelligence with first-mover advantage.</p>
           </div>
           <div class="exec-info-card">
             <div class="card-icon icon-caps"><i class="fa-solid fa-layer-group"></i></div>
@@ -1243,7 +1308,7 @@
           <div class="exec-info-card">
             <div class="card-icon icon-timing"><i class="fa-solid fa-hourglass-half"></i></div>
             <h3 class="card-heading">Why Now?</h3>
-            <p class="card-body"><strong>GPT proved generative AI for text.</strong><br/>SchemaMind brings that same transformative power to enterprise structured data, solving the "last mile" of data unification.</p>
+            <p style="color:var(--text-dim); font-size:14px; line-height:1.6;"><strong>GPT proved generative AI for text.</strong><br/>SchemaMind brings that same transformative power to enterprise structured data, solving the "last mile" of data unification.</p>
           </div>
         </div>
       </div>
@@ -1269,29 +1334,29 @@
           </div>
         </div>
       </div>
-	  
-	<!-- YouTube Demo Embed -->
-	<div style="width:100%; max-width:820px; margin:0 auto 0; border-radius:16px; overflow:hidden; border:1px solid var(--border-color); box-shadow:0 0 60px rgba(56,189,248,0.2); aspect-ratio:16/9;">
-	  <iframe
-		src="https://www.youtube.com/watch?v=AHQrQb2gNS4"
-		title="SchemaMind demo"
-		referrerpolicy="strict-origin-when-cross-origin"
-		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-		allowfullscreen
-		style="width:100%; height:100%; border:none; display:block;">
-	  </iframe>
-	</div>
 
-	<!-- Fallback link -->
-	<div style="width:100%; max-width:820px; margin:10px auto 60px; text-align:center;">
-	  <p style="font-size:0.875rem; color:var(--text-muted, #94a3b8);">
-		Video not loading? 
-		<a href="https://www.youtube.com/watch?v=AHQrQb2gNS4" target="_blank" rel="noopener noreferrer"
-		   style="color:var(--accent-color, #38bdf8); text-decoration:underline; text-underline-offset:3px;">
-		  Watch directly on YouTube ↗
-		</a>
-	  </p>
-	</div>
+      <!-- YouTube Demo Embed -->
+      <div style="width:100%; max-width:820px; margin:0 auto 0; border-radius:16px; overflow:hidden; border:1px solid var(--border-color); box-shadow:0 0 60px rgba(56,189,248,0.2); aspect-ratio:16/9;">
+        <iframe
+          src="https://www.youtube.com/embed/AHQrQb2gNS4"
+          title="SchemaMind demo"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          style="width:100%; height:100%; border:none; display:block;">
+        </iframe>
+      </div>
+
+      <!-- Fallback link -->
+      <div style="width:100%; max-width:820px; margin:10px auto 60px; text-align:center;">
+        <p style="font-size:0.875rem; color:var(--text-dim, #94a3b8);">
+          Video not loading?
+          <a href="https://www.youtube.com/watch?v=AHQrQb2gNS4" target="_blank" rel="noopener noreferrer"
+             style="color:var(--primary); text-decoration:underline; text-underline-offset:3px;">
+            Watch directly on YouTube ↗
+          </a>
+        </p>
+      </div>
 
       <div class="vision-footer">
         <div class="vision-founder-block">
@@ -1345,19 +1410,6 @@
 
     // ── Active nav highlighting ──
     const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    // Section → parent nav item mapping
-    const sectionToGroup = {
-      'problem':     'problem',
-      'breakthrough':'problem',
-      'evolution':   'problem',
-      'how-it-works':'problem',
-      'capabilities':'capabilities',
-      'comparison-matrix-section': 'capabilities',
-      'impact-cards':'impact-cards',
-      'executive-summary':'impact-cards',
-    };
 
     window.addEventListener('scroll', () => {
       let current = '';
@@ -1365,13 +1417,11 @@
         if (window.scrollY >= s.offsetTop - 150) current = s.id;
       });
 
-      // Direct links
       document.querySelectorAll('.nav-item > a.nav-link').forEach(a => {
         a.classList.remove('active');
         if (a.getAttribute('href') === '#' + current) a.classList.add('active');
       });
 
-      // Dropdown parents: mark parent .nav-item as active
       document.querySelectorAll('.nav-item').forEach(item => {
         const btns = item.querySelectorAll('.dropdown-menu a.nav-link');
         let parentActive = false;
