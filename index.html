@@ -941,247 +941,288 @@
     </div>
   </section>
 
-  <!-- ═══ PROBLEM ═══ -->
-  <section id="problem">
-    <div class="pill" style="color:#ef4444; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.2);">The Problem</div>
-    <h2 style="font-size:42px; font-weight:700; margin-bottom:40px;">Enterprise Data is Trapped in Silos</h2>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <div class="visual-container" style="display:flex; justify-content:center;">
+	<!-- ═══ PROBLEM: THE FOUR DATA CRISES ═══ -->
+	<section id="problem">
+	  <div class="pill" style="color:#ef4444; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.2);">The Reality</div>
+	  <h2 style="font-size:42px; font-weight:700; margin-bottom:16px;">Data Chaos Blocks AI Success</h2>
+	  <p style="color:var(--text-dim); max-width:680px; margin:0 auto 48px auto; text-align:center;">Enterprises struggle with four critical breakdowns — each one breaks the path to reliable AI.</p>
 
-        <!-- FIX 2: Replaced absolute-positioned silo layout with responsive CSS Grid -->
-        <div class="silo-grid-wrapper">
-          <!-- Dashed connector lines using SVG overlay -->
-          <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;" xmlns="http://www.w3.org/2000/svg">
-            <!-- Cross connections between all 4 islands -->
-            <line x1="50%" y1="50%" x2="0%" y2="0%" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="6,5" opacity="0.45"/>
-            <line x1="50%" y1="50%" x2="100%" y2="0%" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="6,5" opacity="0.45"/>
-            <line x1="50%" y1="50%" x2="0%" y2="100%" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="6,5" opacity="0.45"/>
-            <line x1="50%" y1="50%" x2="100%" y2="100%" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="6,5" opacity="0.45"/>
-          </svg>
+	  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+		<!-- 1. Data Silos -->
+		<div style="background:rgba(30,41,59,0.5); border:1px solid var(--border-color); border-radius:24px; padding:24px; transition:0.2s;">
+		  <div style="width:48px; height:48px; background:rgba(96,165,250,0.15); border-radius:60px; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+			<i class="fa-solid fa-building" style="font-size:24px; color:#60a5fa;"></i>
+		  </div>
+		  <h3 style="font-size:20px; font-weight:600; margin-bottom:8px;">Data Silos</h3>
+		  <p style="color:var(--text-dim); font-size:14px;">CRMs, data warehouses, spreadsheets, and legacy systems never talk to each other.</p>
+		  <div style="margin-top:16px; font-size:12px; color:#94a3b8;"><i class="fa-regular fa-circle-xmark"></i> Isolated & disconnected</div>
+		</div>
 
-          <div class="silo-island island-sql">
-            <i class="fa-solid fa-database island-icon" style="color:#60a5fa;"></i>
-            <p class="island-label">SQL Databases</p>
-          </div>
-          <div class="silo-island island-excel">
-            <i class="fa-solid fa-file-excel island-icon" style="color:#34d399;"></i>
-            <p class="island-label">Spreadsheets</p>
-          </div>
-          <div class="silo-island island-pdf">
-            <i class="fa-solid fa-file-pdf island-icon" style="color:#fb7185;"></i>
-            <p class="island-label">PDF Reports</p>
-          </div>
-          <div class="silo-island island-csv">
-            <i class="fa-solid fa-file-csv island-icon" style="color:#fbbf24;"></i>
-            <p class="island-label">CSV Files</p>
-          </div>
+		<!-- 2. Fragmented Data -->
+		<div style="background:rgba(30,41,59,0.5); border:1px solid var(--border-color); border-radius:24px; padding:24px;">
+		  <div style="width:48px; height:48px; background:rgba(251,113,133,0.15); border-radius:60px; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+			<i class="fa-solid fa-puzzle-piece" style="font-size:24px; color:#fb7185;"></i>
+		  </div>
+		  <h3 style="font-size:20px; font-weight:600; margin-bottom:8px;">Fragmented Data</h3>
+		  <p style="color:var(--text-dim); font-size:14px;">Same entities live across multiple sources with conflicting values — no single source of truth.</p>
+		  <div style="margin-top:16px; font-size:12px; color:#94a3b8;"><i class="fa-regular fa-circle-xmark"></i> Scattered across systems</div>
+		</div>
+
+		<!-- 3. Poor Data Quality -->
+		<div style="background:rgba(30,41,59,0.5); border:1px solid var(--border-color); border-radius:24px; padding:24px;">
+		  <div style="width:48px; height:48px; background:rgba(52,211,153,0.15); border-radius:60px; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+			<i class="fa-solid fa-chart-line" style="font-size:24px; color:#34d399;"></i>
+		  </div>
+		  <h3 style="font-size:20px; font-weight:600; margin-bottom:8px;">Poor Data Quality</h3>
+		  <p style="color:var(--text-dim); font-size:14px;">Missing values, duplicates, and outdated records make every analysis unreliable.</p>
+		  <div style="margin-top:16px; font-size:12px; color:#94a3b8;"><i class="fa-regular fa-circle-xmark"></i> Inconsistent & unreliable</div>
+		</div>
+
+		<!-- 4. No Governance -->
+		<div style="background:rgba(30,41,59,0.5); border:1px solid var(--border-color); border-radius:24px; padding:24px;">
+		  <div style="width:48px; height:48px; background:rgba(245,158,11,0.15); border-radius:60px; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+			<i class="fa-solid fa-shield-haltered" style="font-size:24px; color:#fbbf24;"></i>
+		  </div>
+		  <h3 style="font-size:20px; font-weight:600; margin-bottom:8px;">No Governance</h3>
+		  <p style="color:var(--text-dim); font-size:14px;">Missing column lineage, role‑back access control, and approval workflows.</p>
+		  <div style="margin-top:16px; font-size:12px; color:#94a3b8;"><i class="fa-regular fa-circle-xmark"></i> Missing lineage & access control</div>
+		</div>
+	  </div>
+
+
+<!-- ═══ BREAKTHROUGH: The Leap ═══ -->
+<section id="breakthrough" style="text-align:center; padding:60px 5%;">
+  <div style="max-width:1280px; margin:0 auto;">
+    <h2 style="font-size:3.2rem; margin-bottom:1rem;">What GPT did for <span style="color:#10b981;">text</span>,<br>SchemaMind does for <span style="color:var(--primary);">enterprise data</span>.</h2>
+    <p style="color:var(--text-dim); margin-bottom:3rem; max-width:700px; margin-left:auto; margin-right:auto;">From unstructured text to structured intelligence — a new era for data.</p>
+
+    <!-- Comparison Graph: Horizontal bar style -->
+    <div style="display:flex; flex-wrap:wrap; gap:2rem; justify-content:center; margin-top:2rem;">
+      <!-- GPT for text -->
+      <div style="flex:1; min-width:280px; background:var(--card-bg); border:1px solid var(--border-color); border-radius:32px; padding:2rem; transition:0.2s;">
+        <div style="background:rgba(16,185,129,0.1); width:80px; height:80px; border-radius:60px; display:flex; align-items:center; justify-content:center; margin:0 auto 1.5rem;">
+          <i class="fa-solid fa-message" style="font-size:3rem; color:#10b981;"></i>
         </div>
+        <h3 style="font-size:1.8rem; margin-bottom:0.5rem;">Generative Text</h3>
+        <p style="color:var(--text-dim); margin-bottom:1.5rem;">Understands the unstructured web .</p>
+        <div style="height:6px; background:#1e293b; border-radius:10px; overflow:hidden;">
+          <div style="width:100%; height:100%; background:#10b981;"></div>
+        </div>
+        <p style="margin-top:0.75rem; font-size:0.85rem; color:#94a3b8;">Maturity: High</p>
       </div>
-      <div style="background:rgba(30,41,59,0.4); border:1px solid var(--border-color); border-radius:16px; padding:40px;">
-        <h3 style="font-size:18px; margin-bottom:15px;">Manual Extraction Takes Weeks</h3>
-        <p style="color:var(--text-dim); margin-bottom:20px;">Teams waste 80% of their time finding and cleaning data across formats.</p>
-        <h3 style="font-size:18px; margin-bottom:15px;">Heavy Reliance on Data Engineers</h3>
-        <p style="color:var(--text-dim);">Business users can't self-serve; every question requires a ticket and a wait.</p>
+
+      <!-- Arrow connector (desktop) -->
+      <div style="display:flex; align-items:center; font-size:2rem; color:var(--primary);">
+        <i class="fa-solid fa-arrow-right-long"></i>
+      </div>
+
+      <!-- SchemaMind GDI -->
+      <div style="flex:1; min-width:280px; background:linear-gradient(145deg, rgba(56,189,248,0.08), rgba(56,189,248,0.02)); border:2px solid var(--primary); border-radius:32px; padding:2rem; box-shadow:0 0 25px rgba(56,189,248,0.15);">
+        <div style="background:rgba(56,189,248,0.2); width:80px; height:80px; border-radius:60px; display:flex; align-items:center; justify-content:center; margin:0 auto 1.5rem;">
+          <i class="fa-solid fa-brain-circuit" style="font-size:3rem; color:var(--primary);"></i>
+        </div>
+        <h3 style="font-size:1.8rem; margin-bottom:0.5rem;">Generative Data Intelligence</h3>
+        <p style="color:var(--text-dim); margin-bottom:1.5rem;">Understands databases, PDFs, Excel — with lineage, quality, and governance.</p>
+        <div style="height:6px; background:#1e293b; border-radius:10px; overflow:hidden;">
+          <div style="width:100%; height:100%; background:var(--primary);"></div>
+        </div>
+        <p style="margin-top:0.75rem; font-size:0.85rem; color:#bae6fd;">Maturity: Emerging • Complete</p>
       </div>
     </div>
-  </section>
 
-  <!-- ═══ BREAKTHROUGH ═══ -->
-  <section id="breakthrough" style="text-align:center;">
-    <h2 style="font-size:3.5rem; margin-bottom:4rem;">What GPT did for <span style="color:#10b981;">text</span>,<br>SchemaMind does for <span style="color:var(--primary);">enterprise data</span>.</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div style="background:var(--card-bg); border:1px solid var(--border-color); border-radius:20px; padding:40px;">
-        <i class="fa-solid fa-message" style="font-size:3rem; color:#10b981; margin-bottom:1.5rem;"></i>
-        <h3 style="font-size:1.5rem; margin-bottom:1rem;">Generative Text</h3>
-        <p style="color:var(--text-dim);">Understands the unstructured web.</p>
-      </div>
-      <div style="background:var(--card-bg); border:2px solid var(--primary); border-radius:20px; padding:40px;">
-        <i class="fa-solid fa-brain-circuit" style="font-size:3rem; color:var(--primary); margin-bottom:1.5rem;"></i>
-        <h3 style="font-size:1.5rem; margin-bottom:1rem;">Generative Data Intelligence</h3>
-        <p style="color:var(--text-dim);">Understands databases, PDFs, &amp; Excel.</p>
-      </div>
+    <!-- Key differentiators -->
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:1rem; margin-top:3rem;">
+      <span style="background:rgba(56,189,248,0.1); padding:0.5rem 1rem; border-radius:40px; font-size:0.8rem;"><i class="fa-regular fa-circle-check"></i> Structured & Unstructured</span>
+      <span style="background:rgba(56,189,248,0.1); padding:0.5rem 1rem; border-radius:40px; font-size:0.8rem;"><i class="fa-regular fa-circle-check"></i> Column‑level lineage</span>
+      <span style="background:rgba(56,189,248,0.1); padding:0.5rem 1rem; border-radius:40px; font-size:0.8rem;"><i class="fa-regular fa-circle-check"></i> Role‑back access</span>
+      <span style="background:rgba(56,189,248,0.1); padding:0.5rem 1rem; border-radius:40px; font-size:0.8rem;"><i class="fa-regular fa-circle-check"></i> Data Quality Index</span>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ═══ EVOLUTION ═══ -->
-  <section id="evolution" style="padding:60px 5%; background:#0f172a;">
-    <div style="max-width:1280px; margin:0 auto;">
-      <div style="text-align:center; margin-bottom:40px;">
-        <h2 style="font-size:2.5rem; margin:0; line-height:1.2; font-family:'Space Grotesk',sans-serif;">
-          From <span style="color:#f87171;">Rigid Pipelines</span> to <span style="color:var(--primary);">Generative Intelligence</span>
-        </h2>
-      </div>
+<!-- ═══ EVOLUTION: From Rigid Pipelines to Generative Intelligence ═══ -->
+<section id="evolution" style="padding:60px 5%; background:#0f172a;">
+  <div style="max-width:1280px; margin:0 auto;">
+    <div style="text-align:center; margin-bottom:3rem;">
+      <h2 style="font-size:2.5rem; margin:0; line-height:1.2;">From <span style="color:#f87171;">Rigid Pipelines</span> to <span style="color:var(--primary);">Generative Intelligence</span></h2>
+      <p style="color:var(--text-dim); margin-top:0.75rem;">The evolution of data engineering — three eras, one leap.</p>
+    </div>
 
-      <div style="position:relative; height:260px; margin:20px 0 40px;">
-        <div style="position:absolute; left:0; width:200px; text-align:center;">
-          <div style="background:rgba(248,113,113,0.1); border:1px solid #f87171; border-radius:16px; padding:16px; transform:translateY(-15px);">
-            <div style="font-size:32px; margin-bottom:8px; color:#f87171;"><i class="fa-solid fa-gear"></i></div>
-            <h3 style="color:#f87171; font-size:20px; font-weight:600; margin:0;">ETL</h3>
-            <p style="color:#fecaca; font-size:11px; margin:2px 0 0;">1970s–2000s</p>
-            <div style="width:24px; height:24px; background:#f87171; border-radius:50%; position:absolute; bottom:-32px; left:50%; transform:translateX(-50%); border:3px solid #0f172a;"></div>
+    <!-- Horizontal Timeline (responsive) -->
+    <div style="position:relative; margin:3rem 0 4rem;">
+      <!-- Timeline line (desktop) -->
+      <div style="position:absolute; top:50%; left:5%; right:5%; height:3px; background:linear-gradient(90deg, #f87171, #fbbf24, var(--primary)); transform:translateY(-50%); border-radius:5px; z-index:0;"></div>
+      
+      <div style="display:flex; flex-wrap:wrap; justify-content:space-between; position:relative; z-index:2; gap:1rem;">
+        <!-- Era 1: ETL -->
+        <div style="flex:1; min-width:200px; text-align:center; background:rgba(15,23,42,0.8); backdrop-filter:blur(4px); border-radius:24px; padding:1.5rem; border-left:3px solid #f87171;">
+          <div style="background:#f87171; width:48px; height:48px; border-radius:60px; display:flex; align-items:center; justify-content:center; margin:0 auto 1rem;">
+            <i class="fa-solid fa-gear" style="font-size:1.5rem; color:white;"></i>
           </div>
+          <h3 style="color:#f87171; font-size:1.3rem; margin:0 0 0.25rem;">ETL</h3>
+          <p style="color:#fecaca; font-size:0.75rem;">1970s – 2000s</p>
+          <p style="font-size:0.85rem; color:#94a3b8; margin-top:0.5rem;">Batch-only, manual schemas, no unstructured data.</p>
         </div>
-        <div style="position:absolute; left:50%; transform:translateX(-50%); width:220px; text-align:center;">
-          <div style="background:rgba(251,191,36,0.1); border:1px solid #fbbf24; border-radius:16px; padding:16px; transform:translateY(-15px);">
-            <div style="font-size:32px; margin-bottom:8px; color:#fbbf24;"><i class="fa-solid fa-layer-group"></i></div>
-            <h3 style="color:#fbbf24; font-size:20px; font-weight:600; margin:0;">Semantic Layer</h3>
-            <p style="color:#fde68a; font-size:11px; margin:2px 0 0;">2000s–2020s</p>
-            <div style="width:24px; height:24px; background:#fbbf24; border-radius:50%; position:absolute; bottom:-32px; left:50%; transform:translateX(-50%); border:3px solid #0f172a;"></div>
-          </div>
-        </div>
-        <div style="position:absolute; right:0; width:220px; text-align:center;">
-          <div style="background:rgba(56,189,248,0.15); border:1px solid var(--primary); border-radius:16px; padding:16px; transform:translateY(-18px); box-shadow:0 0 20px rgba(56,189,248,0.2);">
-            <div style="font-size:32px; margin-bottom:8px; color:var(--primary);"><i class="fa-solid fa-brain-circuit"></i></div>
-            <h3 style="color:var(--primary); font-size:20px; font-weight:600; margin:0;">GDI</h3>
-            <p style="color:#bae6fd; font-size:11px; margin:2px 0 0;">Now: Generative AI</p>
-            <div style="width:28px; height:28px; background:var(--primary); border-radius:50%; position:absolute; bottom:-34px; left:50%; transform:translateX(-50%); border:3px solid #0f172a; box-shadow:0 0 10px var(--primary);"></div>
-          </div>
-        </div>
-        <div style="position:absolute; top:170px; left:0; width:200px; text-align:center; color:#f87171; font-size:11px; font-weight:500;"><i class="fa-solid fa-arrow-right"></i> Rigid, Manual</div>
-        <div style="position:absolute; top:170px; left:50%; transform:translateX(-50%); width:220px; text-align:center; color:#fbbf24; font-size:11px; font-weight:500;"><i class="fa-solid fa-arrow-right"></i> Predefined Logic</div>
-        <div style="position:absolute; top:170px; right:0; width:220px; text-align:center; color:var(--primary); font-size:11px; font-weight:500;"><i class="fa-solid fa-arrow-right"></i> Self-Healing</div>
-      </div>
 
-      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:40px;">
-        <div style="background:rgba(15,23,42,0.6); border:1px solid rgba(248,113,113,0.2); border-radius:12px; padding:16px;">
-          <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
-            <div style="width:28px; height:28px; background:rgba(248,113,113,0.1); border-radius:6px; display:flex; align-items:center; justify-content:center; color:#f87171; font-size:14px;"><i class="fa-solid fa-gear"></i></div>
-            <h4 style="color:#f87171; font-size:15px; font-weight:600; margin:0;">ETL</h4>
+        <!-- Era 2: Semantic Layer -->
+        <div style="flex:1; min-width:200px; text-align:center; background:rgba(15,23,42,0.8); backdrop-filter:blur(4px); border-radius:24px; padding:1.5rem; border-left:3px solid #fbbf24;">
+          <div style="background:#fbbf24; width:48px; height:48px; border-radius:60px; display:flex; align-items:center; justify-content:center; margin:0 auto 1rem;">
+            <i class="fa-solid fa-layer-group" style="font-size:1.5rem; color:#0f172a;"></i>
           </div>
-          <div style="display:flex; flex-direction:column; gap:8px;">
-            <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:#94a3b8;"><i class="fa-solid fa-xmark" style="color:#ef4444; font-size:14px;"></i> Batch-only</div>
-            <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:#94a3b8;"><i class="fa-solid fa-xmark" style="color:#ef4444; font-size:14px;"></i> No PDFs</div>
-          </div>
+          <h3 style="color:#fbbf24; font-size:1.3rem; margin:0 0 0.25rem;">Semantic Layer</h3>
+          <p style="color:#fde68a; font-size:0.75rem;">2000s – 2020s</p>
+          <p style="font-size:0.85rem; color:#94a3b8; margin-top:0.5rem;">Predefined business logic, no drift handling.</p>
         </div>
-        <div style="background:rgba(15,23,42,0.6); border:1px solid rgba(251,191,36,0.2); border-radius:12px; padding:16px;">
-          <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
-            <div style="width:28px; height:28px; background:rgba(251,191,36,0.1); border-radius:6px; display:flex; align-items:center; justify-content:center; color:#fbbf24; font-size:14px;"><i class="fa-solid fa-layer-group"></i></div>
-            <h4 style="color:#fbbf24; font-size:15px; font-weight:600; margin:0;">Semantic</h4>
+
+        <!-- Era 3: GDI (Current) -->
+        <div style="flex:1; min-width:200px; text-align:center; background:rgba(56,189,248,0.1); border-radius:24px; padding:1.5rem; border:2px solid var(--primary); box-shadow:0 0 20px rgba(56,189,248,0.2);">
+          <div style="background:var(--primary); width:52px; height:52px; border-radius:60px; display:flex; align-items:center; justify-content:center; margin:0 auto 1rem;">
+            <i class="fa-solid fa-brain-circuit" style="font-size:1.6rem; color:white;"></i>
           </div>
-          <div style="display:flex; flex-direction:column; gap:8px;">
-            <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:#94a3b8;"><i class="fa-solid fa-exclamation-triangle" style="color:#fbbf24; font-size:12px;"></i> Predefined</div>
-            <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:#94a3b8;"><i class="fa-solid fa-exclamation-triangle" style="color:#fbbf24; font-size:12px;"></i> No drift handling</div>
-          </div>
-        </div>
-        <div style="background:rgba(56,189,248,0.08); border:1px solid var(--primary); border-radius:12px; padding:16px; position:relative;">
-          <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
-            <div style="width:28px; height:28px; background:rgba(56,189,248,0.15); border-radius:6px; display:flex; align-items:center; justify-content:center; color:var(--primary); font-size:14px;"><i class="fa-solid fa-brain-circuit"></i></div>
-            <h4 style="color:var(--primary); font-size:15px; font-weight:600; margin:0;">GDI</h4>
-          </div>
-          <div style="display:flex; flex-direction:column; gap:8px;">
-            <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:#94a3b8;"><i class="fa-solid fa-check-circle" style="color:#4ade80; font-size:14px;"></i> Natural language</div>
-            <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:#94a3b8;"><i class="fa-solid fa-check-circle" style="color:#4ade80; font-size:14px;"></i> Self-healing</div>
-          </div>
+          <h3 style="color:var(--primary); font-size:1.3rem; margin:0 0 0.25rem;">Generative Data Intelligence</h3>
+          <p style="color:#bae6fd; font-size:0.75rem;">Now – Future</p>
+          <p style="font-size:0.85rem; color:#cbd5e1; margin-top:0.5rem;">Self-healing, natural language, governance, DQI, 50+ connectors.</p>
         </div>
       </div>
     </div>
-  </section>
+
+    <!-- Feature Comparison Table (clean, minimal) -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:1.5rem; margin-top:3rem;">
+      <div style="background:rgba(248,113,113,0.05); border-radius:20px; padding:1.25rem;">
+        <h4 style="color:#f87171; margin-bottom:0.75rem;"><i class="fa-solid fa-times-circle"></i> ETL Limitations</h4>
+        <ul style="list-style:none; padding:0; margin:0; font-size:0.85rem; color:#94a3b8;">
+          <li><i class="fa-regular fa-circle-xmark" style="color:#ef4444;"></i> Batch-only, no real-time</li>
+          <li><i class="fa-regular fa-circle-xmark" style="color:#ef4444;"></i> Doesn’t understand PDFs/Excel</li>
+          <li><i class="fa-regular fa-circle-xmark" style="color:#ef4444;"></i> No lineage or quality metrics</li>
+        </ul>
+      </div>
+      <div style="background:rgba(251,191,36,0.05); border-radius:20px; padding:1.25rem;">
+        <h4 style="color:#fbbf24; margin-bottom:0.75rem;"><i class="fa-solid fa-triangle-exclamation"></i> Semantic Gaps</h4>
+        <ul style="list-style:none; padding:0; margin:0; font-size:0.85rem; color:#94a3b8;">
+          <li><i class="fa-regular fa-circle-xmark" style="color:#fbbf24;"></i> Manual mapping</li>
+          <li><i class="fa-regular fa-circle-xmark" style="color:#fbbf24;"></i> No role‑back access</li>
+          <li><i class="fa-regular fa-circle-xmark" style="color:#fbbf24;"></i> Fragmented governance</li>
+        </ul>
+      </div>
+      <div style="background:rgba(56,189,248,0.08); border-radius:20px; padding:1.25rem; border-left:3px solid var(--primary);">
+        <h4 style="color:var(--primary); margin-bottom:0.75rem;"><i class="fa-solid fa-check-circle"></i> GDI Breakthroughs</h4>
+        <ul style="list-style:none; padding:0; margin:0; font-size:0.85rem; color:#cbd5e1;">
+          <li><i class="fa-regular fa-circle-check" style="color:#4ade80;"></i> Natural language queries</li>
+          <li><i class="fa-regular fa-circle-check" style="color:#4ade80;"></i> Auto schema + quality repair</li>
+          <li><i class="fa-regular fa-circle-check" style="color:#4ade80;"></i> Column lineage & approval gates</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
   <!-- ═══ HOW IT WORKS ═══ -->
-  <section id="how-it-works">
-    <div class="text-center mb-12">
-      <h2 style="font-size:3.5rem; line-height:1.1;">Ask in English. <span style="color:var(--primary)">Get Perfect Datasets.</span> <span style="color:#34d399">Instantly.</span></h2>
-    </div>
+<section id="how-it-works">
+  <div class="text-center mb-12">
+    <h2 style="font-size:3.5rem; line-height:1.2;">Ask in English. <span style="color:var(--primary)">Get Perfect Datasets.</span> <span style="color:#34d399">Instantly.</span></h2>
+    <p style="color:var(--text-dim); max-width:700px; margin:1rem auto 0; font-size:1rem;">Powered by intelligent <strong>data movement, cleaning, and fusion</strong> — turning raw, siloed sources into <strong>queryable datasets</strong> with <strong>over 25 connectors</strong>.</p>
+  </div>
 
-    <div class="evolution-container">
-      <div class="connecting-line"></div>
-      <div class="step-card">
-        <div class="icon-circle" style="border-color:var(--primary); color:var(--primary);">
-          <i class="fa-solid fa-microphone-lines"></i>
-          <div class="step-number" style="background:var(--primary); color:#020617;">1</div>
-        </div>
-        <div class="step-title" style="color:var(--primary);">Ask</div>
-        <div class="step-content-box">
-          <p style="color:var(--text-dim); font-size:14px;">Natural Language Query</p>
-          <div class="query-box">> Show me Q4 revenue by region</div>
-        </div>
+  <div class="evolution-container">
+    <div class="connecting-line"></div>
+    <div class="step-card">
+      <div class="icon-circle" style="border-color:var(--primary); color:var(--primary);">
+        <i class="fa-solid fa-microphone-lines"></i>
+        <div class="step-number" style="background:var(--primary); color:#020617;">1</div>
       </div>
-      <div class="step-card">
-        <div class="icon-circle" style="border-color:#818cf8; color:#818cf8;">
-          <i class="fa-solid fa-brain"></i>
-          <div class="step-number" style="background:#818cf8; color:#020617;">2</div>
-        </div>
-        <div class="step-title" style="color:#818cf8;">Think</div>
-        <div class="step-content-box">
-          <p style="color:var(--text-dim); font-size:14px;">Analyzes &amp; Connects Sources</p>
-          <div style="display:flex; gap:10px; justify-content:center; margin-top:10px; color:#94a3b8;">
-            <i class="fa-solid fa-database"></i> <i class="fa-solid fa-file-excel"></i> <i class="fa-solid fa-file-pdf"></i>
-          </div>
-        </div>
-      </div>
-      <div class="step-card">
-        <div class="icon-circle" style="border-color:#34d399; color:#34d399;">
-          <i class="fa-solid fa-table-list"></i>
-          <div class="step-number" style="background:#34d399; color:#020617;">3</div>
-        </div>
-        <div class="step-title" style="color:#34d399;">Deliver</div>
-        <div class="step-content-box">
-          <p style="color:var(--text-dim); font-size:14px;">Unified, Trusted Dataset</p>
-          <div style="background:rgba(52,211,153,0.1); color:#34d399; padding:5px; border-radius:4px; font-size:12px; margin-top:10px;">
-            <i class="fa-solid fa-check-circle"></i> Ready for Analysis
-          </div>
-        </div>
+      <div class="step-title" style="color:var(--primary);">Ask</div>
+      <div class="step-content-box">
+        <p style="color:var(--text-dim); font-size:14px;">Natural Language Query</p>
+        <div class="query-box">> Show me Q4 revenue by region</div>
       </div>
     </div>
-
-    <div style="display:flex; justify-content:center; gap:40px; margin-top:60px;">
-      <div style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-xmark" style="color:#ef4444;"></i> No Warehouse</div>
-      <div style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-xmark" style="color:#ef4444;"></i> No ETL</div>
-      <div style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-xmark" style="color:#ef4444;"></i> No Waiting</div>
-    </div>
-  </section>
-
-  <!-- ═══ CAPABILITIES ═══ -->
-  <section id="capabilities">
-    <div class="glow-spot glow-blue"></div>
-    <div class="glow-spot glow-purple"></div>
-    <div class="glow-spot glow-green"></div>
-    <div class="glow-spot glow-orange"></div>
-
-    <div class="caps-header">
-      <h1 class="caps-title">Powered by <span class="title-highlight">12 Patent-Pending</span> AI Capabilities</h1>
-      <div class="subtitle-badge">
-        <i class="fa-solid fa-star patent-star"></i>
-        <p>Indian Patent Application 2510001IN-CS</p>
+    <div class="step-card">
+      <div class="icon-circle" style="border-color:#818cf8; color:#818cf8;">
+        <i class="fa-solid fa-brain"></i>
+        <div class="step-number" style="background:#818cf8; color:#020617;">2</div>
+      </div>
+      <div class="step-title" style="color:#818cf8;">Think</div>
+      <div class="step-content-box">
+        <p style="color:var(--text-dim); font-size:14px;">Orchestrates movement, cleaning & fusion</p>
+        <div style="display:flex; gap:10px; justify-content:center; margin-top:10px; color:#94a3b8;">
+          <i class="fa-solid fa-arrows-spin"></i> <i class="fa-solid fa-broom"></i> <i class="fa-solid fa-fan"></i>
+        </div>
+        <p style="font-size:11px; color:#818cf8; margin-top:6px;">25+ connectors unify silos</p>
       </div>
     </div>
-
-    <div class="feature-grid">
-      <div class="layer-card theme-blue">
-        <div class="layer-header"><div class="layer-icon-box"><i class="fa-solid fa-brain"></i></div><p class="layer-title">Intelligence Layer</p></div>
-        <div class="feature-list">
-          <div class="feature-item"><i class="fa-solid fa-comments feature-bullet"></i><div class="feature-content"><p class="feature-name">Natural Language Querying</p><p class="feature-desc">Query heterogeneous databases using plain English, no SQL required.</p></div></div>
-          <div class="feature-item"><i class="fa-solid fa-circle-question feature-bullet"></i><div class="feature-content"><p class="feature-name">AI Query Disambiguation</p><p class="feature-desc">LLM generates clarifying questions to resolve ambiguity before execution.</p></div></div>
-          <div class="feature-item"><i class="fa-solid fa-wand-magic-sparkles feature-bullet"></i><div class="feature-content"><p class="feature-name">Semantic Column Matching</p><p class="feature-desc">Aligns "client_id", "cust_id", &amp; "customer_id" across disparate sources.</p></div></div>
-        </div>
+    <div class="step-card">
+      <div class="icon-circle" style="border-color:#34d399; color:#34d399;">
+        <i class="fa-solid fa-table-list"></i>
+        <div class="step-number" style="background:#34d399; color:#020617;">3</div>
       </div>
-      <div class="layer-card theme-purple">
-        <div class="layer-header"><div class="layer-icon-box"><i class="fa-solid fa-robot"></i></div><p class="layer-title">Automation Layer</p></div>
-        <div class="feature-list">
-          <div class="feature-item"><i class="fa-solid fa-magnifying-glass-location feature-bullet"></i><div class="feature-content"><p class="feature-name">Auto Source Discovery</p><p class="feature-desc">Automatically discovers SQL, CSV, Excel, and PDF data sources.</p></div></div>
-          <div class="feature-item"><i class="fa-solid fa-eye-slash feature-bullet"></i><div class="feature-content"><p class="feature-name">Zero-Schema Extraction</p><p class="feature-desc">Extracts schemas &amp; types without user-provided definitions.</p></div></div>
-          <div class="feature-item"><i class="fa-solid fa-arrow-rotate-right feature-bullet"></i><div class="feature-content"><p class="feature-name">Schema Evolution Detection</p><p class="feature-desc">Monitors and adapts automatically to live schema changes.</p></div></div>
-        </div>
-      </div>
-      <div class="layer-card theme-green">
-        <div class="layer-header"><div class="layer-icon-box"><i class="fa-solid fa-shield-halved"></i></div><p class="layer-title">Reliability Layer</p></div>
-        <div class="feature-list">
-          <div class="feature-item"><i class="fa-solid fa-gauge-high feature-bullet"></i><div class="feature-content"><p class="feature-name">Confidence-Scored Plans</p><p class="feature-desc">Generates execution plans with 0–10 reliability scoring.</p></div></div>
-          <div class="feature-item"><i class="fa-solid fa-kit-medical feature-bullet"></i><div class="feature-content"><p class="feature-name">Self-Healing Generation</p><p class="feature-desc">Automatically detects, corrects, and re-generates incorrect plans.</p></div></div>
-          <div class="feature-item"><i class="fa-solid fa-diagram-project feature-bullet"></i><div class="feature-content"><p class="feature-name">Dependency Resolution</p><p class="feature-desc">Uses temporary tables to resolve complex cross-source dependencies.</p></div></div>
-        </div>
-      </div>
-      <div class="layer-card theme-orange">
-        <div class="layer-header"><div class="layer-icon-box"><i class="fa-solid fa-file-invoice"></i></div><p class="layer-title">Universal Extraction</p></div>
-        <div class="feature-list">
-          <div class="feature-item"><i class="fa-solid fa-file-pdf feature-bullet"></i><div class="feature-content"><p class="feature-name">PDF/DOCX Table Extraction</p><p class="feature-desc">Converts embedded document tables into structured datasets.</p></div></div>
-          <div class="feature-item"><i class="fa-solid fa-spell-check feature-bullet"></i><div class="feature-content"><p class="feature-name">Domain Verb Mapping</p><p class="feature-desc">Maps business verbs (e.g., "Churned") to data columns user-defined.</p></div></div>
-          <div class="feature-item"><i class="fa-solid fa-code-branch feature-bullet"></i><div class="feature-content"><p class="feature-name">Column Lineage Tracking</p><p class="feature-desc">Every unified column traces back to its original source field.</p></div></div>
+      <div class="step-title" style="color:#34d399;">Deliver</div>
+      <div class="step-content-box">
+        <p style="color:var(--text-dim); font-size:14px;">Queryable, trusted datasets</p>
+        <div style="background:rgba(52,211,153,0.1); color:#34d399; padding:5px; border-radius:4px; font-size:12px; margin-top:10px;">
+          <i class="fa-solid fa-check-circle"></i> Ready for Analysis
         </div>
       </div>
     </div>
-    <div class="center-connector"><i class="fa-solid fa-network-wired brain-icon"></i></div>
-  </section>
+  </div>
+
+  <div style="display:flex; justify-content:center; gap:40px; margin-top:60px;">
+    <div style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-xmark" style="color:#ef4444;"></i> No Warehouse</div>
+    <div style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-xmark" style="color:#ef4444;"></i> No ETL</div>
+    <div style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-xmark" style="color:#ef4444;"></i> No Waiting</div>
+  </div>
+</section>
+
+<!-- ═══ CAPABILITIES ═══ -->
+<section id="capabilities">
+  <div class="glow-spot glow-blue"></div>
+  <div class="glow-spot glow-purple"></div>
+  <div class="glow-spot glow-green"></div>
+  <div class="glow-spot glow-orange"></div>
+
+  <div class="caps-header">
+    <h1 class="caps-title">Powered by <span class="title-highlight">12 Patent-Pending</span> AI Capabilities</h1>
+    <div class="subtitle-badge">
+      <i class="fa-solid fa-star patent-star"></i>
+      <p>Indian Patent Application 2510001IN-CS</p>
+    </div>
+  </div>
+
+  <div class="feature-grid">
+    <div class="layer-card theme-blue">
+      <div class="layer-header"><div class="layer-icon-box"><i class="fa-solid fa-brain"></i></div><p class="layer-title">Intelligence Layer</p></div>
+      <div class="feature-list">
+        <div class="feature-item"><i class="fa-solid fa-comments feature-bullet"></i><div class="feature-content"><p class="feature-name">Natural Language Querying</p><p class="feature-desc">Query heterogeneous databases using plain English, no SQL required.</p></div></div>
+        <div class="feature-item"><i class="fa-solid fa-circle-question feature-bullet"></i><div class="feature-content"><p class="feature-name">AI Query Disambiguation</p><p class="feature-desc">LLM generates clarifying questions to resolve ambiguity before execution.</p></div></div>
+        <div class="feature-item"><i class="fa-solid fa-wand-magic-sparkles feature-bullet"></i><div class="feature-content"><p class="feature-name">Semantic Column Matching</p><p class="feature-desc">Aligns "client_id", "cust_id", &amp; "customer_id" across disparate sources.</p></div></div>
+      </div>
+    </div>
+    <div class="layer-card theme-purple">
+      <div class="layer-header"><div class="layer-icon-box"><i class="fa-solid fa-robot"></i></div><p class="layer-title">Automation Layer</p></div>
+      <div class="feature-list">
+        <div class="feature-item"><i class="fa-solid fa-magnifying-glass-location feature-bullet"></i><div class="feature-content"><p class="feature-name">Auto Source Discovery</p><p class="feature-desc">Automatically discovers SQL, CSV, Excel, and PDF data sources via <strong>25+ connectors</strong>.</p></div></div>
+        <div class="feature-item"><i class="fa-solid fa-eye-slash feature-bullet"></i><div class="feature-content"><p class="feature-name">Zero-Schema Extraction</p><p class="feature-desc">Extracts schemas &amp; types without user-provided definitions.</p></div></div>
+        <div class="feature-item"><i class="fa-solid fa-arrow-rotate-right feature-bullet"></i><div class="feature-content"><p class="feature-name">Schema Evolution Detection</p><p class="feature-desc">Monitors and adapts automatically to live schema changes.</p></div></div>
+      </div>
+    </div>
+    <div class="layer-card theme-green">
+      <div class="layer-header"><div class="layer-icon-box"><i class="fa-solid fa-shield-halved"></i></div><p class="layer-title">Reliability Layer</p></div>
+      <div class="feature-list">
+        <div class="feature-item"><i class="fa-solid fa-gauge-high feature-bullet"></i><div class="feature-content"><p class="feature-name">Confidence-Scored Plans</p><p class="feature-desc">Generates execution plans with 0–10 reliability scoring.</p></div></div>
+        <div class="feature-item"><i class="fa-solid fa-kit-medical feature-bullet"></i><div class="feature-content"><p class="feature-name">Self-Healing Generation</p><p class="feature-desc">Automatically detects, corrects, and re-generates incorrect plans.</p></div></div>
+        <div class="feature-item"><i class="fa-solid fa-diagram-project feature-bullet"></i><div class="feature-content"><p class="feature-name">Dependency Resolution</p><p class="feature-desc">Uses temporary tables to resolve complex cross-source dependencies.</p></div></div>
+      </div>
+    </div>
+    <div class="layer-card theme-orange">
+      <div class="layer-header"><div class="layer-icon-box"><i class="fa-solid fa-file-invoice"></i></div><p class="layer-title">Universal Extraction</p></div>
+      <div class="feature-list">
+        <div class="feature-item"><i class="fa-solid fa-file-pdf feature-bullet"></i><div class="feature-content"><p class="feature-name">PDF/DOCX Table Extraction</p><p class="feature-desc">Converts embedded document tables into structured datasets.</p></div></div>
+        <div class="feature-item"><i class="fa-solid fa-spell-check feature-bullet"></i><div class="feature-content"><p class="feature-name">Domain Verb Mapping</p><p class="feature-desc">Maps business verbs (e.g., "Churned") to data columns user-defined.</p></div></div>
+        <div class="feature-item"><i class="fa-solid fa-code-branch feature-bullet"></i><div class="feature-content"><p class="feature-name">Column Lineage Tracking</p><p class="feature-desc">Every unified column traces back to its original source field.</p></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="center-connector"><i class="fa-solid fa-network-wired brain-icon"></i></div>
+</section>
 
   <!-- ═══ COMPARISON ═══ -->
   <section id="comparison-matrix-section">
@@ -1359,20 +1400,30 @@
       </div>
 
       <div class="vision-footer">
-        <div class="vision-founder-block">
-          <div class="vision-founder-avatar"><i class="fa-solid fa-user"></i></div>
-          <div class="vision-founder-info">
-            <p class="vision-founder-name">Shuaib Ahmad</p>
-            <p class="vision-founder-title">Inventor, SchemaMind</p>
-          </div>
-        </div>
-        <div class="vision-contact-block">
-          <div class="vision-contact-item"><i class="fa-solid fa-envelope"></i><p>info@schemamind.tech</p></div>
-          <div class="vision-contact-item"><i class="fa-solid fa-globe"></i><p>www.schemamind.tech</p></div>
-          <div class="vision-contact-item"><i class="fa-brands fa-linkedin"></i><p>@schemamind</p></div>
-        </div>
-      </div>
-    </div>
+		<div class="vision-founder-block">
+		  <div class="vision-founder-avatar">
+			<i class="fa-solid fa-building"></i>
+		  </div>
+		  <div class="vision-founder-info">
+			<p class="vision-founder-name">SchemaMind</p>
+			<p class="vision-founder-title">AI-Powered Schema Intelligence</p>
+		  </div>
+		</div>
+
+		<div class="vision-contact-block">
+		  <div class="vision-contact-item">
+			<i class="fa-solid fa-envelope"></i>
+			<p><a href="mailto:info@schemamind.tech">info@schemamind.tech</a></p>
+		  </div>
+		  <div class="vision-contact-item">
+			<i class="fa-solid fa-globe"></i>
+			<p><a href="https://www.schemamind.tech" target="_blank" rel="noopener noreferrer">www.schemamind.tech</a></p>
+		  </div>
+		  <div class="vision-contact-item">
+			<i class="fa-brands fa-linkedin"></i>
+			<p><a href="https://www.linkedin.com/company/schemamind" target="_blank" rel="noopener noreferrer">@schemamind</a></p>
+		  </div>
+		</div>
   </section>
 
   <script>
