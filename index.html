@@ -945,25 +945,31 @@
     <a href="#vision-cta" class="mobile-link"><i class="fa-solid fa-eye"></i> Vision</a>
   </div>
 
-  <!-- ═══ HERO ═══ -->
-  <section id="hero">
-    <canvas id="neural-canvas"></canvas>
-    <div class="hero-content">
-      <div class="brand-name">
-        <i class="fa-solid fa-brain-circuit" style="color: var(--primary); font-size: 3rem;"></i>
-        <h1 style="display:inline;">
-        <span style="color:white;">Schema</span><span style="color:#10b981;">Mind</span>
-        </h1>
-      </div>
-      <div class="pill" style="background:rgba(30,41,59,0.8); border:1px solid var(--border-color); color:var(--primary);">
-        Data Infrastructure and Data Intelligence Platform
-      </div>
-		<h2 style="font-size:3.4rem; font-weight:300; line-height:1.08; margin-bottom:3.5rem;">
-		  Turn fragmented enterprise data<br/>
-		  <span class="tagline-highlight">into an intelligent, queryable data layer.</span>
+	<!-- ═══ HERO ═══ -->
+	<section id="hero" style="position: relative; display: flex; align-items: center; justify-content: center; text-align: center; min-height: 100vh; padding: 2rem;">
+	  <canvas id="neural-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;"></canvas>
+	  
+	  <div class="hero-content" style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 1rem; max-width: 850px;">
+		
+		<div class="brand-name" style="display: flex; align-items: center; gap: 0.75rem;">
+		  <i class="fa-solid fa-brain-circuit" style="color: var(--primary); font-size: 2.2rem;"></i>
+		  <h1 style="font-size: 2.2rem; margin: 0; line-height: 1; font-weight: 700;">
+			<span style="color: white;">Schema</span><span style="color: #10b981;">Mind</span>
+		  </h1>
+		</div>
+
+		<!-- Reduced font size to 0.65rem and changed text color to clean neutral white -->
+		<div class="pill" style="display: inline-block; padding: 0.3rem 0.75rem; border-radius: 9999px; background: rgba(30,41,59,0.8); border: 1px solid var(--border-color); color: #e2e8f0; font-size: 0.65rem; letter-spacing: 0.02em;">
+		  Data Infrastructure and Data Intelligence Platform
+		</div>
+
+		<!-- Reduced heading size to clamp(1.1rem, 2.2vw, 1.6rem) and removed color styling completely -->
+		<h2 style="font-size: clamp(1.1rem, 2.2vw, 1.6rem); font-weight: 400; line-height: 1.35; margin: 0; color: #ffffff;">
+		  Turn fragmented enterprise data into an intelligent, queryable data layer.
 		</h2>
-    </div>
-  </section>
+
+	  </div>
+</section>
 
 	<!-- ═══ PROBLEM: THE FOUR DATA CRISES ═══ -->
 	<section id="problem">
