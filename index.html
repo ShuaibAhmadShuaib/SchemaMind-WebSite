@@ -1871,6 +1871,51 @@
   .legacy-ribbon{align-items:flex-start;}
   .hero-headline{font-size:2.8rem;}
 }
+
+/* ─── BLOG ARTICLES ─── */
+.blog-article { max-width: 860px; margin: 0 auto; }
+.blog-article .section-title { margin-bottom: .2rem; }
+.blog-lede { color: #cbd5e1; font-size: 1.05rem; line-height: 1.7; margin: 1rem 0 1.6rem; }
+.blog-article h3 { font-size: 1.15rem !important; margin: 2rem 0 .6rem; color: #fff; }
+.blog-article p { color: var(--text-dim); line-height: 1.75; margin: 0 0 .9rem; }
+.blog-article p i, .blog-article p b { color: #e2e8f0; }
+.blog-quote { border-left: 3px solid var(--accent-green); background: rgba(16,185,129,.06); color: #e2e8f0; padding: 14px 18px; border-radius: 0 12px 12px 0; font-family: 'Space Grotesk', sans-serif; font-weight: 600; margin: 1.6rem 0; }
+.blog-eras { list-style: none; counter-reset: era; display: grid; gap: 10px; margin: 1rem 0 .5rem; padding: 0; }
+.blog-eras li { position: relative; padding: 12px 16px 12px 52px; border: 1px solid var(--border-color); border-radius: 14px; background: rgba(30,41,59,.45); color: var(--text-dim); font-size: .86rem; line-height: 1.6; }
+.blog-eras li b { color: #fff; }
+.blog-eras li::before { counter-increment: era; content: counter(era); position: absolute; left: 16px; top: 12px; width: 24px; height: 24px; border-radius: 50%; background: rgba(56,189,248,.14); border: 1px solid rgba(56,189,248,.35); color: var(--primary); font-family: 'JetBrains Mono', monospace; font-size: .72rem; display: flex; align-items: center; justify-content: center; }
+.blog-eras li.now { border-color: rgba(16,185,129,.45); background: rgba(16,185,129,.07); }
+.blog-eras li.now::before { background: rgba(16,185,129,.18); border-color: rgba(16,185,129,.5); color: #34d399; }
+.blog-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 1rem 0 .5rem; }
+.blog-steps.four { grid-template-columns: repeat(4, 1fr); }
+.blog-step { border: 1px solid var(--border-color); border-top: 3px solid var(--primary); border-radius: 14px; padding: 14px; background: rgba(30,41,59,.45); }
+.blog-step.key { border-top-color: var(--accent-green); }
+.blog-step b { display: block; font-family: 'Space Grotesk', sans-serif; color: #fff; margin-bottom: 4px; }
+.blog-step span { display: block; color: var(--text-dim); font-size: .8rem; line-height: 1.55; }
+.blog-points { list-style: none; padding: 0; margin: .6rem 0; display: grid; gap: 10px; }
+.blog-points li { display: flex; gap: 10px; color: var(--text-dim); font-size: .88rem; line-height: 1.6; }
+.blog-points li b { color: #fff; }
+.blog-points i { color: #34d399; margin-top: 4px; }
+.blog-views { display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: center; margin: 1.2rem 0 .6rem; }
+.blog-view { border: 1px solid var(--border-color); border-radius: 14px; padding: 14px; background: rgba(30,41,59,.45); }
+.blog-view-title { font-family: 'JetBrains Mono', monospace; font-size: .64rem; letter-spacing: .14em; text-transform: uppercase; color: var(--primary); margin-bottom: 10px; }
+.blog-view table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+.blog-view th, .blog-view td { text-align: left; padding: 6px 6px; border-bottom: 1px solid var(--border-color); color: #cbd5e1; }
+.blog-view th { color: #fff; font-weight: 600; }
+.blog-bars { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 9px 10px; }
+.blog-bar { height: 12px; border-radius: 3px; background: #475569; }
+.blog-bar.head { background: #94a3b8; height: 13px; }
+.blog-bar.num { background: rgba(56,189,248,.45); }
+.blog-arrow { text-align: center; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; font-size: .66rem; }
+.blog-arrow i { display: block; color: var(--primary); font-size: 1.4rem; margin-bottom: 6px; }
+.blog-caption { font-size: .76rem !important; color: #64748b !important; }
+@media (max-width: 900px) {
+  .blog-steps, .blog-steps.four { grid-template-columns: 1fr 1fr; }
+  .blog-views { grid-template-columns: 1fr; }
+  .blog-arrow i { transform: rotate(90deg); }
+}
+.dropdown-menu.blog-menu { min-width: 340px; left: auto; right: 0; }
+.dropdown-menu.blog-menu a { white-space: nowrap; }
 </style>
 
 </head>
@@ -1905,6 +1950,13 @@
                     <a href="#comparison-matrix-section" class="nav-link" data-section="comparison-matrix-section"><i class="fa-solid fa-table"></i> Architecture</a>
                 </div>
             </div>
+            <div class="nav-item">
+                <button aria-haspopup="true">Blog <i class="fa-solid fa-chevron-down chevron"></i></button>
+                <div class="dropdown-menu blog-menu">
+                    <a href="#blog-gdi" class="nav-link" data-section="blog-gdi"><i class="fa-solid fa-lightbulb"></i> What is Generative Data Intelligence?</a>
+                    <a href="#blog-bdr" class="nav-link" data-section="blog-bdr"><i class="fa-solid fa-eye-slash"></i> Reading structure without reading words</a>
+                </div>
+            </div>
             <div class="nav-item"><a href="#vision-cta" class="nav-link" data-section="vision-cta">Vision</a></div>
         </div>
         <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
@@ -1923,6 +1975,9 @@
         <div class="mobile-group-label">Solutions</div>
         <a href="#use-cases" class="mobile-link"><i class="fa-solid fa-industry"></i> Use Cases</a>
         <a href="#comparison-matrix-section" class="mobile-link"><i class="fa-solid fa-table"></i> Architecture</a>
+        <div class="mobile-group-label">Blog</div>
+        <a href="#blog-gdi" class="mobile-link"><i class="fa-solid fa-lightbulb"></i> What is Generative Data Intelligence?</a>
+        <a href="#blog-bdr" class="mobile-link"><i class="fa-solid fa-eye-slash"></i> Reading structure without reading words</a>
         <div class="mobile-group-label">Vision</div>
         <a href="#vision-cta" class="mobile-link"><i class="fa-solid fa-eye"></i> Vision</a>
     </div>
@@ -2149,6 +2204,107 @@
         </div>
     </section>
 
+    <!-- ═══ BLOG 1: WHAT IS GDI ═══ -->
+    <section id="blog-gdi" style="background:#0f172a;">
+        <div class="enterprise-shell">
+            <article class="blog-article">
+                <div class="section-overline">BLOG · GENERATIVE DATA INTELLIGENCE</div>
+                <h2 class="section-title">What is Generative Data Intelligence?</h2>
+                <p class="blog-lede">An intelligence layer that discovers enterprise data, works out how it relates, and answers questions across databases, spreadsheets and documents where they already live, with every answer traced back to its source.</p>
+
+                <h3>One question, asked for decades</h3>
+                <p>Every generation of data work has tried to answer the same question: where is the information I need, and how does it connect? What has changed is who does that work, and how much of it can be trusted without checking by hand.</p>
+                <ol class="blog-eras">
+                    <li><b>Discovery by hand.</b> Analysts read schemas and sampled values to work out how tables connect. The knowledge lived in people&rsquo;s heads.</li>
+                    <li><b>ETL and the warehouse.</b> Pipelines copied data into one place. Each new question or source needed a new pipeline.</li>
+                    <li><b>Semantic layers and ontologies.</b> Meaning was made explicit and reusable, but designed and maintained by experts, source by source.</li>
+                    <li><b>AI agents.</b> Plain-language questions became queries, but agents guess how tables connect at the moment of asking, and a fluent answer is not always a correct one.</li>
+                    <li class="now"><b>Generative Data Intelligence.</b> Relationships are found from the data itself, kept as a reviewed semantic model, and every plan is checked before it runs.</li>
+                </ol>
+
+                <h3>How it works</h3>
+                <p>Generative Data Intelligence automates the journey from &ldquo;where is the data?&rdquo; to &ldquo;here is the answer, and here is how we know&rdquo; in five steps.</p>
+                <div class="blog-steps">
+                    <div class="blog-step"><b>Discover</b><span>Find the sources a question needs, across every database, file and sheet.</span></div>
+                    <div class="blog-step"><b>Understand</b><span>Bring documents in as tables, like any other source.</span></div>
+                    <div class="blog-step key"><b>Relate</b><span>Find links from matching values, kept with evidence and reviewed by people.</span></div>
+                    <div class="blog-step key"><b>Reason</b><span>Map the question to fields, plan from the links, check the plan before any read.</span></div>
+                    <div class="blog-step"><b>Answer</b><span>Read each source in place and return one result with lineage.</span></div>
+                </div>
+
+                <h3>Meaning comes from evidence, not names</h3>
+                <p>The same customer may be <i>customer_id</i> in one system, <i>Customer Number</i> in another and <i>cust_ref</i> in a third. Matching names is a guess. Generative Data Intelligence looks at the values: when the identifiers in one system are found in another, the link is real. It is recorded with that evidence and a review status that people can confirm or reject.</p>
+
+                <h3>Checked before it runs, honest when it cannot answer</h3>
+                <p>A fluent answer can still be wrong: joined on look-alike columns, counted twice, or answering a neighbouring question. So every plan is checked before any data is read, and a plan that fails is repaired with specific feedback a bounded number of times. When a question cannot be grounded in the data, the system says so and explains why, rather than guessing.</p>
+
+                <div class="blog-quote">AI proposes. The semantic model and deterministic checks decide.</div>
+
+                <h3>What changes for teams</h3>
+                <p>Data teams spend less time building a pipeline for every question and more time reviewing the relationships the system has found. Analysts ask questions across systems without first moving the data. Governance teams get answers that carry their lineage and the evidence behind every link.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- ═══ BLOG 2: BLIND DOCUMENT REASONING ═══ -->
+    <section id="blog-bdr">
+        <div class="enterprise-shell">
+            <article class="blog-article">
+                <div class="section-overline">BLOG · BLIND DOCUMENT REASONING</div>
+                <h2 class="section-title">Reading structure without reading words</h2>
+                <p class="blog-lede">Policies, contracts and statements hold the tables and thresholds that decide real outcomes. Blind Document Reasoning turns them into structured data without the reasoning step ever seeing what they say.</p>
+
+                <h3>Documents hold your rules</h3>
+                <p>Rate tables, limits, schedules and terms are written for people to read, not for systems. The usual options both fall short. Templates break as soon as a layout changes. Sending whole documents to an AI model raises hard questions about confidentiality, and an altered value looks exactly like a correct one.</p>
+
+                <h3>Structure lives in the layout</h3>
+                <p>Show someone only where text sits on a page, which lines are emphasised, and whether each item looks like a number, a date or a word, and they can usually tell where a table begins, which row is the header and which value belongs to which label. Think of recognising a table in a document written in a language you cannot read.</p>
+                <div class="blog-views">
+                    <div class="blog-view">
+                        <div class="blog-view-title">What stays inside</div>
+                        <table>
+                            <tr><th>Rating</th><th>Limit</th><th>Review</th></tr>
+                            <tr><td>High</td><td>25%</td><td>30 days</td></tr>
+                            <tr><td>Medium</td><td>40%</td><td>60 days</td></tr>
+                            <tr><td>Low</td><td>60%</td><td>90 days</td></tr>
+                        </table>
+                    </div>
+                    <div class="blog-arrow"><i class="fa-solid fa-arrow-right"></i>layout only</div>
+                    <div class="blog-view" role="img" aria-label="The same table with the words removed: only positions, emphasis and value shapes remain">
+                        <div class="blog-view-title">What the reasoner sees</div>
+                        <div class="blog-bars">
+                            <div class="blog-bar head"></div><div class="blog-bar head"></div><div class="blog-bar head"></div>
+                            <div class="blog-bar"></div><div class="blog-bar num"></div><div class="blog-bar num"></div>
+                            <div class="blog-bar"></div><div class="blog-bar num"></div><div class="blog-bar num"></div>
+                            <div class="blog-bar"></div><div class="blog-bar num"></div><div class="blog-bar num"></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="blog-caption">Alignment, emphasis and the shape of values survive. The words, names and figures do not. (Illustrative example.)</p>
+
+                <h3>How it works</h3>
+                <div class="blog-steps four">
+                    <div class="blog-step"><b>Abstract</b><span>The page is reduced to its layout: positions, emphasis and value shapes, with the words removed.</span></div>
+                    <div class="blog-step key"><b>Propose</b><span>The reasoning step suggests tables and labelled fields, pointing to elements rather than repeating text.</span></div>
+                    <div class="blog-step key"><b>Verify</b><span>The proposal is checked against the page&rsquo;s own geometry; where they disagree, the page wins.</span></div>
+                    <div class="blog-step"><b>Restore</b><span>The text is put back inside your environment, as tables that join with any other source.</span></div>
+                </div>
+
+                <h3>Why it matters</h3>
+                <ul class="blog-points">
+                    <li><i class="fa-solid fa-check-circle"></i><span><b>Confidential by design.</b> The reasoning step never receives the content, so privacy does not rest on a promise.</span></li>
+                    <li><i class="fa-solid fa-check-circle"></i><span><b>No templates.</b> New layouts need no new rules, because the system reasons about layout in general.</span></li>
+                    <li><i class="fa-solid fa-check-circle"></i><span><b>It cannot invent your numbers.</b> It can only misjudge a boundary, and boundaries are checked against the page.</span></li>
+                </ul>
+
+                <div class="blog-quote">The model proposes the structure. The document&rsquo;s own geometry decides.</div>
+
+                <h3>Honest limits</h3>
+                <p>Scanned documents need text recognition first, and layouts whose structure is carried only by meaning cannot be read from form alone. In those cases the right behaviour is to flag low confidence, not to guess.</p>
+            </article>
+        </div>
+    </section>
+
     <!-- ═══ VISION / CTA ═══ -->
     <section id="vision-cta">
         <div class="vision-container">
@@ -2165,10 +2321,10 @@
                 </div>
             </div>
             <div style="width:100%;max-width:820px;margin:0 auto 0;border-radius:16px;overflow:hidden;border:1px solid var(--border-color);box-shadow:0 0 60px rgba(56,189,248,0.2);aspect-ratio:16/9;">
-                <iframe src="https://www.youtube.com/embed/AHQrQb2gNS4" title="SchemaMind demo" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen style="width:100%;height:100%;border:none;display:block;"></iframe>
+                <iframe src="https://www.youtube.com/embed/34TTdLSSly4" title="SchemaMind demo" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen style="width:100%;height:100%;border:none;display:block;"></iframe>
             </div>
             <div style="width:100%;max-width:820px;margin:10px auto 60px;text-align:center;">
-                <p style="font-size:.875rem;color:var(--text-dim);">Video not loading? <a href="https://www.youtube.com/watch?v=AHQrQb2gNS4" target="_blank" rel="noopener noreferrer" style="color:var(--primary);text-decoration:underline;text-underline-offset:3px;">Watch directly on YouTube ↗</a></p>
+                <p style="font-size:.875rem;color:var(--text-dim);">Video not loading? <a href="https://www.youtube.com/watch?v=34TTdLSSly4" target="_blank" rel="noopener noreferrer" style="color:var(--primary);text-decoration:underline;text-underline-offset:3px;">Watch directly on YouTube ↗</a></p>
             </div>
             <div class="vision-footer">
                 <div class="vision-founder-block"><div class="vision-founder-avatar"><i class="fa-solid fa-building"></i></div><div class="vision-founder-info"><p class="vision-founder-name">SchemaMind</p><p class="vision-founder-title">Generative Data Intelligence Platform</p></div></div>
