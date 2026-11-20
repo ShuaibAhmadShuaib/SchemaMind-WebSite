@@ -1916,6 +1916,32 @@
 }
 .dropdown-menu.blog-menu { min-width: 340px; left: auto; right: 0; }
 .dropdown-menu.blog-menu a { white-space: nowrap; }
+
+/* ─── HERO PILLARS (GDI / BDR) ─── */
+.hero-pillars { display:grid; grid-template-columns:1fr 1fr; gap:14px; max-width:860px; margin:1.1rem auto 0; }
+.hero-pillar { display:flex; flex-direction:column; gap:4px; text-align:left; padding:16px 20px; border-radius:14px; border:1px solid rgba(56,189,248,.4); background:rgba(56,189,248,.07); text-decoration:none; transition:.2s; }
+.hero-pillar.bdr { border-color:rgba(16,185,129,.42); background:rgba(16,185,129,.07); }
+.hero-pillar:hover { transform:translateY(-2px); }
+.pillar-name { font-family:'Space Grotesk',sans-serif; font-size:1.35rem; font-weight:700; color:#fff; line-height:1.2; }
+.pillar-sub { color:#94a3b8; font-size:.86rem; line-height:1.45; }
+/* ─── PLATFORM: the two innovations ─── */
+.innovation-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:2.4rem; }
+.innovation-card { border:1px solid rgba(56,189,248,.36); background:linear-gradient(145deg,rgba(56,189,248,.08),rgba(15,23,42,.7)); border-radius:20px; padding:26px; display:flex; flex-direction:column; }
+.innovation-card.bdr { border-color:rgba(16,185,129,.4); background:linear-gradient(145deg,rgba(16,185,129,.08),rgba(15,23,42,.7)); }
+.innovation-top { display:flex; align-items:center; justify-content:space-between; }
+.patent-badge { font-family:'JetBrains Mono',monospace; color:#fbbf24; font-size:.64rem; text-transform:uppercase; letter-spacing:.1em; border:1px solid rgba(251,191,36,.35); border-radius:999px; padding:3px 10px; }
+section .innovation-name { font-size:1.75rem !important; margin:1rem 0 .2rem; line-height:1.15; }
+.innovation-tech { font-family:'JetBrains Mono',monospace; color:var(--primary); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; margin-bottom:.8rem; }
+.innovation-card.bdr .innovation-tech { color:#34d399; }
+.innovation-card p { color:var(--text-dim); font-size:.9rem; line-height:1.7; margin:0 0 1rem; flex:1; }
+.innovation-link { color:#e2e8f0; font-size:.84rem; text-decoration:none; font-weight:600; }
+.innovation-link i { color:var(--primary); margin-left:6px; }
+.innovation-link:hover { color:var(--primary); }
+.support-grid { margin-top:18px; }
+.blog-inline-link { color:var(--primary); text-decoration:underline; text-underline-offset:3px; }
+@media (max-width: 900px) {
+  .hero-pillars, .innovation-grid { grid-template-columns:1fr; }
+}
 </style>
 
 </head>
@@ -1931,30 +1957,23 @@
             <div class="nav-item">
                 <button aria-haspopup="true">Why <i class="fa-solid fa-chevron-down chevron"></i></button>
                 <div class="dropdown-menu">
-                    <a href="#reality" class="nav-link" data-section="reality"><i class="fa-solid fa-database"></i> Enterprise Reality</a>
-                    <a href="#legacy" class="nav-link" data-section="legacy"><i class="fa-solid fa-server"></i> Legacy Stack</a>
-                    <a href="#agent-runtime" class="nav-link" data-section="agent-runtime"><i class="fa-solid fa-robot"></i> Agent Era</a>
+                    <a href="#reality" class="nav-link" data-section="reality"><i class="fa-solid fa-database"></i> The Problem</a>
+                    <a href="#agent-runtime" class="nav-link" data-section="agent-runtime"><i class="fa-solid fa-robot"></i> How It Works</a>
                 </div>
             </div>
             <div class="nav-item">
                 <button aria-haspopup="true">Platform <i class="fa-solid fa-chevron-down chevron"></i></button>
                 <div class="dropdown-menu">
-                    <a href="#platform" class="nav-link" data-section="platform"><i class="fa-solid fa-brain"></i> GDI Platform</a>
-                    <a href="#trust" class="nav-link" data-section="trust"><i class="fa-solid fa-shield-halved"></i> Enterprise Trust</a>
-                </div>
-            </div>
-            <div class="nav-item">
-                <button aria-haspopup="true">Solutions <i class="fa-solid fa-chevron-down chevron"></i></button>
-                <div class="dropdown-menu">
-                    <a href="#use-cases" class="nav-link" data-section="use-cases"><i class="fa-solid fa-industry"></i> Use Cases</a>
+                    <a href="#platform" class="nav-link" data-section="platform"><i class="fa-solid fa-brain"></i> GDI &amp; BDR</a>
                     <a href="#comparison-matrix-section" class="nav-link" data-section="comparison-matrix-section"><i class="fa-solid fa-table"></i> Architecture</a>
                 </div>
             </div>
+            <div class="nav-item"><a href="#use-cases" class="nav-link" data-section="use-cases">Solutions</a></div>
             <div class="nav-item">
                 <button aria-haspopup="true">Blog <i class="fa-solid fa-chevron-down chevron"></i></button>
                 <div class="dropdown-menu blog-menu">
-                    <a href="#blog-gdi" class="nav-link" data-section="blog-gdi"><i class="fa-solid fa-lightbulb"></i> What is Generative Data Intelligence?</a>
-                    <a href="#blog-bdr" class="nav-link" data-section="blog-bdr"><i class="fa-solid fa-eye-slash"></i> Reading structure without reading words</a>
+                    <a href="#blog-gdi" class="nav-link" data-section="blog-gdi"><i class="fa-solid fa-lightbulb"></i> Generative Data Intelligence</a>
+                    <a href="#blog-bdr" class="nav-link" data-section="blog-bdr"><i class="fa-solid fa-eye-slash"></i> Blind Document Reasoning</a>
                 </div>
             </div>
             <div class="nav-item"><a href="#vision-cta" class="nav-link" data-section="vision-cta">Vision</a></div>
@@ -1966,18 +1985,16 @@
     <div class="mobile-menu" id="mobile-menu">
         <a href="#hero" class="mobile-link"><i class="fa-solid fa-house"></i> Home</a>
         <div class="mobile-group-label">Why</div>
-        <a href="#reality" class="mobile-link"><i class="fa-solid fa-database"></i> Enterprise Reality</a>
-        <a href="#legacy" class="mobile-link"><i class="fa-solid fa-server"></i> Legacy Stack</a>
-        <a href="#agent-runtime" class="mobile-link"><i class="fa-solid fa-robot"></i> Agent Era</a>
+        <a href="#reality" class="mobile-link"><i class="fa-solid fa-database"></i> The Problem</a>
+        <a href="#agent-runtime" class="mobile-link"><i class="fa-solid fa-robot"></i> How It Works</a>
         <div class="mobile-group-label">Platform</div>
-        <a href="#platform" class="mobile-link"><i class="fa-solid fa-brain"></i> GDI Platform</a>
-        <a href="#trust" class="mobile-link"><i class="fa-solid fa-shield-halved"></i> Enterprise Trust</a>
+        <a href="#platform" class="mobile-link"><i class="fa-solid fa-brain"></i> GDI &amp; BDR</a>
+        <a href="#comparison-matrix-section" class="mobile-link"><i class="fa-solid fa-table"></i> Architecture</a>
         <div class="mobile-group-label">Solutions</div>
         <a href="#use-cases" class="mobile-link"><i class="fa-solid fa-industry"></i> Use Cases</a>
-        <a href="#comparison-matrix-section" class="mobile-link"><i class="fa-solid fa-table"></i> Architecture</a>
         <div class="mobile-group-label">Blog</div>
-        <a href="#blog-gdi" class="mobile-link"><i class="fa-solid fa-lightbulb"></i> What is Generative Data Intelligence?</a>
-        <a href="#blog-bdr" class="mobile-link"><i class="fa-solid fa-eye-slash"></i> Reading structure without reading words</a>
+        <a href="#blog-gdi" class="mobile-link"><i class="fa-solid fa-lightbulb"></i> Generative Data Intelligence</a>
+        <a href="#blog-bdr" class="mobile-link"><i class="fa-solid fa-eye-slash"></i> Blind Document Reasoning</a>
         <div class="mobile-group-label">Vision</div>
         <a href="#vision-cta" class="mobile-link"><i class="fa-solid fa-eye"></i> Vision</a>
     </div>
@@ -1994,7 +2011,11 @@
                 </h1>
             </div>
             <h2 class="hero-headline">Your AI agents are only as capable as the <span class="accent">enterprise data</span> they can reach.</h2>
-            <p class="hero-subcopy">SchemaMind is an enterprise data intelligence platform for AI agents — powered by two patent-pending innovations: an enterprise data reasoning engine that connects fragmented sources, and topology-based document intelligence that transforms unstructured documents into structured data.</p>
+            <p class="hero-subcopy">SchemaMind is the data intelligence layer for enterprise AI agents, built on two patent-pending innovations:</p>
+            <div class="hero-pillars">
+                <a class="hero-pillar" href="#blog-gdi"><span class="pillar-name">Generative Data Intelligence</span><span class="pillar-sub">Reasons across fragmented databases, files and systems</span></a>
+                <a class="hero-pillar bdr" href="#blog-bdr"><span class="pillar-name">Blind Document Reasoning</span><span class="pillar-sub">Turns documents into structured data without reading their words</span></a>
+            </div>
             <div class="hero-actions">
                 <a class="hero-btn hero-btn-primary" href="#agent-runtime"><i class="fa-solid fa-play"></i> See How It Works</a>
                 <a class="hero-btn hero-btn-secondary" href="mailto:info@schemamind.tech?subject=SchemaMind%20Enterprise%20Discussion"><i class="fa-solid fa-arrow-right"></i> Talk to SchemaMind</a>
@@ -2011,9 +2032,9 @@
     <!-- ═══ ENTERPRISE REALITY ═══ -->
     <section id="reality">
         <div class="enterprise-shell" style="text-align:center;">
-            <div class="section-overline">THE ENTERPRISE REALITY</div>
+            <div class="section-overline">THE PROBLEM</div>
             <h2 class="section-title">AI moved fast. Enterprise data didn't.</h2>
-            <p class="section-intro">The enterprise is still a network of systems built in different eras, with different schemas, identifiers, formats and business rules. Agents see fragments. The business sees one enterprise.</p>
+            <p class="section-intro">The enterprise is still a network of systems built in different eras, with different schemas, identifiers, formats and business rules. ETL, warehouses and semantic layers helped, but turned every new source, schema change and question into more engineering work. Agents see fragments. The business sees one enterprise.</p>
             <div class="enterprise-grid" style="text-align:left;">
                 <div class="enterprise-card"><div class="card-topline"><div class="card-icon-enterprise"><i class="fa-solid fa-server"></i></div><span style="font-family:'JetBrains Mono',monospace;color:#f87171;font-size:.62rem;">LEGACY</span></div><h3>Mainframes &amp; core systems</h3><p>Long-running applications remain operational even when the teams and data models around them change.</p></div>
                 <div class="enterprise-card"><div class="card-topline"><div class="card-icon-enterprise"><i class="fa-solid fa-database"></i></div><span style="font-family:'JetBrains Mono',monospace;color:#fbbf24;font-size:.62rem;">STRUCTURED</span></div><h3>ERP, CRM &amp; databases</h3><p>Customer, order, finance and operational data live in systems with different schemas and naming conventions.</p></div>
@@ -2026,46 +2047,11 @@
         </div>
     </section>
 
-    <!-- ═══ LEGACY STACK ═══ -->
-    <section id="legacy" style="background:#0f172a;">
-        <div class="enterprise-shell">
-            <div style="text-align:center;">
-                <div class="section-overline">THE OLD MODEL</div>
-                <h2 class="section-title">A 20–30 year data problem meets a new generation of AI.</h2>
-                <p class="section-intro">ETL, warehouses and semantic layers solved important problems. But they also turned every new source, schema change and business question into more engineering work.</p>
-            </div>
-            <div class="legacy-stack">
-                <div class="stack-column problem-side">
-                    <h3 style="color:#f87171;">Traditional data stack</h3>
-                    <ul class="stack-list">
-                        <li><i class="fa-solid fa-xmark"></i><span>Move data into a controlled destination before using it.</span></li>
-                        <li><i class="fa-solid fa-xmark"></i><span>Build and maintain transformations, mappings and pipelines.</span></li>
-                        <li><i class="fa-solid fa-xmark"></i><span>Define business semantics in advance.</span></li>
-                        <li><i class="fa-solid fa-xmark"></i><span>React to schema changes with code and configuration updates.</span></li>
-                        <li><i class="fa-solid fa-xmark"></i><span>Bring document data into the stack through separate tooling.</span></li>
-                    </ul>
-                </div>
-                <div class="stack-arrow"><i class="fa-solid fa-arrow-right-long"></i></div>
-                <div class="stack-column solution-side">
-                    <h3 style="color:var(--primary);">SchemaMind platform</h3>
-                    <ul class="stack-list">
-                        <li><i class="fa-solid fa-check"></i><span>Discover relevant sources dynamically.</span></li>
-                        <li><i class="fa-solid fa-check"></i><span>Reason across heterogeneous schemas and formats.</span></li>
-                        <li><i class="fa-solid fa-check"></i><span>Infer relationships instead of requiring every mapping upfront.</span></li>
-                        <li><i class="fa-solid fa-check"></i><span>Self-heal plan</span></li>
-                        <li><i class="fa-solid fa-check"></i><span>Bring SQL, Excel, CSV, PDFs and APIs into one reasoning flow.</span></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="enterprise-note">THE DIFFERENCE: FROM PRE-BUILT DATA MOVEMENT TO GENERATIVE DATA REASONING</div>
-        </div>
-    </section>
-
     <!-- ═══ AGENT RUNTIME ═══ -->
-    <section id="agent-runtime">
+    <section id="agent-runtime" style="background:#0f172a;">
         <div class="enterprise-shell">
             <div style="text-align:center;">
-                <div class="section-overline">THE AGENT ERA</div>
+                <div class="section-overline">HOW IT WORKS</div>
                 <h2 class="section-title">Your agent asks. SchemaMind figures out the data.</h2>
                 <p class="section-intro">Instead of forcing every agent workflow through a prebuilt pipeline, SchemaMind provides a reasoning layer that works across the enterprise data estate.</p>
             </div>
@@ -2093,55 +2079,33 @@
     </section>
 
     <!-- ═══ PLATFORM ═══ -->
-    <section id="platform" style="background:#0f172a;">
+    <section id="platform">
         <div class="enterprise-shell">
-            <div class="caps-header">
-                <div class="section-overline">THE NEW PLATFORM</div>
-                <h1 class="section-title">Generative Data Intelligence</h1>
-                <p class="section-intro">SchemaMind enables enterprise AI agents to work with fragmented business data through two complementary innovations: reasoning across heterogeneous data sources and understanding the structure of unstructured documents.</p>
+            <div class="caps-header" style="text-align:center;">
+                <div class="section-overline">THE PLATFORM</div>
+                <h2 class="section-title">Two innovations. One intelligence layer.</h2>
+                <p class="section-intro">SchemaMind lets enterprise AI agents work with fragmented business data: one engine reasons across sources, the other brings documents into the same reasoning flow.</p>
             </div>
-            <div class="enterprise-grid">
-                <div class="enterprise-card"><div class="card-icon-enterprise"><i class="fa-solid fa-magnifying-glass-chart"></i></div><h3>Auto Source Discovery</h3><p>Find relevant sources and data without requiring every workflow to know the enterprise topology in advance. SchemaMind discovers schemas across databases, files and cloud storage, and links them through relationships backed by matching data values and confirmed by AI. Each question is then routed to the right sources automatically.</p></div>
-                <div class="enterprise-card"><div class="card-icon-enterprise"><i class="fa-solid fa-brain"></i></div><h3>Enterprise Data Reasoning Engine</h3><p>Semantically understands and reasons across heterogeneous enterprise sources. Connects differently named fields, identifies cross-system relationships, and adapts to schema changes to support unified data intelligence for AI agents.</p><p style="margin-top:10px;font-family:'JetBrains Mono',monospace;color:#fbbf24;font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;">Patent Pending</p></div>
-                <div class="enterprise-card"><div class="card-icon-enterprise"><i class="fa-solid fa-diagram-project"></i></div><h3>Topology-Based Document Intelligence</h3><p>Uses blind document reasoning to extract tables, key-value pairs and multi-line values from PDFs — the AI sees only positions and shapes, never the text — then checks every result against the original document and repairs it before delivery.</p><p style="margin-top:10px;font-family:'JetBrains Mono',monospace;color:#fbbf24;font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;">Patent Pending</p></div>
-                <div class="enterprise-card"><div class="card-icon-enterprise"><i class="fa-solid fa-arrows-rotate"></i></div><h3>Self-Healing of Generated Plan</h3><p>Adapt execution when source schemas and layouts change instead of treating every change as a new engineering project.</p></div>
-                <div class="enterprise-card"><div class="card-icon-enterprise"><i class="fa-solid fa-brain"></i></div><h3>Heterogeneous Reasoning</h3><p>Reason across structured and unstructured sources in one query or agent workflow.</p></div>
-                <div class="enterprise-card"><div class="card-icon-enterprise"><i class="fa-solid fa-route"></i></div><h3>Confidence &amp; Lineage</h3><p>Expose how outputs were assembled and connect results back to source-level evidence.</p></div>
+            <div class="innovation-grid">
+                <div class="innovation-card">
+                    <div class="innovation-top"><div class="card-icon-enterprise"><i class="fa-solid fa-brain"></i></div><span class="patent-badge">Patent pending</span></div>
+                    <h3 class="innovation-name">Generative Data Intelligence</h3>
+                    <div class="innovation-tech">Enterprise Data Reasoning Engine</div>
+                    <p>Connects differently named fields across systems, finds relationships from matching data values, and plans each answer from those links. Every plan is checked before any source is read, and repairs itself when sources change.</p>
+                    <a class="innovation-link" href="#blog-gdi">Read: What is Generative Data Intelligence? <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <div class="innovation-card bdr">
+                    <div class="innovation-top"><div class="card-icon-enterprise"><i class="fa-solid fa-eye-slash"></i></div><span class="patent-badge">Patent pending</span></div>
+                    <h3 class="innovation-name">Blind Document Reasoning</h3>
+                    <div class="innovation-tech">Topology-Based Document Intelligence</div>
+                    <p>Extracts tables, key-value pairs and multi-line values from PDFs. The AI sees only positions and shapes, never the text, and every result is checked against the original page before delivery.</p>
+                    <a class="innovation-link" href="#blog-bdr">Read: Reading structure without reading words <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
             </div>
-            <div class="capability-band">
-                <div class="capability-mini"><strong>Natural Language</strong><span>Ask questions without writing SQL for every interaction.</span></div>
-                <div class="capability-mini"><strong>Structured + Unstructured</strong><span>SQL, Excel, CSV, PDF and document sources in one reasoning flow.</span></div>
-                <div class="capability-mini"><strong>Schema Drift</strong><span>Detect and respond to changing structures.</span></div>
-                <div class="capability-mini"><strong>Enterprise Context</strong><span>Lineage, confidence and source traceability.</span></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══ LEGACY COEXISTENCE ═══ -->
-    <section id="coexistence">
-        <div class="enterprise-shell">
-            <div style="text-align:center;">
-                <div class="section-overline">BUILT FOR REAL ENTERPRISES</div>
-                <h2 class="section-title">You don't have to replace the stack to change what it can do.</h2>
-                <p class="section-intro">SchemaMind is positioned as an intelligence layer over the systems enterprises already operate — including legacy systems that cannot simply be switched off.</p>
-            </div>
-            <div class="legacy-ribbon"><i class="fa-solid fa-plug-circle-bolt"></i><p><strong style="color:#f1f5f9;">Coexistence matters.</strong> Keep systems of record where they are. Add an intelligence capability that can reason across them without requiring a full data-platform migration first.</p></div>
-        </div>
-    </section>
-
-    <!-- ═══ USE CASES ═══ -->
-    <section id="use-cases" style="background:#0f172a;">
-        <div class="enterprise-shell">
-            <div style="text-align:center;">
-                <div class="section-overline">ENTERPRISE USE CASES</div>
-                <h2 class="section-title">One platform. Many data estates.</h2>
-                <p class="section-intro">The common pattern is the same: critical business answers span systems that were never designed to work together.</p>
-            </div>
-            <div class="usecase-grid">
-                <div class="usecase-card"><span class="usecase-tag">Healthcare</span><h3>Build a unified patient context</h3><p>Reason across EHR records, lab data, claims and clinical documents without treating each document format as a separate project.</p><div class="usecase-example">EHR + LAB + CLAIMS + PDF NOTES → PATIENT CONTEXT</div></div>
-                <div class="usecase-card"><span class="usecase-tag">Financial Services</span><h3>Connect customer and transaction context</h3><p>Combine core banking data, CRM records, statements and supporting documents for agent-driven investigations and analysis.</p><div class="usecase-example">CORE + CRM + STATEMENTS + DOCS → CUSTOMER VIEW</div></div>
-                <div class="usecase-card"><span class="usecase-tag">Manufacturing</span><h3>Reason across operations and documents</h3><p>Connect ERP, operational systems, maintenance history and manuals to answer operational questions in context.</p><div class="usecase-example">ERP + OPS + MAINTENANCE + MANUALS → OPERATIONS CONTEXT</div></div>
-                <div class="usecase-card"><span class="usecase-tag">Enterprise Analytics</span><h3>Reduce the wait between question and answer</h3><p>Let business users and agents explore cross-source questions without making every request a new reporting backlog item.</p><div class="usecase-example">QUESTION → DISCOVERY → REASONING → ANSWER + LINEAGE</div></div>
+            <div class="enterprise-grid support-grid">
+                <div class="enterprise-card"><div class="card-icon-enterprise"><i class="fa-solid fa-magnifying-glass-chart"></i></div><h3>Auto Source Discovery</h3><p>Finds the sources a question needs across databases, files and cloud storage, without every workflow knowing the enterprise topology in advance.</p></div>
+                <div class="enterprise-card"><div class="card-icon-enterprise"><i class="fa-solid fa-arrows-rotate"></i></div><h3>Self-Healing Plans</h3><p>Detects schema and layout changes and adapts the plan, instead of turning every change into a new engineering project.</p></div>
+                <div class="enterprise-card"><div class="card-icon-enterprise"><i class="fa-solid fa-route"></i></div><h3>Confidence &amp; Lineage</h3><p>Every answer carries a confidence score and source-level lineage, so the organisation can see where it came from and how it was assembled.</p></div>
             </div>
         </div>
     </section>
@@ -2175,40 +2139,31 @@
                 </tbody>
             </table>
         </div>
+            <div class="legacy-ribbon" style="max-width:1100px;margin:1.6rem auto 0;position:relative;z-index:10;"><i class="fa-solid fa-plug-circle-bolt"></i><p><strong style="color:#f1f5f9;">No rip and replace.</strong> Keep systems of record where they are, including legacy systems that cannot be switched off. SchemaMind adds an intelligence layer over them, without a data-platform migration first.</p></div>
     </section>
 
-    <!-- ═══ TRUST ═══ -->
-    <section id="trust">
+    <!-- ═══ USE CASES ═══ -->
+    <section id="use-cases" style="background:#0f172a;">
         <div class="enterprise-shell">
             <div style="text-align:center;">
-                <div class="section-overline">ENTERPRISE TRUST</div>
-                <h2 class="section-title">Intelligence must be explainable enough for the enterprise.</h2>
-                <p class="section-intro">For enterprise workflows, an answer is only useful when the organization can understand where it came from and how it was assembled.</p>
+                <div class="section-overline">ENTERPRISE USE CASES</div>
+                <h2 class="section-title">One platform. Many data estates.</h2>
+                <p class="section-intro">The common pattern is the same: critical business answers span systems that were never designed to work together.</p>
             </div>
-            <div class="trust-grid">
-                <div class="trust-panel">
-                    <h3 style="font-size:1.2rem !important;">Built around traceable reasoning</h3>
-                    <div class="trust-list">
-                        <div class="trust-item"><i class="fa-solid fa-check-circle"></i><span>Source-level lineage for outputs.</span></div>
-                        <div class="trust-item"><i class="fa-solid fa-check-circle"></i><span>Confidence scoring on generated results.</span></div>
-                        <div class="trust-item"><i class="fa-solid fa-check-circle"></i><span>Schema and document change awareness.</span></div>
-                        <div class="trust-item"><i class="fa-solid fa-check-circle"></i><span>Structured + unstructured context.</span></div>
-                    </div>
-                </div>
-                <div class="trust-panel" style="border-color:rgba(245,158,11,.28);background:rgba(245,158,11,.04);">
-                    <div style="font-family:'JetBrains Mono',monospace;color:#fbbf24;font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;">IP</div>
-                    <h3 style="font-size:1.2rem !important;margin:.65rem 0 .5rem;">Two Patent-Pending Innovations</h3>
-                    <p style="color:var(--text-dim);font-size:.8rem;line-height:1.6;margin:0;">SchemaMind has filed patent applications covering two complementary technology foundations: an enterprise data reasoning engine for cross-source intelligence, and a topology-based document extraction engine for transforming unstructured information into structured data.</p>
-                </div>
+            <div class="usecase-grid">
+                <div class="usecase-card"><span class="usecase-tag">Healthcare</span><h3>Build a unified patient context</h3><p>Reason across EHR records, lab data, claims and clinical documents without treating each document format as a separate project.</p><div class="usecase-example">EHR + LAB + CLAIMS + PDF NOTES → PATIENT CONTEXT</div></div>
+                <div class="usecase-card"><span class="usecase-tag">Financial Services</span><h3>Connect customer and transaction context</h3><p>Combine core banking data, CRM records, statements and supporting documents for agent-driven investigations and analysis.</p><div class="usecase-example">CORE + CRM + STATEMENTS + DOCS → CUSTOMER VIEW</div></div>
+                <div class="usecase-card"><span class="usecase-tag">Manufacturing</span><h3>Reason across operations and documents</h3><p>Connect ERP, operational systems, maintenance history and manuals to answer operational questions in context.</p><div class="usecase-example">ERP + OPS + MAINTENANCE + MANUALS → OPERATIONS CONTEXT</div></div>
+                <div class="usecase-card"><span class="usecase-tag">Enterprise Analytics</span><h3>Reduce the wait between question and answer</h3><p>Let business users and agents explore cross-source questions without making every request a new reporting backlog item.</p><div class="usecase-example">QUESTION → DISCOVERY → REASONING → ANSWER + LINEAGE</div></div>
             </div>
         </div>
     </section>
 
     <!-- ═══ BLOG 1: WHAT IS GDI ═══ -->
-    <section id="blog-gdi" style="background:#0f172a;">
+    <section id="blog-gdi">
         <div class="enterprise-shell">
             <article class="blog-article">
-                <div class="section-overline">BLOG · GENERATIVE DATA INTELLIGENCE</div>
+                <div class="section-overline">BLOG</div>
                 <h2 class="section-title">What is Generative Data Intelligence?</h2>
                 <p class="blog-lede">An intelligence layer that discovers enterprise data, works out how it relates, and answers questions across databases, spreadsheets and documents where they already live, with every answer traced back to its source.</p>
 
@@ -2222,15 +2177,7 @@
                     <li class="now"><b>Generative Data Intelligence.</b> Relationships are found from the data itself, kept as a reviewed semantic model, and every plan is checked before it runs.</li>
                 </ol>
 
-                <h3>How it works</h3>
-                <p>Generative Data Intelligence automates the journey from &ldquo;where is the data?&rdquo; to &ldquo;here is the answer, and here is how we know&rdquo; in five steps.</p>
-                <div class="blog-steps">
-                    <div class="blog-step"><b>Discover</b><span>Find the sources a question needs, across every database, file and sheet.</span></div>
-                    <div class="blog-step"><b>Understand</b><span>Bring documents in as tables, like any other source.</span></div>
-                    <div class="blog-step key"><b>Relate</b><span>Find links from matching values, kept with evidence and reviewed by people.</span></div>
-                    <div class="blog-step key"><b>Reason</b><span>Map the question to fields, plan from the links, check the plan before any read.</span></div>
-                    <div class="blog-step"><b>Answer</b><span>Read each source in place and return one result with lineage.</span></div>
-                </div>
+                <p>In practice that means five steps, from discovering the sources to answering with lineage, shown in <a class="blog-inline-link" href="#agent-runtime">How it works</a>.</p>
 
                 <h3>Meaning comes from evidence, not names</h3>
                 <p>The same customer may be <i>customer_id</i> in one system, <i>Customer Number</i> in another and <i>cust_ref</i> in a third. Matching names is a guess. Generative Data Intelligence looks at the values: when the identifiers in one system are found in another, the link is real. It is recorded with that evidence and a review status that people can confirm or reject.</p>
@@ -2247,10 +2194,10 @@
     </section>
 
     <!-- ═══ BLOG 2: BLIND DOCUMENT REASONING ═══ -->
-    <section id="blog-bdr">
+    <section id="blog-bdr" style="background:#0f172a;">
         <div class="enterprise-shell">
             <article class="blog-article">
-                <div class="section-overline">BLOG · BLIND DOCUMENT REASONING</div>
+                <div class="section-overline">BLOG</div>
                 <h2 class="section-title">Reading structure without reading words</h2>
                 <p class="blog-lede">Policies, contracts and statements hold the tables and thresholds that decide real outcomes. Blind Document Reasoning turns them into structured data without the reasoning step ever seeing what they say.</p>
 
@@ -2294,7 +2241,7 @@
                 <ul class="blog-points">
                     <li><i class="fa-solid fa-check-circle"></i><span><b>Confidential by design.</b> The reasoning step never receives the content, so privacy does not rest on a promise.</span></li>
                     <li><i class="fa-solid fa-check-circle"></i><span><b>No templates.</b> New layouts need no new rules, because the system reasons about layout in general.</span></li>
-                    <li><i class="fa-solid fa-check-circle"></i><span><b>It cannot invent your numbers.</b> It can only misjudge a boundary, and boundaries are checked against the page.</span></li>
+                    <li><i class="fa-solid fa-check-circle"></i><span><b>Language agnostic.</b> It reasons about layout, not vocabulary, so the same approach works for documents in any language, with no translation or language-specific rules.</span></li>
                 </ul>
 
                 <div class="blog-quote">The model proposes the structure. The document&rsquo;s own geometry decides.</div>
@@ -2316,11 +2263,11 @@
                 <h1 class="cta-headline">Enterprise AI doesn't need another chatbot. <span class="brand-highlight">It needs a way to understand the enterprise.</span></h1>
                 <p class="cta-subcopy">SchemaMind is building the data intelligence layer that lets agents work with the systems enterprises already have.</p>
                 <div class="cta-actions">
-                    <a class="vision-btn vision-btn-primary" href="#agent-runtime" style="background:var(--primary);color:#082032;border:2px solid var(--primary);"><i class="fa-solid fa-play"></i><p>See the 7 Min Demo</p></a>
+                    <a class="vision-btn vision-btn-primary" href="#demo-video" style="background:var(--primary);color:#082032;border:2px solid var(--primary);"><i class="fa-solid fa-play"></i><p>Watch the Short Demo</p></a>
                     <a class="vision-btn vision-btn-secondary" href="mailto:info@schemamind.tech?subject=SchemaMind%20Enterprise%20Demo"><i class="fa-solid fa-calendar"></i><p>Request an Enterprise Demo</p></a>
                 </div>
             </div>
-            <div style="width:100%;max-width:820px;margin:0 auto 0;border-radius:16px;overflow:hidden;border:1px solid var(--border-color);box-shadow:0 0 60px rgba(56,189,248,0.2);aspect-ratio:16/9;">
+            <div id="demo-video" style="scroll-margin-top:80px;width:100%;max-width:820px;margin:0 auto 0;border-radius:16px;overflow:hidden;border:1px solid var(--border-color);box-shadow:0 0 60px rgba(56,189,248,0.2);aspect-ratio:16/9;">
                 <iframe src="https://www.youtube.com/embed/34TTdLSSly4" title="SchemaMind demo" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen style="width:100%;height:100%;border:none;display:block;"></iframe>
             </div>
             <div style="width:100%;max-width:820px;margin:10px auto 60px;text-align:center;">
