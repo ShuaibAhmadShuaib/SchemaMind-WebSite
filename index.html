@@ -812,8 +812,7 @@
             color: var(--primary);
             border-top-left-radius: 16px;
             border-top-right-radius: 16px;
-            border: 2px solid var(--primary;
-            )
+            border: 2px solid var(--primary);
             border-bottom: none;
             padding-top: 25px;
             padding-bottom: 20px;
@@ -1872,6 +1871,21 @@
   .hero-headline{font-size:2.8rem;}
 }
 
+/* ─── BUSINESS VALUE ─── */
+.value-table { width:100%; border-collapse:separate; border-spacing:0; margin-top:2.2rem; border:1px solid var(--border-color); border-radius:18px; overflow:hidden; background:rgba(15,23,42,.6); text-align:left; }
+.value-table th, .value-table td { padding:14px 18px; border-bottom:1px solid var(--border-color); font-size:.86rem; vertical-align:top; text-align:left; }
+.value-table th { font-family:'JetBrains Mono',monospace; font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; }
+.value-table tr:last-child td { border-bottom:none; }
+.value-table td:first-child { color:#f1f5f9; font-weight:600; width:24%; }
+.value-table td.before { color:#fca5a5; } .value-table th.before { color:#f87171; }
+.value-table td.after { color:#6ee7b7; background:rgba(16,185,129,.05); } .value-table th.after { color:#34d399; background:rgba(16,185,129,.05); }
+.removed-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:1.6rem; text-align:left; }
+.removed-card { border:1px solid rgba(248,113,113,.28); background:rgba(15,23,42,.6); border-radius:16px; padding:18px; }
+.removed-card b { display:block; color:#f1f5f9; font-family:'Space Grotesk',sans-serif; margin-bottom:4px; }
+.removed-card b i { color:#f87171; margin-right:6px; }
+.removed-card span { color:var(--text-dim); font-size:.82rem; line-height:1.55; }
+@media (max-width:900px){ .removed-grid{grid-template-columns:1fr;} .value-table td:first-child{width:auto;} .value-table th,.value-table td{padding:10px 10px;font-size:.78rem;} }
+
 /* ─── BLOG ARTICLES ─── */
 .blog-article { max-width: 860px; margin: 0 auto; }
 .blog-article .section-title { margin-bottom: .2rem; }
@@ -1958,6 +1972,7 @@ section .innovation-name { font-size:1.75rem !important; margin:1rem 0 .2rem; li
                 <button aria-haspopup="true">Why <i class="fa-solid fa-chevron-down chevron"></i></button>
                 <div class="dropdown-menu">
                     <a href="#reality" class="nav-link" data-section="reality"><i class="fa-solid fa-database"></i> The Problem</a>
+                    <a href="#value" class="nav-link" data-section="value"><i class="fa-solid fa-chart-line"></i> Business Value</a>
                     <a href="#agent-runtime" class="nav-link" data-section="agent-runtime"><i class="fa-solid fa-robot"></i> How It Works</a>
                 </div>
             </div>
@@ -1986,6 +2001,7 @@ section .innovation-name { font-size:1.75rem !important; margin:1rem 0 .2rem; li
         <a href="#hero" class="mobile-link"><i class="fa-solid fa-house"></i> Home</a>
         <div class="mobile-group-label">Why</div>
         <a href="#reality" class="mobile-link"><i class="fa-solid fa-database"></i> The Problem</a>
+        <a href="#value" class="mobile-link"><i class="fa-solid fa-chart-line"></i> Business Value</a>
         <a href="#agent-runtime" class="mobile-link"><i class="fa-solid fa-robot"></i> How It Works</a>
         <div class="mobile-group-label">Platform</div>
         <a href="#platform" class="mobile-link"><i class="fa-solid fa-brain"></i> GDI &amp; BDR</a>
@@ -2021,10 +2037,10 @@ section .innovation-name { font-size:1.75rem !important; margin:1rem 0 .2rem; li
                 <a class="hero-btn hero-btn-secondary" href="mailto:info@schemamind.tech?subject=SchemaMind%20Enterprise%20Discussion"><i class="fa-solid fa-arrow-right"></i> Talk to SchemaMind</a>
             </div>
             <div class="hero-proof">
-                <span><i class="fa-solid fa-circle-check"></i> No ETL</span>
-                <span><i class="fa-solid fa-circle-check"></i> No Semantic Layer</span>
-                <span><i class="fa-solid fa-circle-check"></i> Cross-Source Reasoning</span>
-                <span><i class="fa-solid fa-circle-check"></i> Lineage &amp; Confidence</span>
+                <span><i class="fa-solid fa-circle-check"></i> Answers in minutes, not weeks</span>
+                <span><i class="fa-solid fa-circle-check"></i> No pipelines to build</span>
+                <span><i class="fa-solid fa-circle-check"></i> No ontology to maintain by hand</span>
+                <span><i class="fa-solid fa-circle-check"></i> Every answer traceable</span>
             </div>
         </div>
     </section>
@@ -2047,8 +2063,33 @@ section .innovation-name { font-size:1.75rem !important; margin:1rem 0 .2rem; li
         </div>
     </section>
 
+    <!-- ═══ BUSINESS VALUE ═══ -->
+    <section id="value" style="background:#0f172a;">
+        <div class="enterprise-shell" style="text-align:center;">
+            <div class="section-overline">BUSINESS VALUE</div>
+            <h2 class="section-title">From weeks of data work to answers in minutes.</h2>
+            <p class="section-intro">Most of the time between a business question and a trusted answer is spent preparing data: finding sources, mapping them, building pipelines and modelling meaning. SchemaMind removes that work, so data teams spend their time on decisions, not plumbing.</p>
+            <table class="value-table">
+                <thead><tr><th></th><th class="before">Today</th><th class="after">With SchemaMind</th></tr></thead>
+                <tbody>
+                    <tr><td>A new cross-system question</td><td class="before">Days to weeks: find sources, map fields, build a pipeline, build a report</td><td class="after">Minutes: ask in plain language, get a verified answer</td></tr>
+                    <tr><td>Adding a new data source</td><td class="before">Weeks of ETL and modelling before it can be used</td><td class="after">Connect it; its relationships are found from the data</td></tr>
+                    <tr><td>Semantic layer and ontology</td><td class="before">Designed and maintained by experts, source by source</td><td class="after">Built automatically from evidence, reviewed by people</td></tr>
+                    <tr><td>When a schema changes</td><td class="before">Broken pipelines and reports, then rework</td><td class="after">Plans detect the change and repair themselves</td></tr>
+                    <tr><td>Confidential documents</td><td class="before">Kept away from AI, so their data goes unused</td><td class="after">Turned into data without the AI reading their content</td></tr>
+                    <tr><td>Systems that disagree</td><td class="before">Found by accident, after a wrong report</td><td class="after">Flagged for a decision before anyone relies on them</td></tr>
+                </tbody>
+            </table>
+            <div class="removed-grid">
+                <div class="removed-card"><b><i class="fa-solid fa-ban"></i>No ETL pipelines</b><span>Data stays where it lives. No copies to build, schedule, monitor or fix.</span></div>
+                <div class="removed-card"><b><i class="fa-solid fa-ban"></i>No manual semantic layer</b><span>Meaning and relationships come from the data itself, not from months of modelling workshops.</span></div>
+                <div class="removed-card"><b><i class="fa-solid fa-ban"></i>No per-question setup</b><span>New questions need no new configuration, reports or tickets to the data team.</span></div>
+            </div>
+        </div>
+    </section>
+
     <!-- ═══ AGENT RUNTIME ═══ -->
-    <section id="agent-runtime" style="background:#0f172a;">
+    <section id="agent-runtime">
         <div class="enterprise-shell">
             <div style="text-align:center;">
                 <div class="section-overline">HOW IT WORKS</div>
